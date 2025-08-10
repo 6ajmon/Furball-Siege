@@ -15,6 +15,11 @@ run/main_scene="uid://cae8jm3pdxrim"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1597
+window/size/viewport_height=987
+
 [dotnet]
 
 project/assembly_name="FurballSiege"
