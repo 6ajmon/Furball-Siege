@@ -55,7 +55,7 @@ mesh = SubResource("SphereMesh_tq887")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44667, 0.0415593, 0)
 mesh = SubResource("SphereMesh_h8dop")
 
-[node name="Camera3D" type="Camera3D" parent="BodyParts/HeadMesh"]
+[node name="Camera3D" type="Camera3D" parent="BodyParts/HeadMesh" groups=["cameras"]]
 transform = Transform3D(-4.37967e-08, 0, -1.00195, 0, 1.00195, 0, 1.00195, 0, -4.37967e-08, -0.213469, 0, 0)
 fov = 110.0
 

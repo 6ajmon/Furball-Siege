@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" uid="uid://dlhafx820amtc" path="res://Source/Tmp/FreeFlightCamera/FreeFlightCamera.cs" id="1_0qppv"]
 
-[node name="FreeFlightcamera" type="Camera3D"]
+[node name="FreeFlightcamera" type="Camera3D" groups=["cameras"]]
 script = ExtResource("1_0qppv")
