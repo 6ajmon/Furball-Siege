@@ -27,5 +27,5 @@ environment = SubResource("Environment_1y838")
 
 [node name="Slingshot" parent="." instance=ExtResource("2_j2vee")]
 
-[node name="Camera3D" parent="." instance=ExtResource("1_1y838")]
+[node name="FreeFlightcamera" parent="." instance=ExtResource("1_1y838")]
 transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 77.8514, 45.0492, 0)
