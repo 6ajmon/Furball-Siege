@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://c2danx0rx2og3"]
+
+[ext_resource type="Script" uid="uid://dfqkbdn1qka7i" path="res://Source/Bullets/Hamster/Hamster.cs" id="1_h8dop"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h8dop"]
+friction = 0.3
+bounce = 0.9
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tq887"]
+radius = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tq887"]
+albedo_color = Color(0.46469, 0.205889, 0.0849981, 1)
+roughness = 0.8
+
+[sub_resource type="SphereMesh" id="SphereMesh_tq887"]
+material = SubResource("StandardMaterial3D_tq887")
+height = 0.75
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8dop"]
+albedo_color = Color(0.576471, 0.368627, 0.176471, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_h8dop"]
+material = SubResource("StandardMaterial3D_h8dop")
+radius = 0.2
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgw0v"]
+albedo_color = Color(0.577256, 0.370239, 0.17464, 1)
+roughness = 0.7
+
+[sub_resource type="SphereMesh" id="SphereMesh_sgw0v"]
+material = SubResource("StandardMaterial3D_sgw0v")
+radius = 0.1
+height = 0.2
+
+[node name="Hamster" type="RigidBody3D"]
+transform = Transform3D(0.998051, 0, 0, 0, 0.998051, 0, 0, 0, 0.998051, 0, 0, 0)
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_h8dop")
+script = ExtResource("1_h8dop")
+meshPath = NodePath("BodyMesh")
+factor = 0.12
+maxSquash = 0.8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_tq887")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_tq887")
+
+[node name="BodyParts" type="Node3D" parent="."]
+
+[node name="HeadMesh" type="MeshInstance3D" parent="BodyParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44667, 0.0415593, 0)
+mesh = SubResource("SphereMesh_h8dop")
+
+[node name="Camera3D" type="Camera3D" parent="BodyParts/HeadMesh"]
+transform = Transform3D(-4.37967e-08, 0, -1.00195, 0, 1.00195, 0, 1.00195, 0, -4.37967e-08, -0.213469, 0, 0)
+fov = 110.0
+
+[node name="FrontLeftPawMesh" type="MeshInstance3D" parent="BodyParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.25, -0.25)
+mesh = SubResource("SphereMesh_sgw0v")
+
+[node name="FrontRightPawMesh" type="MeshInstance3D" parent="BodyParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.25, 0.25)
+mesh = SubResource("SphereMesh_sgw0v")
+
+[node name="RearLeftPawMesh" type="MeshInstance3D" parent="BodyParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.333109, -0.2565, -0.233455)
+mesh = SubResource("SphereMesh_sgw0v")
+
+[node name="RearRightPawMesh" type="MeshInstance3D" parent="BodyParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.307644, -0.2565, 0.264037)
+mesh = SubResource("SphereMesh_sgw0v")
+
+[node name="TailMesh" type="MeshInstance3D" parent="BodyParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.467893, 0.073809, 0)
+mesh = SubResource("SphereMesh_sgw0v")

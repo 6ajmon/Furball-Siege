@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cae8jm3pdxrim"]
+[gd_scene load_steps=9 format=3 uid="uid://cae8jm3pdxrim"]
 
 [ext_resource type="PackedScene" uid="uid://4g78f4a6q230" path="res://Source/Tmp/FreeFlightCamera/FreeFlightCamera.tscn" id="1_1y838"]
 [ext_resource type="PackedScene" uid="uid://b5nvfcyqcapdn" path="res://Source/Slingshot/Slingshot.tscn" id="2_j2vee"]
+[ext_resource type="PackedScene" uid="uid://c2danx0rx2og3" path="res://Source/Bullets/Hamster/Hamster.tscn" id="3_j2vee"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t1ts5"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -16,6 +17,12 @@ sky = SubResource("Sky_hxrpx")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="BoxMesh" id="BoxMesh_1y838"]
+size = Vector3(50, 0.2, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1y838"]
+size = Vector3(50, 1, 50)
+
 [node name="Level" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -28,4 +35,16 @@ environment = SubResource("Environment_1y838")
 [node name="Slingshot" parent="." instance=ExtResource("2_j2vee")]
 
 [node name="FreeFlightcamera" parent="." instance=ExtResource("1_1y838")]
-transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 77.8514, 45.0492, 0)
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 10.3813, 3.33854, -4.26171)
+current = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_1y838")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_1y838")
+
+[node name="Hamster" parent="." instance=ExtResource("3_j2vee")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 3.85739, 6.16197)
