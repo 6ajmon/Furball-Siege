@@ -1,3 +1,23 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# C# / .NET build output
+**/bin/
+**/obj/
+
+# Debug/release symbols
+*.pdb
+
+# Export/build artifacts
+export/
+build/
+releases/
+dist/
+out/
+
+# IDE/Editor
+.vs/
+.vscode/
+.idea/
+*.sln.iml
