@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5nvfcyqcapdn"]
+
+[ext_resource type="PackedScene" uid="uid://0cplhjgy8hjs" path="res://Assets/Models/Slingshot/scene.gltf" id="1_irejd"]
+[ext_resource type="Script" uid="uid://mp64mxwg48gt" path="res://Source/Slingshot/Slingshot.cs" id="1_quq24"]
+
+[sub_resource type="Animation" id="Animation_quq24"]
+resource_name = "SlingshotShoot"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:SlingPosition")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-15, -200, 160)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:StringScale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.224, 1.115, 2.085), Vector3(-0.242, -1.22, -1.301)]
+}
+
+[sub_resource type="Animation" id="Animation_fy0tg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:SlingPosition")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:StringScale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fy0tg"]
+_data = {
+&"RESET": SubResource("Animation_fy0tg"),
+&"SlingshotShoot": SubResource("Animation_quq24")
+}
+
+[node name="Slingshot" type="Node3D" node_paths=PackedStringArray("AnimationPlayer")]
+script = ExtResource("1_quq24")
+AnimationPlayer = NodePath("AnimationPlayer")
+StringScale = Vector3(1, 1, 0)
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_irejd")]
+
+[node name="Object_4" parent="Sketchfab_Scene/Sketchfab_model/e030fbefb0054155b4a00186e5d83f15_fbx/RootNode/Sling" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Sling_Material #49_0" parent="Sketchfab_Scene/Sketchfab_model/e030fbefb0054155b4a00186e5d83f15_fbx/RootNode/Sling/Object_4" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.133293, -73.1616, -0.173859)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_fy0tg")
+}
+
+[editable path="Sketchfab_Scene"]

@@ -21,3 +21,6 @@ out/
 .vscode/
 .idea/
 *.sln.iml
+
+*.csproj.user
+*.user
