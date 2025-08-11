@@ -4,13 +4,27 @@ using System.Linq;
 
 public partial class Level : Node3D
 {
+    [Export] public Slingshot _slingshot;
     private Marker3D _hamsterAnchorPoint;
     [Export(PropertyHint.File, "*.tscn")] public string _hamsterScenePath;
+    private Hamster _hamsterInstance;
 
     public override void _Ready()
     {
         _hamsterAnchorPoint = GetTree().GetNodesInGroup("hamsterAnchor").FirstOrDefault() as Marker3D;
         SpawnHamster();
+    }
+
+    public override void _Process(double delta)
+    {
+        if (GameManager.Instance.CurrentGameState == GameManager.GameState.Aiming)
+        {
+            if (Input.IsActionPressed("Shoot"))
+            {
+                DetachHamster();
+                TryShoot();
+            }
+        }
     }
 
     private void SpawnHamster()
@@ -25,9 +39,9 @@ public partial class Level : Node3D
             PackedScene hamsterScene = GD.Load<PackedScene>(_hamsterScenePath);
             if (hamsterScene != null)
             {
-                Hamster hamsterInstance = hamsterScene.Instantiate() as Hamster;
-                _hamsterAnchorPoint.AddChild(hamsterInstance);
-                hamsterInstance.GlobalPosition = _hamsterAnchorPoint.GlobalPosition;
+                _hamsterInstance = hamsterScene.Instantiate() as Hamster;
+                _hamsterAnchorPoint.AddChild(_hamsterInstance);
+                _hamsterInstance.GlobalPosition = _hamsterAnchorPoint.GlobalPosition;
             }
             else
             {
@@ -37,6 +51,30 @@ public partial class Level : Node3D
         else
         {
             GD.PrintErr("Level: Hamster anchor point not found in the scene.");
+        }
+    }
+    public void DetachHamster()
+    {
+        if (_hamsterAnchorPoint != null)
+        {
+            Vector3 globalPos = _hamsterInstance.GlobalPosition;
+            Vector3 globalRot = _hamsterInstance.GlobalRotation;
+
+            _hamsterAnchorPoint.RemoveChild(_hamsterInstance);
+            AddChild(_hamsterInstance);
+            _hamsterInstance.GlobalPosition = globalPos;
+            _hamsterInstance.GlobalRotation = globalRot;
+        }
+    }
+
+    public void TryShoot()
+    {
+        GameManager.Instance.CurrentGameState = GameManager.GameState.Shooting;
+        if (_hamsterInstance != null)
+        {
+            _hamsterInstance.ApplyImpulse(_slingshot.GetLaunchDirection() * _slingshot.Force);
+            _hamsterInstance.GravityScale = 1f;
+            _slingshot.PlayAnimation("SlingshotShoot");
         }
     }
 }

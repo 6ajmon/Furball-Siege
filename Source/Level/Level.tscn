@@ -23,8 +23,9 @@ size = Vector3(50, 0.2, 50)
 [sub_resource type="BoxShape3D" id="BoxShape3D_1y838"]
 size = Vector3(50, 1, 50)
 
-[node name="Level" type="Node3D"]
+[node name="Level" type="Node3D" node_paths=PackedStringArray("_slingshot")]
 script = ExtResource("1_cx8g2")
+_slingshot = NodePath("Slingshot")
 _hamsterScenePath = "uid://c2danx0rx2og3"
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -41,9 +42,11 @@ transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819
 current = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.394)
 mesh = SubResource("BoxMesh_1y838")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.394)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_1y838")

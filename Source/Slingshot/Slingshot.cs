@@ -4,6 +4,9 @@ using System;
 public partial class Slingshot : Node3D
 {
     [Export] public AnimationPlayer AnimationPlayer;
+    [Export] public float Force = 300f;
+    [Export] public float UpwardForce = 0.03f;
+
     private Node3D StringNode;
     private Node3D SlingNode;
     [Export] public Vector3 StringScale = new Vector3(0.224f, 1.115f, 2.085f);
@@ -37,7 +40,7 @@ public partial class Slingshot : Node3D
                     Mathf.DegToRad(2.7f),
                     Mathf.DegToRad(2.9f)
                 );
-            } 
+            }
         }
     }
 
@@ -51,5 +54,10 @@ public partial class Slingshot : Node3D
         {
             GD.PrintErr($"Animation '{animationName}' not found in AnimationPlayer.");
         }
+    }
+
+    public Vector3 GetLaunchDirection()
+    {
+        return (-GlobalTransform.Basis.Z + Vector3.Up * UpwardForce).Normalized();
     }
 }

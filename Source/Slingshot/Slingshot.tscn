@@ -33,7 +33,6 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_quq24"]
 resource_name = "SlingshotShoot"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -41,10 +40,10 @@ tracks/0/path = NodePath(".:SlingPosition")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(-15, -200, 160)]
+"values": [Vector3(0, 0, 0), Vector3(-15, -200, 160), Vector3(0, 0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -53,10 +52,10 @@ tracks/1/path = NodePath(".:StringScale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(0.224, 1.115, 2.085), Vector3(-0.242, -1.22, -1.301)]
+"values": [Vector3(0.224, 1.115, 2.085), Vector3(-0.242, -1.22, -1.301), Vector3(0.224, 1.115, 2.085)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fy0tg"]
@@ -66,7 +65,7 @@ _data = {
 }
 
 [node name="Slingshot" type="Node3D" node_paths=PackedStringArray("AnimationPlayer")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.0965926, -0.0258819, 0, 0.0258819, 0.0965926, 0, 0, 0)
 script = ExtResource("1_quq24")
 AnimationPlayer = NodePath("AnimationPlayer")
 StringScale = Vector3(1, 1, 0)
@@ -85,7 +84,7 @@ libraries = {
 }
 
 [node name="SlingshotCamera" type="Camera3D" parent="." node_paths=PackedStringArray("slingshot") groups=["cameras"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8325, 52.1785, 83.2874)
+transform = Transform3D(10, 0, 0, 0, 9.91445, 1.30526, 0, -1.30526, 9.91445, 1.8325, 51.7556, 81.7091)
 fov = 60.0
 script = ExtResource("3_fy0tg")
 slingshot = NodePath("..")
