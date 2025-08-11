@@ -17,6 +17,7 @@ public partial class Hamster : RigidBody3D
     {
         _mesh = GetNode<MeshInstance3D>(meshPath);
         _originalTransform = _mesh.Transform;
+        CameraManager.Instance.RefreshCameraList();
     }
 
     public override void _PhysicsProcess(double delta)

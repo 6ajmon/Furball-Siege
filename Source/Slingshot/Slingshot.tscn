@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5nvfcyqcapdn"]
+[gd_scene load_steps=7 format=3 uid="uid://b5nvfcyqcapdn"]
 
 [ext_resource type="PackedScene" uid="uid://0cplhjgy8hjs" path="res://Assets/Models/Slingshot/scene.gltf" id="1_irejd"]
 [ext_resource type="Script" uid="uid://mp64mxwg48gt" path="res://Source/Slingshot/Slingshot.cs" id="1_quq24"]
+[ext_resource type="Script" uid="uid://dl7ed4xj14ybb" path="res://Source/Slingshot/SlingshotCamera.cs" id="3_fy0tg"]
 
 [sub_resource type="Animation" id="Animation_fy0tg"]
 length = 0.001
@@ -83,8 +84,14 @@ libraries = {
 &"": SubResource("AnimationLibrary_fy0tg")
 }
 
-[node name="SlingshotCamera" type="Camera3D" parent="." groups=["cameras"]]
+[node name="SlingshotCamera" type="Camera3D" parent="." node_paths=PackedStringArray("slingshot") groups=["cameras"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8325, 52.1785, 83.2874)
 fov = 60.0
+script = ExtResource("3_fy0tg")
+slingshot = NodePath("..")
+
+[node name="HamsterAnchorPoint" type="Marker3D" parent="." groups=["hamsterAnchor"]]
+physics_interpolation_mode = 2
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5768, 40, 59.4903)
 
 [editable path="Sketchfab_Scene"]

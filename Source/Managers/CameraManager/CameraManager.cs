@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public partial class CameraManager : Node
 {
+    public static CameraManager Instance => ((SceneTree)Engine.GetMainLoop()).Root.GetNode<CameraManager>("CameraManager");
     private int _currentCameraIndex = 0;
     private List<Camera3D> _cameras = new();
 
@@ -34,7 +35,7 @@ public partial class CameraManager : Node
         }
     }
 
-    private void RefreshCameraList()
+    public void RefreshCameraList()
     {
         _cameras.Clear();
         foreach (Node node in GetTree().GetNodesInGroup("cameras"))
