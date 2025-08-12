@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://clqm8c0bh4m4"]
+
+[ext_resource type="Material" uid="uid://b3ratdgbfsk5n" path="res://Assets/Textures/Plank/Material/PlankMaterial.tres" id="1_ox72r"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ox72r"]
+rough = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ij2pf"]
+material = ExtResource("1_ox72r")
+size = Vector3(2, 0.06, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ox72r"]
+size = Vector3(1.88, 0.05, 1.88)
+
+[node name="Plank" type="RigidBody3D"]
+collision_mask = 259
+mass = 6.0
+physics_material_override = SubResource("PhysicsMaterial_ox72r")
+linear_damp = 0.5
+angular_damp = 1.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ij2pf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ox72r")

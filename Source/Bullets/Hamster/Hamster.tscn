@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2danx0rx2og3"]
+[gd_scene load_steps=9 format=3 uid="uid://c2danx0rx2og3"]
 
 [ext_resource type="Script" uid="uid://dfqkbdn1qka7i" path="res://Source/Bullets/Hamster/Hamster.cs" id="1_h8dop"]
+[ext_resource type="SphereMesh" uid="uid://cxrbfoyx5crjd" path="res://Source/Bullets/Hamster/HamsterMesh.tres" id="1_sgw0v"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h8dop"]
 friction = 0.3
@@ -8,14 +9,6 @@ bounce = 0.9
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tq887"]
 radius = 0.4
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tq887"]
-albedo_color = Color(0.46469, 0.205889, 0.0849981, 1)
-roughness = 0.8
-
-[sub_resource type="SphereMesh" id="SphereMesh_tq887"]
-material = SubResource("StandardMaterial3D_tq887")
-height = 0.75
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8dop"]
 albedo_color = Color(0.576471, 0.368627, 0.176471, 1)
@@ -42,14 +35,12 @@ physics_material_override = SubResource("PhysicsMaterial_h8dop")
 gravity_scale = 0.0
 script = ExtResource("1_h8dop")
 meshPath = NodePath("BodyMesh")
-factor = 0.12
-maxSquash = 0.8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_tq887")
 
 [node name="BodyMesh" type="MeshInstance3D" parent="."]
-mesh = SubResource("SphereMesh_tq887")
+mesh = ExtResource("1_sgw0v")
 
 [node name="BodyParts" type="Node3D" parent="."]
 

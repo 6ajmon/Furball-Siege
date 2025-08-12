@@ -1,0 +1,68 @@
+[gd_scene load_steps=2 format=3 uid="uid://wbacuclx8xc0"]
+
+[ext_resource type="PackedScene" uid="uid://clqm8c0bh4m4" path="res://Source/Forts/Plank/Plank.tscn" id="1_hb30c"]
+
+[node name="Crate" type="Node3D"]
+
+[node name="PlankFloor" parent="." instance=ExtResource("1_hb30c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 0)
+
+[node name="PlankBack" parent="." instance=ExtResource("1_hb30c")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1, -0.97)
+
+[node name="PlankLeft" parent="." instance=ExtResource("1_hb30c")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.97, 1, 0)
+
+[node name="PlankRight" parent="." instance=ExtResource("1_hb30c")]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0.97, 1, 0)
+
+[node name="PlankCeiling" parent="." instance=ExtResource("1_hb30c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.97, 0)
+
+[node name="PinJoint3D" type="PinJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+node_a = NodePath("../PlankFloor")
+node_b = NodePath("../PlankRight")
+exclude_nodes_from_collision = false
+
+[node name="PinJoint3D5" type="PinJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+node_a = NodePath("../PlankFloor")
+node_b = NodePath("../PlankBack")
+exclude_nodes_from_collision = false
+
+[node name="PinJoint3D6" type="PinJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -1)
+node_a = NodePath("../PlankCeiling")
+node_b = NodePath("../PlankBack")
+exclude_nodes_from_collision = false
+
+[node name="PinJoint3D7" type="PinJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, -1)
+node_a = NodePath("../PlankRight")
+node_b = NodePath("../PlankBack")
+exclude_nodes_from_collision = false
+
+[node name="PinJoint3D8" type="PinJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, -1)
+node_a = NodePath("../PlankLeft")
+node_b = NodePath("../PlankBack")
+exclude_nodes_from_collision = false
+
+[node name="PinJoint3D2" type="PinJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+node_a = NodePath("../PlankFloor")
+node_b = NodePath("../PlankLeft")
+exclude_nodes_from_collision = false
+
+[node name="PinJoint3D3" type="PinJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 0)
+node_a = NodePath("../PlankCeiling")
+node_b = NodePath("../PlankLeft")
+exclude_nodes_from_collision = false
+
+[node name="PinJoint3D4" type="PinJoint3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2, 0)
+node_a = NodePath("../PlankCeiling")
+node_b = NodePath("../PlankRight")
+exclude_nodes_from_collision = false

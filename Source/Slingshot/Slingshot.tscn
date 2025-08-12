@@ -85,6 +85,7 @@ libraries = {
 
 [node name="SlingshotCamera" type="Camera3D" parent="." node_paths=PackedStringArray("slingshot") groups=["cameras"]]
 transform = Transform3D(10, 0, 0, 0, 9.91445, 1.30526, 0, -1.30526, 9.91445, 1.8325, 51.7556, 81.7091)
+current = true
 fov = 60.0
 script = ExtResource("3_fy0tg")
 slingshot = NodePath("..")
