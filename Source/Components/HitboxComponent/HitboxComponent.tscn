@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgutj0akdrixo"]
+
+[ext_resource type="Script" uid="uid://w7c0vc5a07xu" path="res://Source/Components/HitboxComponent/HitboxComponent.cs" id="1_ss5js"]
+
+[node name="HitboxComponent" type="Node"]
+script = ExtResource("1_ss5js")
