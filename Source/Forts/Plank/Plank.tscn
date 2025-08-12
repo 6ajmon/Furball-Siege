@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://clqm8c0bh4m4"]
+[gd_scene load_steps=6 format=3 uid="uid://clqm8c0bh4m4"]
 
+[ext_resource type="Script" uid="uid://c3x485dfxfyky" path="res://Source/Forts/Plank/Plank.cs" id="1_ij2pf"]
 [ext_resource type="Material" uid="uid://b3ratdgbfsk5n" path="res://Assets/Textures/Plank/Material/PlankMaterial.tres" id="1_ox72r"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ox72r"]
@@ -18,6 +19,7 @@ mass = 6.0
 physics_material_override = SubResource("PhysicsMaterial_ox72r")
 linear_damp = 0.5
 angular_damp = 1.0
+script = ExtResource("1_ij2pf")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ij2pf")

@@ -68,6 +68,8 @@ _data = {
 transform = Transform3D(0.1, 0, 0, 0, 0.0965926, -0.0258819, 0, 0.0258819, 0.0965926, 0, 0, 0)
 script = ExtResource("1_quq24")
 AnimationPlayer = NodePath("AnimationPlayer")
+Force = 10000.0
+UpwardForce = 0.01
 StringScale = Vector3(1, 1, 0)
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("1_irejd")]

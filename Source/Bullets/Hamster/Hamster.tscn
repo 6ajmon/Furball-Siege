@@ -28,9 +28,9 @@ radius = 0.1
 height = 0.2
 
 [node name="Hamster" type="RigidBody3D"]
-physics_interpolation_mode = 2
-transform = Transform3D(-4.36262e-08, 0, 0.998051, 0, 0.998051, 0, -0.998051, 0, -4.36262e-08, 0, 0, 0)
-mass = 10.0
+physics_interpolation_mode = 1
+transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 0, 0, 0)
+mass = 160.0
 physics_material_override = SubResource("PhysicsMaterial_h8dop")
 gravity_scale = 0.0
 script = ExtResource("1_h8dop")

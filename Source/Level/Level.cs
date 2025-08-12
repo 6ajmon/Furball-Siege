@@ -64,6 +64,7 @@ public partial class Level : Node3D
             AddChild(_hamsterInstance);
             _hamsterInstance.GlobalPosition = globalPos;
             _hamsterInstance.GlobalRotation = globalRot;
+            _hamsterInstance.Scale = new Vector3(1, 1, 1);
         }
     }
 
