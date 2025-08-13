@@ -36,7 +36,6 @@ mesh = SubResource("BoxMesh_ij2pf")
 shape = SubResource("BoxShape3D_ox72r")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("DamageNumberDisplay") instance=ExtResource("3_usiyg")]
-MaxHealth = 50.0
 DamageNumberDisplay = NodePath("../DamageNumberDisplayComponent")
 
 [node name="DamageNumberDisplayComponent" parent="." instance=ExtResource("4_0n0vu")]

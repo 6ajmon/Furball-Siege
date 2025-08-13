@@ -10,6 +10,11 @@ public partial class Plank : RigidBody3D
     public override void _Ready()
     {
         HealthComponent.damageTaken += OnDamageTaken;
+        HealthComponent.healthDepleted += OnHealthDepleted;
+        halfHealthReached += (plank) =>
+        {
+            _halfHealthReached = true;
+        };
     }
 
     private void OnDamageTaken(float _damageAmount)
@@ -17,7 +22,15 @@ public partial class Plank : RigidBody3D
         if (!_halfHealthReached && HealthComponent.CurrentHealth <= HealthComponent.MaxHealth / 2)
         {
             EmitSignal(SignalName.halfHealthReached, this);
-            _halfHealthReached = true;
         }
+    }
+
+    private void OnHealthDepleted()
+    {
+        if (!_halfHealthReached)
+        {
+            EmitSignal(SignalName.halfHealthReached, this);
+        }
+        QueueFree();
     }
 }
