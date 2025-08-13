@@ -15,7 +15,7 @@ public partial class Level : Node3D
         SpawnHamster();
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         if (GameManager.Instance.CurrentGameState == GameManager.GameState.Aiming)
         {

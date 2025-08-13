@@ -19,7 +19,7 @@ public partial class Slingshot : Node3D
         CameraManager.Instance.RefreshCameraList();
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         if (AnimationPlayer.IsPlaying())
         {

@@ -21,7 +21,7 @@ public partial class CameraManager : Node
         }
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         if (Input.IsActionJustPressed("CycleCameraForward"))
         {

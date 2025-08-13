@@ -1,7 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://c2danx0rx2og3"]
+[gd_scene load_steps=14 format=3 uid="uid://c2danx0rx2og3"]
 
 [ext_resource type="Script" uid="uid://dfqkbdn1qka7i" path="res://Source/Bullets/Hamster/Hamster.cs" id="1_h8dop"]
 [ext_resource type="SphereMesh" uid="uid://cxrbfoyx5crjd" path="res://Source/Bullets/Hamster/HamsterMesh.tres" id="1_sgw0v"]
+[ext_resource type="PackedScene" uid="uid://bs8nunpg7m24e" path="res://Source/Components/HealthComponent/HealthComponent.tscn" id="3_nl8dl"]
+[ext_resource type="PackedScene" uid="uid://d2heim0pjelyd" path="res://Source/Components/DamageNumberDisplayComponent/DamageNumberDisplayComponent.tscn" id="4_euomd"]
+[ext_resource type="PackedScene" uid="uid://bgutj0akdrixo" path="res://Source/Components/HitboxComponent/HitboxComponent.tscn" id="5_6ylba"]
+[ext_resource type="PackedScene" uid="uid://c5qfhi7pf5u6v" path="res://Source/UI/DamageNumber/DamageNumber.tscn" id="5_euomd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h8dop"]
 friction = 0.3
@@ -26,6 +30,8 @@ roughness = 0.7
 material = SubResource("StandardMaterial3D_sgw0v")
 radius = 0.1
 height = 0.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_euomd"]
 
 [node name="Hamster" type="RigidBody3D"]
 physics_interpolation_mode = 1
@@ -71,3 +77,20 @@ mesh = SubResource("SphereMesh_sgw0v")
 [node name="TailMesh" type="MeshInstance3D" parent="BodyParts"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.467893, 0.073809, 0)
 mesh = SubResource("SphereMesh_sgw0v")
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("DamageNumberDisplay") instance=ExtResource("3_nl8dl")]
+MaxHealth = -1.0
+DamageNumberDisplay = NodePath("../DamageNumberDisplayComponent")
+
+[node name="DamageNumberDisplayComponent" parent="." instance=ExtResource("4_euomd")]
+DamageNumberScene = ExtResource("5_euomd")
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("HealthComponent") instance=ExtResource("5_6ylba")]
+collision_layer = 2
+HealthComponent = NodePath("../HealthComponent")
+ContactDamage = 1.0
+
+[node name="HitboxCollisionShape" parent="HitboxComponent" index="0"]
+shape = SubResource("SphereShape3D_euomd")
+
+[editable path="HitboxComponent"]
