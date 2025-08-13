@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://clqm8c0bh4m4"]
+[gd_scene load_steps=11 format=3 uid="uid://clqm8c0bh4m4"]
 
 [ext_resource type="Script" uid="uid://c3x485dfxfyky" path="res://Source/Forts/Plank/Plank.cs" id="1_ij2pf"]
 [ext_resource type="Material" uid="uid://b3ratdgbfsk5n" path="res://Assets/Textures/Plank/Material/PlankMaterial.tres" id="1_ox72r"]
+[ext_resource type="PackedScene" uid="uid://bs8nunpg7m24e" path="res://Source/Components/HealthComponent/HealthComponent.tscn" id="3_usiyg"]
+[ext_resource type="PackedScene" uid="uid://d2heim0pjelyd" path="res://Source/Components/DamageNumberDisplayComponent/DamageNumberDisplayComponent.tscn" id="4_0n0vu"]
+[ext_resource type="PackedScene" uid="uid://c5qfhi7pf5u6v" path="res://Source/UI/DamageNumber/DamageNumber.tscn" id="5_fxuk4"]
+[ext_resource type="PackedScene" uid="uid://bgutj0akdrixo" path="res://Source/Components/HitboxComponent/HitboxComponent.tscn" id="6_rd83j"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ox72r"]
 rough = true
@@ -12,6 +16,9 @@ size = Vector3(2, 0.06, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ox72r"]
 size = Vector3(1.88, 0.05, 1.88)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_usiyg"]
+size = Vector3(2, 0.06, 2)
 
 [node name="Plank" type="RigidBody3D"]
 collision_mask = 259
@@ -26,3 +33,20 @@ mesh = SubResource("BoxMesh_ij2pf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_ox72r")
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("DamageNumberDisplay") instance=ExtResource("3_usiyg")]
+MaxHealth = -1.0
+DamageNumberDisplay = NodePath("../DamageNumberDisplayComponent")
+
+[node name="DamageNumberDisplayComponent" parent="." instance=ExtResource("4_0n0vu")]
+DamageNumberScene = ExtResource("5_fxuk4")
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("HealthComponent") instance=ExtResource("6_rd83j")]
+collision_mask = 3
+HealthComponent = NodePath("../HealthComponent")
+ContactDamage = 5.0
+
+[node name="HitboxCollisionShape" parent="HitboxComponent" index="0"]
+shape = SubResource("BoxShape3D_usiyg")
+
+[editable path="HitboxComponent"]

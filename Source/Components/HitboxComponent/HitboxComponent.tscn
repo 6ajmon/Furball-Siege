@@ -2,5 +2,9 @@
 
 [ext_resource type="Script" uid="uid://w7c0vc5a07xu" path="res://Source/Components/HitboxComponent/HitboxComponent.cs" id="1_ss5js"]
 
-[node name="HitboxComponent" type="Node"]
+[node name="HitboxComponent" type="Area3D"]
 script = ExtResource("1_ss5js")
+
+[node name="HitboxCollisionShape" type="CollisionShape3D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
