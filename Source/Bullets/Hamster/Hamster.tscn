@@ -40,7 +40,6 @@ mass = 160.0
 physics_material_override = SubResource("PhysicsMaterial_h8dop")
 gravity_scale = 0.0
 script = ExtResource("1_h8dop")
-meshPath = NodePath("BodyMesh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_tq887")
