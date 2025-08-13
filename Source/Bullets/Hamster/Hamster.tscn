@@ -88,6 +88,7 @@ DamageNumberScene = ExtResource("5_euomd")
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("HealthComponent") instance=ExtResource("5_6ylba")]
 collision_layer = 2
 HealthComponent = NodePath("../HealthComponent")
+ContactDamage = 1.0
 
 [node name="HitboxCollisionShape" parent="HitboxComponent" index="0"]
 shape = SubResource("SphereShape3D_euomd")

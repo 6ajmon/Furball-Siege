@@ -47,7 +47,7 @@ public partial class FreeFlightCamera : Camera3D
         }
     }
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         if (Current)
         {

@@ -10,4 +10,5 @@ public partial class GameManager : Node
         Shooting
     }
     public GameState CurrentGameState { get; set; } = GameState.Aiming;
+    public float MinimumSpeedForDamage { get; set; } = 5f;
 }

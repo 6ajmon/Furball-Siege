@@ -11,7 +11,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tpmtc")
 Duration = 3.0
-TextSize = 64
+MoveDistance = 100.0
+MinDamageForRed = 200.0
 
 [node name="DamageLabel" type="Label" parent="."]
 layout_mode = 0

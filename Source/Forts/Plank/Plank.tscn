@@ -18,15 +18,16 @@ size = Vector3(2, 0.06, 2)
 size = Vector3(1.88, 0.05, 1.88)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_usiyg"]
-size = Vector3(2, 0.06, 2)
+size = Vector3(1.88, 0.05, 1.88)
 
-[node name="Plank" type="RigidBody3D"]
+[node name="Plank" type="RigidBody3D" node_paths=PackedStringArray("HealthComponent")]
 collision_mask = 259
 mass = 6.0
 physics_material_override = SubResource("PhysicsMaterial_ox72r")
 linear_damp = 0.5
 angular_damp = 1.0
 script = ExtResource("1_ij2pf")
+HealthComponent = NodePath("HealthComponent")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ij2pf")
@@ -35,7 +36,7 @@ mesh = SubResource("BoxMesh_ij2pf")
 shape = SubResource("BoxShape3D_ox72r")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("DamageNumberDisplay") instance=ExtResource("3_usiyg")]
-MaxHealth = -1.0
+MaxHealth = 50.0
 DamageNumberDisplay = NodePath("../DamageNumberDisplayComponent")
 
 [node name="DamageNumberDisplayComponent" parent="." instance=ExtResource("4_0n0vu")]

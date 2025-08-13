@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://wbacuclx8xc0"]
+[gd_scene load_steps=3 format=3 uid="uid://wbacuclx8xc0"]
 
+[ext_resource type="Script" uid="uid://cubfo737ujjpr" path="res://Source/Forts/Crates/Crate.cs" id="1_2o6ew"]
 [ext_resource type="PackedScene" uid="uid://clqm8c0bh4m4" path="res://Source/Forts/Plank/Plank.tscn" id="1_hb30c"]
 
 [node name="Crate" type="Node3D"]
+script = ExtResource("1_2o6ew")
 
 [node name="PlankFloor" parent="." instance=ExtResource("1_hb30c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 0)
