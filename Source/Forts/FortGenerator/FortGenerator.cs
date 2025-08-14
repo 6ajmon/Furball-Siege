@@ -14,6 +14,7 @@ public partial class FortGenerator : GridMap
     public const float CRATE_SIZE = 2.0f;
     private Queue<Vector3> _cratePositions = new Queue<Vector3>();
     private bool _isGenerating = false;
+    private Random _random;
     public override void _Ready()
     {
         if (CrateScene == null)
@@ -23,6 +24,7 @@ public partial class FortGenerator : GridMap
         }
         GameManager.Instance.MapSize = FortWidth * CRATE_SIZE;
         CellSize = new Vector3(CRATE_SIZE, CRATE_SIZE, CRATE_SIZE);
+        _random = new Random(GameManager.Instance.randomSeed);
     }
     public async void GenerateFort()
     {
@@ -45,7 +47,7 @@ public partial class FortGenerator : GridMap
         {
             for (int z = 0; z < FortDepth; z++)
             {
-                int height = GD.RandRange(FortMinHeight, FortMaxHeight);
+                int height = _random.Next(FortMinHeight, FortMaxHeight + 1);
                 for (int y = 0; y < height; y++)
                 {
                     Vector3 crateSpawnPosition = MapToLocal(new Vector3I(x, y, z)) + GlobalPosition;
@@ -63,7 +65,7 @@ public partial class FortGenerator : GridMap
             {
                 Vector3 position = _cratePositions.Dequeue();
                 Crate crateInstance = CrateScene.Instantiate<Crate>();
-                AddChild(crateInstance);
+                AddChild(crateInstance, true);
                 crateInstance.GlobalPosition = position;
             }
             

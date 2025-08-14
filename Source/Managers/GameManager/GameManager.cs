@@ -13,4 +13,5 @@ public partial class GameManager : Node
     public float MinimumSpeedForDamage { get; set; } = 5f;
     public float MapSize { get; set; }
     public float FortDistance { get; set; }
+    public int randomSeed { get; set; } = new Random().Next();
 }
