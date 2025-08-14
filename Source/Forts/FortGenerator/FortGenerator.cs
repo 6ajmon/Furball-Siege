@@ -1,6 +1,8 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+
 
 public partial class FortGenerator : GridMap
 {
@@ -8,18 +10,27 @@ public partial class FortGenerator : GridMap
     [Export(PropertyHint.Range, "0,50, 1")] public int FortDepth = 3;
     [Export(PropertyHint.Range, "0,20, 1")] public int FortMaxHeight = 6;
     [Export(PropertyHint.Range, "0,20, 1")] public int FortMinHeight = 1;
-    [Export] public PackedScene CrateScene;
     [Export(PropertyHint.Range, "1,50, 1")] public int CratesPerFrame = 6;
+    [Export] public PackedScene CrateScene;
+    [Export] public PackedScene EnemyScene;
+    [Export] public int EnemyCount = 5;
 
     public const float CRATE_SIZE = 1.88f;
     private Queue<Vector3> _cratePositions = new Queue<Vector3>();
+    private List<Crate> _spawnedCrates = new List<Crate>();
     private bool _isGenerating = false;
     private Random _random;
+
     public override void _Ready()
     {
         if (CrateScene == null)
         {
             GD.PrintErr("CrateScene is not set in FortGenerator.");
+            return;
+        }
+        if (EnemyScene == null)
+        {
+            GD.PrintErr("EnemyScene is not set in FortGenerator.");
             return;
         }
         GameManager.Instance.MapSize = FortWidth * CRATE_SIZE;
@@ -30,19 +41,21 @@ public partial class FortGenerator : GridMap
     {
         if (_isGenerating) return;
         _isGenerating = true;
-        
+
         CalculateCratePositions();
-        
+
         await SpawnCratesAsync();
-        
+
+        SpawnEnemies();
+
         _isGenerating = false;
         SignalManager.Instance.EmitSignal(nameof(SignalManager.FortGenerated));
     }
-    
+
     private void CalculateCratePositions()
     {
         _cratePositions.Clear();
-        
+
         for (int x = 0; x < FortWidth; x++)
         {
             for (int z = 0; z < FortDepth; z++)
@@ -56,9 +69,11 @@ public partial class FortGenerator : GridMap
             }
         }
     }
-    
+
     private async System.Threading.Tasks.Task SpawnCratesAsync()
     {
+        _spawnedCrates.Clear();
+
         while (_cratePositions.Count > 0)
         {
             for (int i = 0; i < CratesPerFrame && _cratePositions.Count > 0; i++)
@@ -67,9 +82,28 @@ public partial class FortGenerator : GridMap
                 Crate crateInstance = CrateScene.Instantiate<Crate>();
                 AddChild(crateInstance, true);
                 crateInstance.GlobalPosition = position;
+                _spawnedCrates.Add(crateInstance);
             }
-            
+
             await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        }
+    }
+        private void SpawnEnemies()
+    {
+        if (_spawnedCrates.Count == 0 || EnemyCount <= 0) return;
+        
+        var availableCrates = _spawnedCrates.ToList();
+        int enemiesToSpawn = Math.Min(EnemyCount, availableCrates.Count);
+        
+        for (int i = 0; i < enemiesToSpawn; i++)
+        {
+            int randomIndex = _random.Next(availableCrates.Count);
+            Crate selectedCrate = availableCrates[randomIndex];
+            availableCrates.RemoveAt(randomIndex);
+            
+            var enemyInstance = EnemyScene.Instantiate<Node3D>();
+            AddChild(enemyInstance, true);
+            enemyInstance.GlobalPosition = selectedCrate.GlobalPosition + Vector3.Up * (CRATE_SIZE / 2);
         }
     }
 }
