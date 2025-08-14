@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://clqm8c0bh4m4"]
+[gd_scene load_steps=8 format=3 uid="uid://clqm8c0bh4m4"]
 
 [ext_resource type="Script" uid="uid://c3x485dfxfyky" path="res://Source/Forts/Plank/Plank.cs" id="1_ij2pf"]
 [ext_resource type="Material" uid="uid://b3ratdgbfsk5n" path="res://Assets/Textures/Plank/Material/PlankMaterial.tres" id="1_ox72r"]
 [ext_resource type="PackedScene" uid="uid://bs8nunpg7m24e" path="res://Source/Components/HealthComponent/HealthComponent.tscn" id="3_usiyg"]
 [ext_resource type="PackedScene" uid="uid://d2heim0pjelyd" path="res://Source/Components/DamageNumberDisplayComponent/DamageNumberDisplayComponent.tscn" id="4_0n0vu"]
-[ext_resource type="PackedScene" uid="uid://bgutj0akdrixo" path="res://Source/Components/HitboxComponent/HitboxComponent.tscn" id="6_rd83j"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ox72r"]
 rough = true
@@ -16,21 +15,17 @@ size = Vector3(2, 0.06, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ox72r"]
 size = Vector3(1.88, 0.05, 1.88)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_usiyg"]
-size = Vector3(1.88, 0.05, 1.88)
-
-[node name="Plank" type="RigidBody3D" node_paths=PackedStringArray("HealthComponent", "HitboxComponent")]
+[node name="Plank" type="RigidBody3D" node_paths=PackedStringArray("HealthComponent")]
 process_thread_group = 2
 process_thread_group_order = 0
 process_thread_messages = 2
 collision_mask = 259
-mass = 16.0
+mass = 6.0
 physics_material_override = SubResource("PhysicsMaterial_ox72r")
 linear_damp = 0.5
 angular_damp = 1.0
 script = ExtResource("1_ij2pf")
 HealthComponent = NodePath("HealthComponent")
-HitboxComponent = NodePath("HitboxComponent")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ij2pf")
@@ -39,16 +34,9 @@ mesh = SubResource("BoxMesh_ij2pf")
 shape = SubResource("BoxShape3D_ox72r")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("DamageNumberDisplay") instance=ExtResource("3_usiyg")]
+MaxHealth = 60.0
 DamageNumberDisplay = NodePath("../DamageNumberDisplayComponent")
 
 [node name="DamageNumberDisplayComponent" parent="." instance=ExtResource("4_0n0vu")]
 
-[node name="HitboxComponent" parent="." node_paths=PackedStringArray("HealthComponent") instance=ExtResource("6_rd83j")]
-collision_mask = 3
-HealthComponent = NodePath("../HealthComponent")
-ContactDamage = 5.0
-
-[node name="HitboxCollisionShape" parent="HitboxComponent" index="0"]
-shape = SubResource("BoxShape3D_usiyg")
-
-[editable path="HitboxComponent"]
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

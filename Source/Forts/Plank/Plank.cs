@@ -5,9 +5,8 @@ public partial class Plank : RigidBody3D
 {
     [Signal] public delegate void halfHealthReachedEventHandler(Plank plank);
     [Export] public HealthComponent HealthComponent;
-    [Export] public HitboxComponent HitboxComponent;
     private bool _halfHealthReached = false;
-    [Export] public float HitboxActivationDelay = 5.0f;
+    [Export] public float DamageMultiplier = 1.0f;
 
     public override void _Ready()
     {
@@ -17,18 +16,27 @@ public partial class Plank : RigidBody3D
         {
             _halfHealthReached = true;
         };
-        if (HitboxComponent != null)
-        {
-            HitboxComponent.Monitorable = false;
-            HitboxComponent.Monitoring = false;
-        }
+    }
 
-        Timer _hitboxActivationTimer = new Timer();
-        _hitboxActivationTimer.WaitTime = GD.RandRange(HitboxActivationDelay - 1.0f, HitboxActivationDelay + 1.0f);
-        _hitboxActivationTimer.OneShot = true;
-        _hitboxActivationTimer.Timeout += OnHitboxActivationTimeout;
-        AddChild(_hitboxActivationTimer);
-        _hitboxActivationTimer.Start();
+    private void OnBodyEntered(Node body)
+    {
+        if (body is RigidBody3D rigidBody)
+        {
+            float velocity = rigidBody.LinearVelocity.Length();
+
+            if (velocity >= GameManager.MINIMUM_SPEED_FOR_DAMAGE)
+            {
+                if (HealthComponent != null)
+                {
+                    HealthComponent.DealDamage(attack: new Attack
+                    {
+                        Damage = DamageMultiplier,
+                        GlobalPosition = rigidBody.GlobalPosition,
+                        SpeedForce = velocity
+                    });
+                }
+            }
+        }
     }
 
     private void OnDamageTaken(float _damageAmount)
@@ -46,14 +54,5 @@ public partial class Plank : RigidBody3D
             EmitSignal(SignalName.halfHealthReached, this);
         }
         QueueFree();
-    }
-
-    private void OnHitboxActivationTimeout()
-    {
-        if (HitboxComponent != null)
-        {
-            HitboxComponent.Monitorable = true;
-            HitboxComponent.Monitoring = true;
-        }
     }
 }

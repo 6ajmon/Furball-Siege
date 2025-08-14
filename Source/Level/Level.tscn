@@ -35,7 +35,6 @@ _hamsterScenePath = "uid://c2danx0rx2og3"
 FortGenerator = NodePath("FortGenerator")
 
 [node name="FortGenerator" parent="." instance=ExtResource("4_cx8g2")]
-FortWidth = 16
 metadata/_editor_floor_ = Vector3(0, -1, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

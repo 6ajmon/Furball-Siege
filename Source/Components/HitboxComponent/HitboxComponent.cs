@@ -11,7 +11,7 @@ public partial class HitboxComponent : Area3D
     {
         _parent = GetParent<RigidBody3D>();
     }
-    
+
     public void OnAreaEntered(Area3D area)
     {
         if (_parent.LinearVelocity.Length() < GameManager.MINIMUM_SPEED_FOR_DAMAGE) return;
@@ -24,6 +24,21 @@ public partial class HitboxComponent : Area3D
                 _parent.LinearVelocity.Length()
                 );
             hitbox.HealthComponent.DealDamage(attack);
+        }
+    }
+    
+    public void OnBodyEntered(Node3D body)
+    {
+        if (_parent.LinearVelocity.Length() < GameManager.MINIMUM_SPEED_FOR_DAMAGE) return;
+
+        if (body is Plank plank)
+        {
+            Attack attack = new(
+                ContactDamage,
+                _parent.GlobalPosition,
+                _parent.LinearVelocity.Length()
+                );
+            plank.HealthComponent.DealDamage(attack);
         }
     }
 }
