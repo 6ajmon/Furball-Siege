@@ -6,6 +6,7 @@ public partial class Plank : RigidBody3D
     [Signal] public delegate void halfHealthReachedEventHandler(Plank plank);
     [Export] public HealthComponent HealthComponent;
     private bool _halfHealthReached = false;
+    [Export] public float DamageMultiplier = 1.0f;
 
     public override void _Ready()
     {
@@ -15,6 +16,27 @@ public partial class Plank : RigidBody3D
         {
             _halfHealthReached = true;
         };
+    }
+
+    private void OnBodyEntered(Node body)
+    {
+        if (body is RigidBody3D rigidBody)
+        {
+            float velocity = rigidBody.LinearVelocity.Length();
+
+            if (velocity >= GameManager.MINIMUM_SPEED_FOR_DAMAGE)
+            {
+                if (HealthComponent != null)
+                {
+                    HealthComponent.DealDamage(attack: new Attack
+                    {
+                        Damage = DamageMultiplier,
+                        GlobalPosition = rigidBody.GlobalPosition,
+                        SpeedForce = velocity
+                    });
+                }
+            }
+        }
     }
 
     private void OnDamageTaken(float _damageAmount)

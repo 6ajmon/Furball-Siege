@@ -8,3 +8,4 @@ script = ExtResource("1_ss5js")
 [node name="HitboxCollisionShape" type="CollisionShape3D" parent="."]
 
 [connection signal="area_entered" from="." to="." method="OnAreaEntered"]
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

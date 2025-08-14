@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhqucg1pjbjsl"]
+
+[ext_resource type="Script" uid="uid://irxleonbcqun" path="res://Source/Forts/FortGenerator/FortGenerator.cs" id="1_xbxxc"]
+[ext_resource type="PackedScene" uid="uid://wbacuclx8xc0" path="res://Source/Forts/Crates/Crate.tscn" id="2_tkv61"]
+
+[node name="FortGenerator" type="GridMap"]
+cell_center_y = false
+script = ExtResource("1_xbxxc")
+CrateScene = ExtResource("2_tkv61")

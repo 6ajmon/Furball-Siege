@@ -8,11 +8,22 @@ public partial class Level : Node3D
     private Marker3D _hamsterAnchorPoint;
     [Export(PropertyHint.File, "*.tscn")] public string _hamsterScenePath;
     private Hamster _hamsterInstance;
+    [Export] public FortGenerator FortGenerator;
+    private float _distanceFromFort;
+    [Export] public float _distanceFromFortMultiplier = 0.7f;
 
     public override void _Ready()
     {
         _hamsterAnchorPoint = GetTree().GetNodesInGroup("hamsterAnchor").FirstOrDefault() as Marker3D;
         SpawnHamster();
+        if (FortGenerator != null)
+        {
+            SetUpFortGenerator();
+        }
+        else
+        {
+            GD.PrintErr("Level: FortGenerator is not set.");
+        }
     }
 
     public override void _PhysicsProcess(double delta)
@@ -77,5 +88,19 @@ public partial class Level : Node3D
             _hamsterInstance.GravityScale = 1f;
             _slingshot.PlayAnimation("SlingshotShoot");
         }
+    }
+
+    private void SetUpFortGenerator()
+    {
+        float FortWidth = FortGenerator.FortWidth;
+        float FortDepth = FortGenerator.FortDepth;
+        _distanceFromFort = FortWidth * _distanceFromFortMultiplier * FortGenerator.CRATE_SIZE;
+        GameManager.Instance.FortDistance = _distanceFromFort;
+        FortGenerator.Position = new Vector3(
+            -FortWidth / 2f * FortGenerator.CRATE_SIZE,
+            0.00001f,
+            _slingshot.GlobalPosition.Z - _distanceFromFort - FortDepth * FortGenerator.CRATE_SIZE
+        );
+        FortGenerator.GenerateFort();
     }
 }

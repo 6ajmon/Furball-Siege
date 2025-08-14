@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2heim0pjelyd"]
+[gd_scene load_steps=3 format=3 uid="uid://d2heim0pjelyd"]
 
 [ext_resource type="Script" uid="uid://dbem8aoqumawp" path="res://Source/Components/DamageNumberDisplayComponent/DamageNumberDisplayComponent.cs" id="1_p5c2h"]
+[ext_resource type="PackedScene" uid="uid://c5qfhi7pf5u6v" path="res://Source/UI/DamageNumber/DamageNumber.tscn" id="2_7pjyq"]
 
 [node name="DamageNumberDisplayComponent" type="Node3D"]
 script = ExtResource("1_p5c2h")
+DamageNumberScene = ExtResource("2_7pjyq")

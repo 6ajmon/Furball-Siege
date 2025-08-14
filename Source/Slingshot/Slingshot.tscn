@@ -69,7 +69,7 @@ transform = Transform3D(0.1, 0, 0, 0, 0.0965926, -0.0258819, 0, 0.0258819, 0.096
 script = ExtResource("1_quq24")
 AnimationPlayer = NodePath("AnimationPlayer")
 Force = 10000.0
-UpwardForce = 0.01
+UpwardForce = 0.0
 StringScale = Vector3(1, 1, 0)
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("1_irejd")]
@@ -88,7 +88,7 @@ libraries = {
 [node name="SlingshotCamera" type="Camera3D" parent="." node_paths=PackedStringArray("slingshot") groups=["cameras"]]
 transform = Transform3D(10, 0, 0, 0, 9.91445, 1.30526, 0, -1.30526, 9.91445, 1.8325, 51.7556, 81.7091)
 current = true
-fov = 60.0
+fov = 42.0
 script = ExtResource("3_fy0tg")
 slingshot = NodePath("..")
 

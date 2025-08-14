@@ -10,5 +10,8 @@ public partial class GameManager : Node
         Shooting
     }
     public GameState CurrentGameState { get; set; } = GameState.Aiming;
-    public float MinimumSpeedForDamage { get; set; } = 5f;
+    public const float MINIMUM_SPEED_FOR_DAMAGE = 5f;
+    public float MapSize { get; set; }
+    public float FortDistance { get; set; }
+    public int randomSeed { get; set; } = new Random().Next();
 }
