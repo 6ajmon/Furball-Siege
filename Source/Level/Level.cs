@@ -98,7 +98,7 @@ public partial class Level : Node3D
         GameManager.Instance.FortDistance = _distanceFromFort;
         FortGenerator.Position = new Vector3(
             -FortWidth / 2f * FortGenerator.CRATE_SIZE,
-            0.01f,
+            0.00001f,
             _slingshot.GlobalPosition.Z - _distanceFromFort - FortDepth * FortGenerator.CRATE_SIZE
         );
         FortGenerator.GenerateFort();

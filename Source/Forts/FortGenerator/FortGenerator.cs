@@ -5,13 +5,13 @@ using System.Collections.Generic;
 public partial class FortGenerator : GridMap
 {
     [Export(PropertyHint.Range, "0,100, 1")] public int FortWidth = 20;
-    [Export(PropertyHint.Range, "0,50, 1")] public int FortDepth = 10;
-    [Export(PropertyHint.Range, "0,20, 1")] public int FortMaxHeight = 5;
+    [Export(PropertyHint.Range, "0,50, 1")] public int FortDepth = 3;
+    [Export(PropertyHint.Range, "0,20, 1")] public int FortMaxHeight = 6;
     [Export(PropertyHint.Range, "0,20, 1")] public int FortMinHeight = 1;
     [Export] public PackedScene CrateScene;
-    [Export(PropertyHint.Range, "1,50, 1")] public int CratesPerFrame = 5;
+    [Export(PropertyHint.Range, "1,50, 1")] public int CratesPerFrame = 6;
 
-    public const float CRATE_SIZE = 2.0f;
+    public const float CRATE_SIZE = 1.88f;
     private Queue<Vector3> _cratePositions = new Queue<Vector3>();
     private bool _isGenerating = false;
     private Random _random;

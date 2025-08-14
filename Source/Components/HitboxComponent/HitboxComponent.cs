@@ -14,7 +14,7 @@ public partial class HitboxComponent : Area3D
     
     public void OnAreaEntered(Area3D area)
     {
-        if (_parent.LinearVelocity.Length() < GameManager.Instance.MinimumSpeedForDamage) return;
+        if (_parent.LinearVelocity.Length() < GameManager.MINIMUM_SPEED_FOR_DAMAGE) return;
 
         if (area is HitboxComponent hitbox)
         {
