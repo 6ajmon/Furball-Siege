@@ -52,7 +52,7 @@ public partial class SlingshotCamera : Camera3D
         float fortDistance = GameManager.Instance.FortDistance;
         float fortSize = GameManager.Instance.MapSize;
 
-        maxRotationHorizontalAngle = Mathf.Atan2(fortSize, fortDistance);
+        maxRotationHorizontalAngle = Mathf.Atan2(fortDistance, fortSize / 2);
     }
 
 }
