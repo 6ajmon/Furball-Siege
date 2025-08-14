@@ -85,7 +85,7 @@ public partial class Level : Node3D
         if (_hamsterInstance != null)
         {
             _hamsterInstance.ApplyImpulse(_slingshot.GetLaunchDirection() * _slingshot.Force);
-            _hamsterInstance.GravityScale = 1f;
+            _hamsterInstance.GravityScale = 0.3f;
             _slingshot.PlayAnimation("SlingshotShoot");
         }
     }
