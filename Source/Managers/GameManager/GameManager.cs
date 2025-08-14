@@ -11,4 +11,6 @@ public partial class GameManager : Node
     }
     public GameState CurrentGameState { get; set; } = GameState.Aiming;
     public float MinimumSpeedForDamage { get; set; } = 5f;
+    public float MapSize { get; set; }
+    public float FortDistance { get; set; }
 }

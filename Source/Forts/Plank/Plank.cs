@@ -5,7 +5,9 @@ public partial class Plank : RigidBody3D
 {
     [Signal] public delegate void halfHealthReachedEventHandler(Plank plank);
     [Export] public HealthComponent HealthComponent;
+    [Export] public HitboxComponent HitboxComponent;
     private bool _halfHealthReached = false;
+    [Export] public float HitboxActivationDelay = 5.0f;
 
     public override void _Ready()
     {
@@ -15,6 +17,18 @@ public partial class Plank : RigidBody3D
         {
             _halfHealthReached = true;
         };
+        if (HitboxComponent != null)
+        {
+            HitboxComponent.Monitorable = false;
+            HitboxComponent.Monitoring = false;
+        }
+
+        Timer _hitboxActivationTimer = new Timer();
+        _hitboxActivationTimer.WaitTime = GD.RandRange(HitboxActivationDelay - 1.0f, HitboxActivationDelay + 1.0f);
+        _hitboxActivationTimer.OneShot = true;
+        _hitboxActivationTimer.Timeout += OnHitboxActivationTimeout;
+        AddChild(_hitboxActivationTimer);
+        _hitboxActivationTimer.Start();
     }
 
     private void OnDamageTaken(float _damageAmount)
@@ -32,5 +46,14 @@ public partial class Plank : RigidBody3D
             EmitSignal(SignalName.halfHealthReached, this);
         }
         QueueFree();
+    }
+
+    private void OnHitboxActivationTimeout()
+    {
+        if (HitboxComponent != null)
+        {
+            HitboxComponent.Monitorable = true;
+            HitboxComponent.Monitoring = true;
+        }
     }
 }

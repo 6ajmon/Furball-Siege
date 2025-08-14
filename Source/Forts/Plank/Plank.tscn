@@ -20,7 +20,7 @@ size = Vector3(1.88, 0.05, 1.88)
 [sub_resource type="BoxShape3D" id="BoxShape3D_usiyg"]
 size = Vector3(1.88, 0.05, 1.88)
 
-[node name="Plank" type="RigidBody3D" node_paths=PackedStringArray("HealthComponent")]
+[node name="Plank" type="RigidBody3D" node_paths=PackedStringArray("HealthComponent", "HitboxComponent")]
 collision_mask = 259
 mass = 6.0
 physics_material_override = SubResource("PhysicsMaterial_ox72r")
@@ -28,6 +28,7 @@ linear_damp = 0.5
 angular_damp = 1.0
 script = ExtResource("1_ij2pf")
 HealthComponent = NodePath("HealthComponent")
+HitboxComponent = NodePath("HitboxComponent")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ij2pf")

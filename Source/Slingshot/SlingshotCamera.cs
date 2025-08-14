@@ -4,11 +4,16 @@ using System;
 public partial class SlingshotCamera : Camera3D
 {
     [Export] public float rotationSpeed = 0.03f;
-    [Export] public float maxRotationAngle = Mathf.Pi/2;
+    [Export] public float maxRotationAngle = Mathf.Pi / 2;
     [Export] public Slingshot slingshot;
-    
+
     private float currentRotation = 0f;
-    
+
+    public override void _Ready()
+    {
+        SignalManager.Instance.FortGenerated += OnFortGenerated;
+    }
+
     public override void _PhysicsProcess(double delta)
     {
         if (Current)
@@ -27,6 +32,12 @@ public partial class SlingshotCamera : Camera3D
                 }
             }
         }
+    }
+
+    private void OnFortGenerated()
+    {
+        //
+        GD.Print("Fort generated, camera adjustments can be made here if needed.");
     }
 
 }
