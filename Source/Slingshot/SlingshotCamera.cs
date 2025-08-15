@@ -6,7 +6,7 @@ public partial class SlingshotCamera : Camera3D
     [Export] public float rotationSpeed = 0.03f;
     [Export] public float maxRotationHorizontalAngle = Mathf.Pi / 2;
     [Export]
-    public float maxRotationVerticalAngle = Mathf.Pi / 12;
+    public float maxRotationVerticalAngle = Mathf.Pi / 10;
     [Export] public Slingshot slingshot;
 
     private float currentHorizontalRotation = 0f;
@@ -33,12 +33,12 @@ public partial class SlingshotCamera : Camera3D
                     slingshot.RotateY(-rotationSpeed);
                     currentHorizontalRotation -= rotationSpeed;
                 }
-                if (Input.IsActionPressed("Backwards") && currentVerticalRotation < maxRotationVerticalAngle - Mathf.Pi/24)
+                if (Input.IsActionPressed("Backwards") && currentVerticalRotation < maxRotationVerticalAngle - Mathf.Pi/26)
                 {
                     slingshot.RotateObjectLocal(Vector3.Right, -rotationSpeed);
                     currentVerticalRotation += rotationSpeed;
                 }
-                if (Input.IsActionPressed("Forward") && currentVerticalRotation > -maxRotationVerticalAngle + Mathf.Pi/16)
+                if (Input.IsActionPressed("Forward") && currentVerticalRotation > -maxRotationVerticalAngle + Mathf.Pi/18)
                 {
                     slingshot.RotateObjectLocal(Vector3.Right, rotationSpeed);
                     currentVerticalRotation -= rotationSpeed;

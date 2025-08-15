@@ -33,6 +33,7 @@ public partial class FortGenerator : GridMap
             GD.PrintErr("EnemyScene is not set in FortGenerator.");
             return;
         }
+        GameManager.Instance.EnemyCount = EnemyCount;
         GameManager.Instance.MapSize = FortWidth * CRATE_SIZE;
         CellSize = new Vector3(CRATE_SIZE, CRATE_SIZE, CRATE_SIZE);
         _random = new Random(GameManager.Instance.randomSeed);
@@ -88,7 +89,7 @@ public partial class FortGenerator : GridMap
             await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         }
     }
-        private void SpawnEnemies()
+    private void SpawnEnemies()
     {
         if (_spawnedCrates.Count == 0 || EnemyCount <= 0) return;
         

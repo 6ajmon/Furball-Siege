@@ -50,12 +50,12 @@ radius = 0.7
 [sub_resource type="SphereShape3D" id="SphereShape3D_vpr0l"]
 radius = 0.75
 
-[node name="Gnome" type="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+[node name="Gnome" type="RigidBody3D" node_paths=PackedStringArray("HealthComponent")]
 mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_gsy82")
 angular_damp = 2.0
 script = ExtResource("1_tsvkl")
+HealthComponent = NodePath("HealthComponent")
 
 [node name="GnomeModel" parent="." instance=ExtResource("1_jb30e")]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0.111511, 0)
@@ -74,7 +74,7 @@ ContactDamage = 1.0
 shape = SubResource("SphereShape3D_vpr0l")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("DamageNumberDisplay") instance=ExtResource("3_vpr0l")]
-MaxHealth = 30.0
+MaxHealth = 20.0
 DamageNumberDisplay = NodePath("../DamageNumberDisplayComponent")
 
 [node name="DamageNumberDisplayComponent" parent="." instance=ExtResource("4_tsvkl")]

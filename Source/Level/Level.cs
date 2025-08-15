@@ -24,6 +24,7 @@ public partial class Level : Node3D
         {
             GD.PrintErr("Level: FortGenerator is not set.");
         }
+        SignalManager.Instance.FortGenerated += OnFortGenerated;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -102,5 +103,10 @@ public partial class Level : Node3D
             _slingshot.GlobalPosition.Z - _distanceFromFort - FortDepth * FortGenerator.CRATE_SIZE
         );
         FortGenerator.GenerateFort();
+    }
+
+    private void OnFortGenerated()
+    {
+        GameManager.Instance.CalculateShotsCount();
     }
 }

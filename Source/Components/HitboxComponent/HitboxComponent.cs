@@ -39,6 +39,7 @@ public partial class HitboxComponent : Area3D
                 _parent.LinearVelocity.Length()
                 );
             plank.HealthComponent.DealDamage(attack);
+            plank.ApplyCentralImpulse(_parent.LinearVelocity * attack.SpeedForce * attack.SpeedForce * attack.Damage);
         }
     }
 }

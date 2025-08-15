@@ -90,6 +90,7 @@ transform = Transform3D(10, 0, 0, 0, 9.91445, 1.30526, 0, -1.30526, 9.91445, 1.8
 current = true
 fov = 42.0
 script = ExtResource("3_fy0tg")
+rotationSpeed = 0.016
 slingshot = NodePath("..")
 
 [node name="HamsterAnchorPoint" type="Marker3D" parent="." groups=["hamsterAnchor"]]

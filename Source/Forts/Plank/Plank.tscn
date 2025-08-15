@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://clqm8c0bh4m4"]
+[gd_scene load_steps=8 format=3 uid="uid://clqm8c0bh4m4"]
 
 [ext_resource type="Script" uid="uid://c3x485dfxfyky" path="res://Source/Forts/Plank/Plank.cs" id="1_ij2pf"]
 [ext_resource type="Material" uid="uid://b3ratdgbfsk5n" path="res://Assets/Textures/Plank/Material/PlankMaterial.tres" id="1_ox72r"]
 [ext_resource type="PackedScene" uid="uid://bs8nunpg7m24e" path="res://Source/Components/HealthComponent/HealthComponent.tscn" id="3_usiyg"]
+[ext_resource type="PackedScene" uid="uid://d2heim0pjelyd" path="res://Source/Components/DamageNumberDisplayComponent/DamageNumberDisplayComponent.tscn" id="4_gbr2f"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ox72r"]
 rough = true
@@ -34,6 +35,8 @@ shape = SubResource("BoxShape3D_ox72r")
 
 [node name="HealthComponent" parent="." node_paths=PackedStringArray("DamageNumberDisplay") instance=ExtResource("3_usiyg")]
 MaxHealth = 60.0
-DamageNumberDisplay = NodePath("")
+DamageNumberDisplay = NodePath("../DamageNumberDisplayComponent")
+
+[node name="DamageNumberDisplayComponent" parent="." instance=ExtResource("4_gbr2f")]
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

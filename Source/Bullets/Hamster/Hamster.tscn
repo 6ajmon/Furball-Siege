@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://bgutj0akdrixo" path="res://Source/Components/HitboxComponent/HitboxComponent.tscn" id="5_6ylba"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_h8dop"]
-friction = 0.3
-bounce = 0.9
+friction = 0.2
+bounce = 1.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tq887"]
 radius = 0.4
@@ -35,7 +35,7 @@ height = 0.2
 [node name="Hamster" type="RigidBody3D"]
 physics_interpolation_mode = 1
 transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 0, 0, 0)
-mass = 200.0
+mass = 360.0
 physics_material_override = SubResource("PhysicsMaterial_h8dop")
 gravity_scale = 0.0
 angular_damp = 6.0
@@ -86,7 +86,7 @@ DamageNumberDisplay = NodePath("../DamageNumberDisplayComponent")
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("HealthComponent") instance=ExtResource("5_6ylba")]
 collision_layer = 2
 HealthComponent = NodePath("../HealthComponent")
-ContactDamage = 1.0
+ContactDamage = 2.0
 
 [node name="HitboxCollisionShape" parent="HitboxComponent" index="0"]
 shape = SubResource("SphereShape3D_euomd")
