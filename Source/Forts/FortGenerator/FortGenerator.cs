@@ -13,7 +13,7 @@ public partial class FortGenerator : GridMap
     [Export(PropertyHint.Range, "1,50, 1")] public int CratesPerFrame = 6;
     [Export] public PackedScene CrateScene;
     [Export] public PackedScene EnemyScene;
-    [Export] public int EnemyCount = 5;
+    [Export] public int EnemyCount = 1;
 
     public const float CRATE_SIZE = 1.88f;
     private Queue<Vector3> _cratePositions = new Queue<Vector3>();
@@ -37,6 +37,7 @@ public partial class FortGenerator : GridMap
         GameManager.Instance.MapSize = FortWidth * CRATE_SIZE;
         CellSize = new Vector3(CRATE_SIZE, CRATE_SIZE, CRATE_SIZE);
         _random = new Random(GameManager.Instance.randomSeed);
+        SignalManager.Instance.RoundWon += RemoveAllCrates;
     }
     public async void GenerateFort()
     {
@@ -92,19 +93,32 @@ public partial class FortGenerator : GridMap
     private void SpawnEnemies()
     {
         if (_spawnedCrates.Count == 0 || EnemyCount <= 0) return;
-        
+
         var availableCrates = _spawnedCrates.ToList();
         int enemiesToSpawn = Math.Min(EnemyCount, availableCrates.Count);
-        
+
         for (int i = 0; i < enemiesToSpawn; i++)
         {
             int randomIndex = _random.Next(availableCrates.Count);
             Crate selectedCrate = availableCrates[randomIndex];
             availableCrates.RemoveAt(randomIndex);
-            
+
             var enemyInstance = EnemyScene.Instantiate<Node3D>();
             AddChild(enemyInstance, true);
             enemyInstance.GlobalPosition = selectedCrate.GlobalPosition + Vector3.Up * (CRATE_SIZE / 2);
         }
+    }
+    
+    public void RemoveAllCrates()
+    {
+        foreach (var crate in _spawnedCrates)
+        {
+            if (IsInstanceValid(crate))
+            {
+                crate.QueueFree();
+            }
+        }
+        _spawnedCrates.Clear();
+        _cratePositions.Clear();
     }
 }

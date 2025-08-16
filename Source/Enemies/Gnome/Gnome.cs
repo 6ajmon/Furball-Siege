@@ -13,6 +13,7 @@ public partial class Gnome : RigidBody3D
 
     private void OnHealthDepleted()
     {
+        SignalManager.Instance.EmitSignal(nameof(SignalManager.GnomeDied));
         QueueFree();
     }
 }

@@ -22,14 +22,31 @@ public partial class GameManager : Node
     public int CurrentEnemyCount { get; set; }
 
     public bool HasShotsRemaining => ShotsTaken < ShotsCount;
-    
+
     public void CalculateShotsCount()
     {
         ShotsCount = (int)(InitialEnemyCount * 1.2) + 2;
     }
-    
+
     public void TakeShot()
     {
         ShotsTaken++;
+    }
+    public void ResetGame()
+    {
+        ShotsTaken = 0;
+        CurrentRound = 1;
+        CurrentEnemyCount = InitialEnemyCount;
+        CalculateShotsCount();
+        CurrentGameState = GameState.Aiming;
+    }
+    public void EnemyDied()
+    {
+        GD.Print($"Enemy died. Remaining: {CurrentEnemyCount - 1}");
+        CurrentEnemyCount--;
+        if (CurrentEnemyCount <= 0)
+        {
+            SignalManager.Instance.EmitSignal(nameof(SignalManager.RoundWon));
+        }
     }
 }
