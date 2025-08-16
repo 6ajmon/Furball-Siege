@@ -13,7 +13,7 @@ public partial class UiButton : Button
         }
     }
 
-    public void OnPressed()
+    public virtual void OnPressed()
     {
         // TODO add sound
     }

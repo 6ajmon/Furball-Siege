@@ -9,7 +9,7 @@ public partial class SignalManager : Node
     [Signal] public delegate void GnomeDiedEventHandler();
     [Signal] public delegate void RoundWonEventHandler();
     [Signal] public delegate void RoundLostEventHandler();
-
+    [Signal] public delegate void RestartGameEventHandler();
     public override void _Ready()
     {
         GnomeDied += OnGnomeDied;

@@ -60,7 +60,7 @@ public partial class CameraManager : Node
             _currentCameraIndex = 0;
         }
     }
-    
+
     public void ActivateCamera(int index)
     {
         if (index < 0 || index >= _cameras.Count)
@@ -79,5 +79,6 @@ public partial class CameraManager : Node
         {
             _cameras[_currentCameraIndex].Current = true;
         }
+        Input.MouseMode = Input.MouseModeEnum.Visible;
     }
 }
