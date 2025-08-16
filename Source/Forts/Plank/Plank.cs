@@ -18,27 +18,6 @@ public partial class Plank : RigidBody3D
         };
     }
 
-    private void OnBodyEntered(Node body)
-    {
-        if (body is RigidBody3D rigidBody)
-        {
-            float velocity = rigidBody.LinearVelocity.Length();
-
-            if (velocity >= GameManager.MINIMUM_SPEED_FOR_DAMAGE)
-            {
-                if (HealthComponent != null)
-                {
-                    HealthComponent.DealDamage(attack: new Attack
-                    {
-                        Damage = ContactDamage,
-                        GlobalPosition = rigidBody.GlobalPosition,
-                        SpeedForce = velocity
-                    });
-                }
-            }
-        }
-    }
-
     private void OnDamageTaken(float _damageAmount)
     {
         if (!_halfHealthReached && HealthComponent.CurrentHealth <= HealthComponent.MaxHealth / 2)

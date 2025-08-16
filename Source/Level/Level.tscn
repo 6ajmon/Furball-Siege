@@ -1,9 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://cae8jm3pdxrim"]
+[gd_scene load_steps=15 format=3 uid="uid://cae8jm3pdxrim"]
 
 [ext_resource type="PackedScene" uid="uid://4g78f4a6q230" path="res://Source/Tmp/FreeFlightCamera/FreeFlightCamera.tscn" id="1_1y838"]
 [ext_resource type="Script" uid="uid://co8anufftd8w7" path="res://Source/Level/Level.cs" id="1_cx8g2"]
 [ext_resource type="PackedScene" uid="uid://b5nvfcyqcapdn" path="res://Source/Slingshot/Slingshot.tscn" id="2_j2vee"]
 [ext_resource type="PackedScene" uid="uid://dhqucg1pjbjsl" path="res://Source/Forts/FortGenerator/FortGenerator.tscn" id="4_cx8g2"]
+[ext_resource type="PackedScene" uid="uid://bgutj0akdrixo" path="res://Source/Components/HitboxComponent/HitboxComponent.tscn" id="5_xynoj"]
+[ext_resource type="PackedScene" uid="uid://bs8nunpg7m24e" path="res://Source/Components/HealthComponent/HealthComponent.tscn" id="6_h3shn"]
+[ext_resource type="PackedScene" uid="uid://wbacuclx8xc0" path="res://Source/Forts/Crates/Crate.tscn" id="6_xynoj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t1ts5"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -27,6 +30,9 @@ albedo_color = Color(0, 0.369132, 3.85046e-07, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_1y838"]
 material = SubResource("StandardMaterial3D_cx8g2")
 size = Vector3(300, 0.2, 300)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xynoj"]
+size = Vector3(300, 0.25, 300)
 
 [node name="Level" type="Node3D" node_paths=PackedStringArray("_slingshot", "FortGenerator")]
 script = ExtResource("1_cx8g2")
@@ -62,3 +68,19 @@ shape = SubResource("BoxShape3D_1y838")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="FloorBody"]
 mesh = SubResource("BoxMesh_1y838")
 skeleton = NodePath("../..")
+
+[node name="HitboxComponent" parent="FloorBody" node_paths=PackedStringArray("HealthComponent") instance=ExtResource("5_xynoj")]
+collision_layer = 8
+collision_mask = 7
+HealthComponent = NodePath("../HealthComponent")
+
+[node name="HitboxCollisionShape" parent="FloorBody/HitboxComponent" index="0"]
+shape = SubResource("BoxShape3D_xynoj")
+
+[node name="HealthComponent" parent="FloorBody" instance=ExtResource("6_h3shn")]
+MaxHealth = -1.0
+
+[node name="Crate" parent="." instance=ExtResource("6_xynoj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35.043, -60.7927)
+
+[editable path="FloorBody/HitboxComponent"]

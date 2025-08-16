@@ -38,5 +38,3 @@ MaxHealth = 60.0
 DamageNumberDisplay = NodePath("../DamageNumberDisplayComponent")
 
 [node name="DamageNumberDisplayComponent" parent="." instance=ExtResource("4_gbr2f")]
-
-[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

@@ -5,23 +5,34 @@ public partial class HitboxComponent : Area3D
 {
     [Export] public HealthComponent HealthComponent { get; set; }
     [Export] public float ContactDamage { get; set; } = 10f;
-    private RigidBody3D _parent;
+    private Node3D _parent;
 
     public override void _Ready()
     {
-        _parent = GetParent<RigidBody3D>();
+        _parent = GetParent<Node3D>();
+    }
+
+    private Vector3 GetParentVelocity()
+    {
+        return _parent is RigidBody3D rigidBody ? rigidBody.LinearVelocity : Vector3.Zero;
+    }
+
+    private bool IsParentBelowMinimumSpeed()
+    {
+        return GetParentVelocity().Length() < GameManager.MINIMUM_SPEED_FOR_DAMAGE;
     }
 
     public void OnAreaEntered(Area3D area)
     {
-        if (_parent.LinearVelocity.Length() < GameManager.MINIMUM_SPEED_FOR_DAMAGE) return;
+        if (IsParentBelowMinimumSpeed()) return;
 
         if (area is HitboxComponent hitbox)
         {
+            Vector3 parentVelocity = GetParentVelocity();
             Attack attack = new(
                 ContactDamage,
                 _parent.GlobalPosition,
-                _parent.LinearVelocity.Length()
+                parentVelocity.Length()
                 );
             hitbox.HealthComponent.DealDamage(attack);
         }
@@ -29,7 +40,7 @@ public partial class HitboxComponent : Area3D
     
     public void OnBodyEntered(Node3D body)
     {
-        bool isParentBelowMinimumSpeed = _parent.LinearVelocity.Length() < GameManager.MINIMUM_SPEED_FOR_DAMAGE;
+        bool isParentBelowMinimumSpeed = IsParentBelowMinimumSpeed();
         bool bodyIsBelowMinimumSpeed = body is RigidBody3D rigidBody && rigidBody.LinearVelocity.Length() < GameManager.MINIMUM_SPEED_FOR_DAMAGE;
         if (isParentBelowMinimumSpeed && bodyIsBelowMinimumSpeed) return;
 
@@ -37,13 +48,14 @@ public partial class HitboxComponent : Area3D
         {
             if (!isParentBelowMinimumSpeed)
             {
+                Vector3 parentVelocity = GetParentVelocity();
                 Attack attack = new(
                     ContactDamage,
                     _parent.GlobalPosition,
-                    _parent.LinearVelocity.Length()
+                    parentVelocity.Length()
                     );
                 plank.HealthComponent.DealDamage(attack);
-                plank.ApplyCentralImpulse(_parent.LinearVelocity * attack.SpeedForce * attack.SpeedForce * attack.Damage);
+                plank.ApplyCentralImpulse(parentVelocity * attack.SpeedForce * attack.SpeedForce * attack.Damage);
             }
             if (!bodyIsBelowMinimumSpeed)
             {
@@ -53,6 +65,7 @@ public partial class HitboxComponent : Area3D
                     plank.LinearVelocity.Length()
                     );
                 HealthComponent.DealDamage(attack);
+                plank.HealthComponent.DealDamage(attack);
             }
         }
     }
