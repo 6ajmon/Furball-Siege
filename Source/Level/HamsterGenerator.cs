@@ -4,14 +4,33 @@ using System.Linq;
 public partial class HamsterGenerator : Node
 {
     [Export(PropertyHint.File, "*.tscn")] public string HamsterScenePath;
+    [Export] public float ReloadCooldown = 6.0f;
+    
     private Marker3D _hamsterAnchorPoint;
     private Hamster _hamsterInstance;
+    private Timer _reloadTimer;
+    private bool _canReload = false;
 
     public Hamster HamsterInstance => _hamsterInstance;
+    public bool CanReload => _canReload;
 
     public override void _Ready()
     {
         _hamsterAnchorPoint = GetTree().GetNodesInGroup("hamsterAnchor").FirstOrDefault() as Marker3D;
+        
+        _reloadTimer = new Timer();
+        _reloadTimer.WaitTime = ReloadCooldown;
+        _reloadTimer.OneShot = true;
+        _reloadTimer.Timeout += OnReloadTimerTimeout;
+        AddChild(_reloadTimer);
+    }
+
+    public override void _PhysicsProcess(double delta)
+    {
+        if (Input.IsActionPressed("Reload") && _canReload)
+        {
+            ReloadHamster();
+        }
     }
 
     public void SpawnHamster()
@@ -53,6 +72,41 @@ public partial class HamsterGenerator : Node
             _hamsterInstance.GlobalPosition = globalPos;
             _hamsterInstance.GlobalRotation = globalRot;
             _hamsterInstance.Scale = new Vector3(1, 1, 1);
+            
+            StartReloadCooldown();
         }
+    }
+
+    public void StartReloadCooldown()
+    {
+        _canReload = false;
+        _reloadTimer.Start();
+    }
+
+    public void ReloadHamster()
+    {
+        if (!_canReload) return;
+
+        RemovePreviousHamster();
+        
+        SpawnHamster();
+        
+        GameManager.Instance.CurrentGameState = GameManager.GameState.Aiming;
+        
+        _canReload = false;
+    }
+
+    private void RemovePreviousHamster()
+    {
+        if (_hamsterInstance != null && IsInstanceValid(_hamsterInstance))
+        {
+            _hamsterInstance.QueueFree();
+            _hamsterInstance = null;
+        }
+    }
+
+    private void OnReloadTimerTimeout()
+    {
+        _canReload = true;
     }
 }
