@@ -31,7 +31,19 @@ public partial class Level : Node3D
         }
         SignalManager.Instance.FortGenerated += OnFortGenerated;
         SignalManager.Instance.RestartGame += OnRestartGame;
+        SignalManager.Instance.NextRound += OnNextRound;
+
+
         GameManager.Instance.ResetGame();
+    }
+
+    private async void OnNextRound()
+    {
+        GameManager.Instance.ResetGame();
+        await ToSignal(GetTree().CreateTimer(2.0f), SceneTreeTimer.SignalName.Timeout);
+        HamsterGenerator._canReload = true;
+        HamsterGenerator.ReloadHamster();
+        SetUpFortGenerator();
     }
 
     public override void _PhysicsProcess(double delta)

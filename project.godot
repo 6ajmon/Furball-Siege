@@ -27,6 +27,7 @@ CameraManager="*res://Source/Managers/CameraManager/CameraManager.cs"
 
 window/size/viewport_width=1597
 window/size/viewport_height=987
+window/size/initial_position=Vector2i(600, 400)
 
 [dotnet]
 

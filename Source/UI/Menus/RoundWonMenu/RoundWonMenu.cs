@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class RoundLostMenu : Control
+public partial class RoundWonMenu : Control
 {
     public override void _Ready()
     {
@@ -14,16 +14,19 @@ public partial class RoundLostMenu : Control
         Show();
         SceneManager.Instance.IsMenuOpen = true;
     }
-
-    public void OnTryAgainButtonPressed()
+    private void HideMenu()
     {
+        GetTree().Paused = false;
         SceneManager.Instance.IsMenuOpen = false;
-        SignalManager.Instance.EmitSignal(nameof(SignalManager.RestartGame));
+        QueueFree();
     }
-
+    public void OnNextRoundButtonPressed()
+    {
+        HideMenu();
+        SignalManager.Instance.EmitSignal(nameof(SignalManager.NextRound));
+    }
     public void OnReturnToMainMenuButtonPressed()
     {
-        SceneManager.Instance.IsMenuOpen = false;
         // Logic to return to the main menu
     }
 }

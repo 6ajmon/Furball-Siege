@@ -37,10 +37,10 @@ public partial class FortGenerator : GridMap
         GameManager.Instance.MapSize = FortWidth * CRATE_SIZE;
         CellSize = new Vector3(CRATE_SIZE, CRATE_SIZE, CRATE_SIZE);
         _random = new Random(GameManager.Instance.randomSeed);
-        SignalManager.Instance.RoundWon += RemoveAllCrates;
     }
     public async void GenerateFort()
     {
+        RemoveAllCrates();
         if (_isGenerating) return;
         _isGenerating = true;
 

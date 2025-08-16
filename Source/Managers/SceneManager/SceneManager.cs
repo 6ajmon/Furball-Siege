@@ -5,6 +5,7 @@ public partial class SceneManager : Node
 {
     public static SceneManager Instance => ((SceneTree)Engine.GetMainLoop()).Root.GetNode<SceneManager>("SceneManager");
     private string roundLostMenuScenePath = "res://Source/UI/Menus/RoundLostMenu/RoundLostMenu.tscn";
+    private string roundWonMenuScenePath = "res://Source/UI/Menus/RoundWonMenu/RoundWonMenu.tscn";
     public bool IsMenuOpen { get; set; }
     public override void _Ready()
     {
@@ -23,6 +24,6 @@ public partial class SceneManager : Node
 
     private void OnRoundWon()
     {
-        // Logic for when the round is won
+        GetTree().Root.AddChild(ResourceLoader.Load<PackedScene>(roundWonMenuScenePath).Instantiate());
     }
 }

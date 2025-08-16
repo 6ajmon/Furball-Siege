@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=3 uid="uid://uef47tli602n"]
+
+[ext_resource type="Script" uid="uid://bfuxi5p3qb505" path="res://Source/UI/Menus/RoundWonMenu/RoundWonMenu.cs" id="1_3muds"]
+[ext_resource type="Script" uid="uid://vbyo8ke0rpog" path="res://Source/UI/Components/Buttons/UIButton/UiButton.cs" id="2_81iud"]
+
+[node name="RoundWonMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3muds")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.490196)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = -33.0
+offset_right = 87.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "You won!"
+
+[node name="Buttons" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NextRoundButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+text = "Next Round"
+script = ExtResource("2_81iud")
+ShouldTakeFocus = true
+metadata/_custom_type_script = "uid://vbyo8ke0rpog"
+
+[node name="ReturnToMainMenuButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+text = "Return to main menu"
+script = ExtResource("2_81iud")
+metadata/_custom_type_script = "uid://vbyo8ke0rpog"
+
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Buttons/NextRoundButton" to="." method="OnNextRoundButtonPressed"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Buttons/ReturnToMainMenuButton" to="." method="OnReturnToMainMenuButtonPressed"]
