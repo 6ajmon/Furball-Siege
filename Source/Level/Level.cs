@@ -30,6 +30,20 @@ public partial class Level : Node3D
             GD.PrintErr("Level: FortGenerator is not set.");
         }
         SignalManager.Instance.FortGenerated += OnFortGenerated;
+        SignalManager.Instance.RestartGame += OnRestartGame;
+        SignalManager.Instance.NextRound += OnNextRound;
+
+
+        GameManager.Instance.ResetGame();
+    }
+
+    private async void OnNextRound()
+    {
+        GameManager.Instance.ResetGame();
+        await ToSignal(GetTree().CreateTimer(2.0f), SceneTreeTimer.SignalName.Timeout);
+        HamsterGenerator._canReload = true;
+        HamsterGenerator.ReloadHamster();
+        SetUpFortGenerator();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -56,7 +70,7 @@ public partial class Level : Node3D
     {
         GameManager.Instance.CurrentGameState = GameManager.GameState.Shooting;
         GameManager.Instance.TakeShot();
-        
+
         if (HamsterGenerator?.HamsterInstance != null)
         {
             HamsterGenerator.HamsterInstance.ApplyImpulse(_slingshot.GetLaunchDirection() * _slingshot.Force);
@@ -82,5 +96,13 @@ public partial class Level : Node3D
     private void OnFortGenerated()
     {
         GameManager.Instance.CalculateShotsCount();
+    }
+    private void OnRestartGame()
+    {
+        GameManager.Instance.ResetGame();
+        if (IsInstanceValid(this))
+        {
+            GetTree().CallDeferred(SceneTree.MethodName.ReloadCurrentScene);
+        }
     }
 }

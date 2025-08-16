@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class CameraManager : Node
 {
@@ -25,13 +26,21 @@ public partial class CameraManager : Node
     {
         if (Input.IsActionJustPressed("CycleCameraForward"))
         {
-            _currentCameraIndex = (_currentCameraIndex + 1) % _cameras.Count;
-            ActivateCamera(_currentCameraIndex);
+            RefreshCameraList();
+            if (_cameras.Count > 0)
+            {
+                _currentCameraIndex = (_currentCameraIndex + 1) % _cameras.Count;
+                ActivateCamera(_currentCameraIndex);
+            }
         }
         else if (Input.IsActionJustPressed("CycleCameraBack"))
         {
-            _currentCameraIndex = (_currentCameraIndex - 1 + _cameras.Count) % _cameras.Count;
-            ActivateCamera(_currentCameraIndex);
+            RefreshCameraList();
+            if (_cameras.Count > 0)
+            {
+                _currentCameraIndex = (_currentCameraIndex - 1 + _cameras.Count) % _cameras.Count;
+                ActivateCamera(_currentCameraIndex);
+            }
         }
     }
 
@@ -40,12 +49,18 @@ public partial class CameraManager : Node
         _cameras.Clear();
         foreach (Node node in GetTree().GetNodesInGroup("cameras"))
         {
-            if (node is Camera3D camera)
+            if (node is Camera3D camera && IsInstanceValid(camera))
             {
                 _cameras.Add(camera);
             }
         }
+        
+        if (_currentCameraIndex >= _cameras.Count)
+        {
+            _currentCameraIndex = 0;
+        }
     }
+
     public void ActivateCamera(int index)
     {
         if (index < 0 || index >= _cameras.Count)
@@ -54,13 +69,16 @@ public partial class CameraManager : Node
             return;
         }
 
-        if (_currentCameraIndex >= 0 && _currentCameraIndex < _cameras.Count)
+        if (_currentCameraIndex >= 0 && _currentCameraIndex < _cameras.Count && IsInstanceValid(_cameras[_currentCameraIndex]))
         {
             _cameras[_currentCameraIndex].Current = false;
         }
 
         _currentCameraIndex = index;
-        _cameras[_currentCameraIndex].Current = true;
+        if (IsInstanceValid(_cameras[_currentCameraIndex]))
+        {
+            _cameras[_currentCameraIndex].Current = true;
+        }
+        Input.MouseMode = Input.MouseModeEnum.Visible;
     }
-
 }

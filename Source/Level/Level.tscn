@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dhqucg1pjbjsl" path="res://Source/Forts/FortGenerator/FortGenerator.tscn" id="4_cx8g2"]
 [ext_resource type="PackedScene" uid="uid://bgutj0akdrixo" path="res://Source/Components/HitboxComponent/HitboxComponent.tscn" id="5_xynoj"]
 [ext_resource type="PackedScene" uid="uid://bs8nunpg7m24e" path="res://Source/Components/HealthComponent/HealthComponent.tscn" id="6_h3shn"]
-[ext_resource type="PackedScene" uid="uid://wbacuclx8xc0" path="res://Source/Forts/Crates/Crate.tscn" id="6_xynoj"]
+[ext_resource type="PackedScene" uid="uid://bkwqbxdhwegv" path="res://Source/UI/Menus/PauseMenu/PauseMenu.tscn" id="8_h3shn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t1ts5"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -86,7 +86,7 @@ shape = SubResource("BoxShape3D_xynoj")
 [node name="HealthComponent" parent="FloorBody" instance=ExtResource("6_h3shn")]
 MaxHealth = -1.0
 
-[node name="Crate" parent="." instance=ExtResource("6_xynoj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 35.043, -60.7927)
+[node name="PauseMenu" parent="." instance=ExtResource("8_h3shn")]
+visible = false
 
 [editable path="FloorBody/HitboxComponent"]

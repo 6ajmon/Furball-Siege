@@ -12,7 +12,7 @@ public partial class DamageNumberDisplayComponent : Node3D
             return;
         
         var damageNumber = DamageNumberScene.Instantiate() as DamageNumber;
-        GetTree().CurrentScene.AddChild(damageNumber);
+        GetTree().CurrentScene.AddChild(damageNumber, true);
         
         var randomOffset = new Vector3(
             (float)GD.RandRange(-OffsetRange.X, OffsetRange.X),

@@ -9,7 +9,7 @@ public partial class HamsterGenerator : Node
     private Marker3D _hamsterAnchorPoint;
     private Hamster _hamsterInstance;
     private Timer _reloadTimer;
-    private bool _canReload = false;
+    public bool _canReload = false;
 
     public Hamster HamsterInstance => _hamsterInstance;
     public bool CanReload => _canReload && GameManager.Instance.HasShotsRemaining;
