@@ -15,15 +15,17 @@ public partial class GameManager : Node
     public float MapSize { get; set; }
     public float FortDistance { get; set; }
     public int randomSeed { get; set; } = new Random().Next();
-    public int EnemyCount { get; set; }
+    public int InitialEnemyCount { get; set; }
     public int ShotsCount { get; set; }
     public int ShotsTaken { get; set; } = 0;
-    
+    public int CurrentRound { get; set; }
+    public int CurrentEnemyCount { get; set; }
+
     public bool HasShotsRemaining => ShotsTaken < ShotsCount;
     
     public void CalculateShotsCount()
     {
-        ShotsCount = (int)(EnemyCount * 1.2) + 2;
+        ShotsCount = (int)(InitialEnemyCount * 1.2) + 2;
     }
     
     public void TakeShot()
