@@ -2,6 +2,7 @@ using Godot;
 using System;
 using FurballSiege.Source.UI.Components.Buttons.UIButton;
 
+[GlobalClass]
 public partial class ReplaceSceneButton : UiButton
 {
     [Export(PropertyHint.File, "*.tscn")]

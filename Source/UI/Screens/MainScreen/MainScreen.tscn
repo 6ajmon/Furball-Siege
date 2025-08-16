@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://how0rqi62k7n"]
+[gd_scene load_steps=4 format=3 uid="uid://how0rqi62k7n"]
 
 [ext_resource type="Script" uid="uid://bunemh1arin3m" path="res://Source/UI/Screens/MainScreen/MainScreen.cs" id="1_7i5ns"]
+[ext_resource type="Script" uid="uid://cvyygdp8uwan" path="res://Source/UI/Components/Buttons/ReplaceSceneButton/ReplaceSceneButton.cs" id="2_kacw7"]
+[ext_resource type="Script" uid="uid://vbyo8ke0rpog" path="res://Source/UI/Components/Buttons/UIButton/UiButton.cs" id="3_20cvy"]
 
 [node name="MainScreen" type="Control"]
 layout_mode = 3
@@ -10,3 +12,70 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7i5ns")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "Furrball Siege"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 60
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 36
+
+[node name="StartGameButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons"]
+layout_mode = 2
+text = "Start Game"
+script = ExtResource("2_kacw7")
+ScenePath = "uid://cae8jm3pdxrim"
+ShouldTakeFocus = true
+metadata/_custom_type_script = "uid://cvyygdp8uwan"
+
+[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons"]
+layout_mode = 2
+text = "Settings"
+script = ExtResource("2_kacw7")
+metadata/_custom_type_script = "uid://cvyygdp8uwan"
+
+[node name="SourceCodeButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons"]
+layout_mode = 2
+text = "Source"
+script = ExtResource("3_20cvy")
+metadata/_custom_type_script = "uid://vbyo8ke0rpog"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/StartGameButton" to="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/StartGameButton" method="OnPressed"]
