@@ -31,6 +31,10 @@ public partial class GameManager : Node
     public void TakeShot()
     {
         ShotsTaken++;
+        if (ShotsTaken >= ShotsCount)
+        {
+            SignalManager.Instance.EmitSignal(nameof(SignalManager.RoundLost));
+        }
     }
     public void ResetGame()
     {

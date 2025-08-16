@@ -8,6 +8,7 @@ public partial class SignalManager : Node
     [Signal] public delegate void FortGeneratedEventHandler();
     [Signal] public delegate void GnomeDiedEventHandler();
     [Signal] public delegate void RoundWonEventHandler();
+    [Signal] public delegate void RoundLostEventHandler();
 
     public override void _Ready()
     {
