@@ -19,11 +19,15 @@ public partial class SceneManager : Node
 
     private void OnRoundLost()
     {
+        if (IsMenuOpen)
+            return;
         GetTree().Root.AddChild(ResourceLoader.Load<PackedScene>(roundLostMenuScenePath).Instantiate());
     }
 
     private void OnRoundWon()
     {
+        if (IsMenuOpen)
+            return;
         GetTree().Root.AddChild(ResourceLoader.Load<PackedScene>(roundWonMenuScenePath).Instantiate());
     }
 }
