@@ -35,7 +35,9 @@ height = 0.2
 [node name="Hamster" type="RigidBody3D"]
 physics_interpolation_mode = 1
 transform = Transform3D(-4.37114e-07, 0, 10, 0, 10, 0, -10, 0, -4.37114e-07, 0, 0, 0)
-mass = 360.0
+collision_layer = 2
+collision_mask = 15
+mass = 300.0
 physics_material_override = SubResource("PhysicsMaterial_h8dop")
 gravity_scale = 0.0
 angular_damp = 6.0
@@ -85,8 +87,9 @@ DamageNumberDisplay = NodePath("../DamageNumberDisplayComponent")
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("HealthComponent") instance=ExtResource("5_6ylba")]
 collision_layer = 2
+collision_mask = 13
 HealthComponent = NodePath("../HealthComponent")
-ContactDamage = 2.0
+ContactDamage = 3.0
 
 [node name="HitboxCollisionShape" parent="HitboxComponent" index="0"]
 shape = SubResource("SphereShape3D_euomd")

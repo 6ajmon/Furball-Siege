@@ -6,7 +6,7 @@ public partial class Plank : RigidBody3D
     [Signal] public delegate void halfHealthReachedEventHandler(Plank plank);
     [Export] public HealthComponent HealthComponent;
     private bool _halfHealthReached = false;
-    [Export] public float DamageMultiplier = 1.0f;
+    [Export] public float ContactDamage { get; set; } = 1f;
 
     public override void _Ready()
     {
@@ -30,7 +30,7 @@ public partial class Plank : RigidBody3D
                 {
                     HealthComponent.DealDamage(attack: new Attack
                     {
-                        Damage = DamageMultiplier,
+                        Damage = ContactDamage,
                         GlobalPosition = rigidBody.GlobalPosition,
                         SpeedForce = velocity
                     });

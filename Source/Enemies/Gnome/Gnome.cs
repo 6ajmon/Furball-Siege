@@ -3,7 +3,7 @@ using System;
 
 public partial class Gnome : RigidBody3D
 {
-    [Export] HealthComponent HealthComponent;
+    private HealthComponent HealthComponent;
 
     public override void _Ready()
     {

@@ -29,17 +29,31 @@ public partial class HitboxComponent : Area3D
     
     public void OnBodyEntered(Node3D body)
     {
-        if (_parent.LinearVelocity.Length() < GameManager.MINIMUM_SPEED_FOR_DAMAGE) return;
+        bool isParentBelowMinimumSpeed = _parent.LinearVelocity.Length() < GameManager.MINIMUM_SPEED_FOR_DAMAGE;
+        bool bodyIsBelowMinimumSpeed = body is RigidBody3D rigidBody && rigidBody.LinearVelocity.Length() < GameManager.MINIMUM_SPEED_FOR_DAMAGE;
+        if (isParentBelowMinimumSpeed && bodyIsBelowMinimumSpeed) return;
 
         if (body is Plank plank)
         {
-            Attack attack = new(
-                ContactDamage,
-                _parent.GlobalPosition,
-                _parent.LinearVelocity.Length()
-                );
-            plank.HealthComponent.DealDamage(attack);
-            plank.ApplyCentralImpulse(_parent.LinearVelocity * attack.SpeedForce * attack.SpeedForce * attack.Damage);
+            if (!isParentBelowMinimumSpeed)
+            {
+                Attack attack = new(
+                    ContactDamage,
+                    _parent.GlobalPosition,
+                    _parent.LinearVelocity.Length()
+                    );
+                plank.HealthComponent.DealDamage(attack);
+                plank.ApplyCentralImpulse(_parent.LinearVelocity * attack.SpeedForce * attack.SpeedForce * attack.Damage);
+            }
+            if (!bodyIsBelowMinimumSpeed)
+            {
+                Attack attack = new(
+                    plank.ContactDamage,
+                    plank.GlobalPosition,
+                    plank.LinearVelocity.Length()
+                    );
+                HealthComponent.DealDamage(attack);
+            }
         }
     }
 }

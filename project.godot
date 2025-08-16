@@ -88,6 +88,8 @@ Shoot={
 
 3d_physics/layer_1="Plank"
 3d_physics/layer_2="Hamster"
+3d_physics/layer_3="Enemies"
+3d_physics/layer_4="Floor"
 3d_physics/layer_9="FrontWall"
 
 [physics]
