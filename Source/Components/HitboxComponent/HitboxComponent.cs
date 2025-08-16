@@ -59,13 +59,18 @@ public partial class HitboxComponent : Area3D
             }
             if (!bodyIsBelowMinimumSpeed)
             {
-                Attack attack = new(
+                Attack selfAttack = new(
                     plank.ContactDamage,
                     plank.GlobalPosition,
                     plank.LinearVelocity.Length()
                     );
-                HealthComponent.DealDamage(attack);
-                plank.HealthComponent.DealDamage(attack);
+                Attack bodyAttack = new(
+                    ContactDamage,
+                    plank.GlobalPosition,
+                    plank.LinearVelocity.Length()
+                    );
+                HealthComponent.DealDamage(selfAttack);
+                plank.HealthComponent.DealDamage(bodyAttack);
             }
         }
     }
