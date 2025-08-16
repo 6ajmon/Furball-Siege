@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://cae8jm3pdxrim"]
+[gd_scene load_steps=16 format=3 uid="uid://cae8jm3pdxrim"]
 
 [ext_resource type="PackedScene" uid="uid://4g78f4a6q230" path="res://Source/Tmp/FreeFlightCamera/FreeFlightCamera.tscn" id="1_1y838"]
 [ext_resource type="Script" uid="uid://co8anufftd8w7" path="res://Source/Level/Level.cs" id="1_cx8g2"]
+[ext_resource type="Script" uid="uid://dykt6s31f60d1" path="res://Source/Level/HamsterGenerator.cs" id="2_h3shn"]
 [ext_resource type="PackedScene" uid="uid://b5nvfcyqcapdn" path="res://Source/Slingshot/Slingshot.tscn" id="2_j2vee"]
 [ext_resource type="PackedScene" uid="uid://dhqucg1pjbjsl" path="res://Source/Forts/FortGenerator/FortGenerator.tscn" id="4_cx8g2"]
 [ext_resource type="PackedScene" uid="uid://bgutj0akdrixo" path="res://Source/Components/HitboxComponent/HitboxComponent.tscn" id="5_xynoj"]
@@ -34,11 +35,15 @@ size = Vector3(300, 0.2, 300)
 [sub_resource type="BoxShape3D" id="BoxShape3D_xynoj"]
 size = Vector3(300, 0.25, 300)
 
-[node name="Level" type="Node3D" node_paths=PackedStringArray("_slingshot", "FortGenerator")]
+[node name="Level" type="Node3D" node_paths=PackedStringArray("_slingshot", "FortGenerator", "HamsterGenerator")]
 script = ExtResource("1_cx8g2")
 _slingshot = NodePath("Slingshot")
-_hamsterScenePath = "uid://c2danx0rx2og3"
 FortGenerator = NodePath("FortGenerator")
+HamsterGenerator = NodePath("HamsterGenerator")
+
+[node name="HamsterGenerator" type="Node" parent="."]
+script = ExtResource("2_h3shn")
+HamsterScenePath = "uid://c2danx0rx2og3"
 
 [node name="FortGenerator" parent="." instance=ExtResource("4_cx8g2")]
 metadata/_editor_floor_ = Vector3(0, -1, 0)
@@ -73,6 +78,7 @@ skeleton = NodePath("../..")
 collision_layer = 8
 collision_mask = 7
 HealthComponent = NodePath("../HealthComponent")
+ContactDamage = 2.0
 
 [node name="HitboxCollisionShape" parent="FloorBody/HitboxComponent" index="0"]
 shape = SubResource("BoxShape3D_xynoj")
