@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+namespace FurballSiege.Source.UI.Components.Buttons.UIButton;
+
 [GlobalClass]
 public partial class UiButton : Button
 {
