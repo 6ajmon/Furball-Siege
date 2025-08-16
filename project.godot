@@ -18,9 +18,10 @@ boot_splash/minimum_display_time=360
 
 [autoload]
 
-CameraManager="*res://Source/Managers/CameraManager/CameraManager.cs"
 GameManager="*res://Source/Managers/GameManager/GameManager.cs"
 SignalManager="*res://Source/Managers/SignalManager/SignalManager.cs"
+SceneManager="*res://Source/Managers/SceneManager/SceneManager.cs"
+CameraManager="*res://Source/Managers/CameraManager/CameraManager.cs"
 
 [display]
 
