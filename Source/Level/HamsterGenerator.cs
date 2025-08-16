@@ -12,7 +12,7 @@ public partial class HamsterGenerator : Node
     private bool _canReload = false;
 
     public Hamster HamsterInstance => _hamsterInstance;
-    public bool CanReload => _canReload;
+    public bool CanReload => _canReload && GameManager.Instance.HasShotsRemaining;
 
     public override void _Ready()
     {
@@ -27,7 +27,7 @@ public partial class HamsterGenerator : Node
 
     public override void _PhysicsProcess(double delta)
     {
-        if (Input.IsActionPressed("Reload") && _canReload)
+        if (Input.IsActionPressed("Reload") && CanReload)
         {
             ReloadHamster();
         }
@@ -80,12 +80,15 @@ public partial class HamsterGenerator : Node
     public void StartReloadCooldown()
     {
         _canReload = false;
-        _reloadTimer.Start();
+        if (GameManager.Instance.HasShotsRemaining)
+        {
+            _reloadTimer.Start();
+        }
     }
 
     public void ReloadHamster()
     {
-        if (!_canReload) return;
+        if (!CanReload) return;
 
         RemovePreviousHamster();
         
@@ -107,6 +110,9 @@ public partial class HamsterGenerator : Node
 
     private void OnReloadTimerTimeout()
     {
-        _canReload = true;
+        if (GameManager.Instance.HasShotsRemaining)
+        {
+            _canReload = true;
+        }
     }
 }

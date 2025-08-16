@@ -36,7 +36,7 @@ public partial class Level : Node3D
     {
         if (GameManager.Instance.CurrentGameState == GameManager.GameState.Aiming)
         {
-            if (Input.IsActionPressed("Shoot"))
+            if (Input.IsActionPressed("Shoot") && GameManager.Instance.HasShotsRemaining)
             {
                 DetachHamster();
                 TryShoot();
@@ -55,6 +55,8 @@ public partial class Level : Node3D
     public void TryShoot()
     {
         GameManager.Instance.CurrentGameState = GameManager.GameState.Shooting;
+        GameManager.Instance.TakeShot();
+        
         if (HamsterGenerator?.HamsterInstance != null)
         {
             HamsterGenerator.HamsterInstance.ApplyImpulse(_slingshot.GetLaunchDirection() * _slingshot.Force);
