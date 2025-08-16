@@ -12,11 +12,7 @@ public partial class CameraManager : Node
     public override void _Ready()
     {
         RefreshCameraList();
-        if (_cameras.Count == 0)
-        {
-            GD.PrintErr("No cameras found in the scene.");
-        }
-        else
+        if (_cameras.Count != 0)
         {
             ActivateCamera(_currentCameraIndex);
         }

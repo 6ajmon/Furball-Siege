@@ -33,6 +33,8 @@ public partial class Level : Node3D
         SignalManager.Instance.RestartGame += OnRestartGame;
         SignalManager.Instance.NextRound += OnNextRound;
 
+        CameraManager.Instance.RefreshCameraList();
+        CameraManager.Instance.ActivateCamera(0);
 
         GameManager.Instance.ResetGame();
     }
