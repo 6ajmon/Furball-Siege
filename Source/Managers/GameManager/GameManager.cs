@@ -21,7 +21,20 @@ public partial class GameManager : Node
     public int CurrentRound { get; set; }
     public int CurrentEnemyCount { get; set; }
 
+    private Timer _lastShotTimer;
+    public float lastShotTimerWaitTime = 10.0f;
+
     public bool HasShotsRemaining => ShotsTaken < ShotsCount;
+
+    public override void _Ready()
+    {
+        _lastShotTimer = new Timer();
+        _lastShotTimer.WaitTime = lastShotTimerWaitTime;
+        _lastShotTimer.OneShot = true;
+        _lastShotTimer.ProcessCallback = Timer.TimerProcessCallback.Physics;
+        _lastShotTimer.Timeout += OnLastShotTimeout;
+        AddChild(_lastShotTimer);
+    }
 
     public void CalculateShotsCount()
     {
@@ -30,12 +43,25 @@ public partial class GameManager : Node
 
     public void TakeShot()
     {
-        ShotsTaken++;
         if (ShotsTaken >= ShotsCount)
         {
             SignalManager.Instance.EmitSignal(nameof(SignalManager.RoundLost));
         }
+        ShotsTaken++;
+        if (ShotsTaken >= ShotsCount)
+        {
+            _lastShotTimer.Start();
+        }
     }
+
+    private void OnLastShotTimeout()
+    {
+        if (CurrentEnemyCount > 0)
+        {
+            SignalManager.Instance.EmitSignal(nameof(SignalManager.RoundLost));
+        }
+    }
+
     public void ResetGame()
     {
         ShotsTaken = 0;
@@ -43,13 +69,15 @@ public partial class GameManager : Node
         CurrentEnemyCount = InitialEnemyCount;
         CalculateShotsCount();
         CurrentGameState = GameState.Aiming;
+        _lastShotTimer.Stop();
     }
+
     public void EnemyDied()
     {
-        GD.Print($"Enemy died. Remaining: {CurrentEnemyCount - 1}");
         CurrentEnemyCount--;
         if (CurrentEnemyCount <= 0)
         {
+            _lastShotTimer.Stop();
             SignalManager.Instance.EmitSignal(nameof(SignalManager.RoundWon));
         }
     }

@@ -31,6 +31,7 @@ public partial class Level : Node3D
         }
         SignalManager.Instance.FortGenerated += OnFortGenerated;
         SignalManager.Instance.RestartGame += OnRestartGame;
+        GameManager.Instance.ResetGame();
     }
 
     public override void _PhysicsProcess(double delta)

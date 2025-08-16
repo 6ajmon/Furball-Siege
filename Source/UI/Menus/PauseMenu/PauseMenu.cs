@@ -7,15 +7,18 @@ public partial class PauseMenu : Control
 
     public override void _PhysicsProcess(double delta)
     {
-        if (Input.IsActionJustPressed("PauseGame"))
+        if (!SceneManager.Instance.IsMenuOpen)
         {
-            if (IsPaused)
+            if (Input.IsActionJustPressed("PauseGame"))
             {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
+                if (IsPaused)
+                {
+                    ResumeGame();
+                }
+                else
+                {
+                    PauseGame();
+                }
             }
         }
     }
