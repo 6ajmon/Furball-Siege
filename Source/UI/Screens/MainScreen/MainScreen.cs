@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class MainScreen : Control
+public partial class MainScreen : Node
 {
     public void OnSourceCodeButtonPressed()
     {
