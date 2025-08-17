@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://r21bmxjwdos1" path="res://Assets/UI/Buttons/Square-Medium/ArrowRight/Default.svg" id="9_a2aq8"]
 [ext_resource type="Texture2D" uid="uid://cp3v6dd58v1bm" path="res://Assets/UI/Buttons/Square-Medium/ArrowRight/Hover.svg" id="10_xgwbm"]
 
-[node name="FlightOverlay" type="Control" node_paths=PackedStringArray("RoundNumberLabel", "EnemiesRemainingLabel", "AmmoLabel", "ReloadProgressBar", "PauseButton", "CycleLeftButton", "CycleRightButton")]
+[node name="FlightOverlay" type="Control" node_paths=PackedStringArray("RoundNumberLabel", "EnemiesRemainingLabel", "AmmoLabel", "PauseButton", "CycleLeftButton", "CycleRightButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +21,6 @@ script = ExtResource("2_1gpin")
 RoundNumberLabel = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/RoundNumberLabel")
 EnemiesRemainingLabel = NodePath("MarginContainer/VBoxContainer/HBoxContainer/EnemiesRemaining")
 AmmoLabel = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer/AmmoLabel")
-ReloadProgressBar = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/ReloadProgressBar")
 PauseButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PauseButton")
 CycleLeftButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer/CycleLeftButton")
 CycleRightButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer/CycleRightButton")
@@ -130,10 +129,3 @@ layout_mode = 2
 size_flags_horizontal = 10
 text = "3/5"
 horizontal_alignment = 2
-
-[node name="ReloadProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
-layout_mode = 2
-size_flags_vertical = 3
-value = 50.0
-fill_mode = 1
-show_percentage = false

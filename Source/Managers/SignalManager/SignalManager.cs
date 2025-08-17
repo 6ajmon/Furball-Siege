@@ -28,6 +28,8 @@ public partial class SignalManager : Node
     [Signal] public delegate void UpdateEnemiesRemainingEventHandler();
     [Signal] public delegate void RoundNumberChangedEventHandler();
 
+    [Signal] public delegate void ReturnButtonPressedEventHandler();
+
     public override void _Ready()
     {
         GnomeDied += OnGnomeDied;

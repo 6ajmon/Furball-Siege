@@ -15,5 +15,6 @@ public partial class ReturnButton : UiButton
         SceneManager.Instance.CurrentMenu?.QueueFree();
         SceneManager.Instance.CurrentMenu = null;
         SceneManager.Instance.IsMenuOpen = false;
+        SignalManager.Instance.EmitSignal(nameof(SignalManager.ReturnButtonPressed));
     }
 }

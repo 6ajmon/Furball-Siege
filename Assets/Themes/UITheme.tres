@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=21 format=3 uid="uid://b4g3uaa2tkx1o"]
+[gd_resource type="Theme" load_steps=24 format=3 uid="uid://b4g3uaa2tkx1o"]
 
 [ext_resource type="Texture2D" uid="uid://crcytlb3w1ycu" path="res://Assets/UI/Panel/Window/Big.svg" id="1_fqcbt"]
 [ext_resource type="Texture2D" uid="uid://cwux7yk5gmd5d" path="res://Assets/UI/Panel/Body/Headless.svg" id="1_lhnix"]
@@ -59,6 +59,17 @@ texture = ExtResource("2_kbbo4")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nmuvt"]
 texture = ExtResource("3_fqcbt")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wfqdw"]
+texture = ExtResource("3_fqcbt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4p8u7"]
+texture = ExtResource("3_fqcbt")
+modulate_color = Color(0.898039, 0.145098, 0.329412, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_baars"]
+texture = ExtResource("3_fqcbt")
+modulate_color = Color(0.984726, 0.394473, 0.476517, 1)
+
 [resource]
 default_font = ExtResource("1_vs3nw")
 default_font_size = 64
@@ -76,3 +87,7 @@ HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_wfqdw")
 Panel/styles/panel = SubResource("StyleBoxTexture_lgs2g")
 ProgressBar/styles/background = SubResource("StyleBoxTexture_q2mks")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_nmuvt")
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_wfqdw")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_4p8u7")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_baars")
+VScrollBar/styles/scroll = null

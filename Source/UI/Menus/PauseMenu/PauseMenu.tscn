@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkwqbxdhwegv"]
+[gd_scene load_steps=7 format=3 uid="uid://bkwqbxdhwegv"]
 
 [ext_resource type="Theme" uid="uid://b4g3uaa2tkx1o" path="res://Assets/Themes/UITheme.tres" id="1_ceffo"]
 [ext_resource type="Script" uid="uid://cpuukgsftnwrj" path="res://Source/UI/Menus/PauseMenu/PauseMenu.cs" id="1_n0dd2"]
 [ext_resource type="Script" uid="uid://vbyo8ke0rpog" path="res://Source/UI/Components/Buttons/UIButton/UiButton.cs" id="2_cv471"]
 [ext_resource type="Texture2D" uid="uid://crcytlb3w1ycu" path="res://Assets/UI/Panel/Window/Big.svg" id="2_k177p"]
 [ext_resource type="Script" uid="uid://cvyygdp8uwan" path="res://Source/UI/Components/Buttons/ReplaceSceneButton/ReplaceSceneButton.cs" id="3_uh78w"]
+[ext_resource type="Script" uid="uid://tr6wb86gx5k5" path="res://Source/UI/Components/Buttons/AddChildSceneButton/AddChildSceneButton.cs" id="5_wwsi3"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -69,15 +70,14 @@ metadata/_custom_type_script = "uid://vbyo8ke0rpog"
 [node name="TutorialButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/Buttons"]
 layout_mode = 2
 text = "Tutorial"
-script = ExtResource("2_cv471")
-ShouldTakeFocus = true
-metadata/_custom_type_script = "uid://vbyo8ke0rpog"
+script = ExtResource("5_wwsi3")
+ScenePath = "uid://bc4pbehc6gefl"
+metadata/_custom_type_script = "uid://tr6wb86gx5k5"
 
 [node name="SettingsButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/Buttons"]
 layout_mode = 2
 text = "Settings"
 script = ExtResource("2_cv471")
-ShouldTakeFocus = true
 metadata/_custom_type_script = "uid://vbyo8ke0rpog"
 
 [node name="RestartButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/Buttons"]
@@ -95,6 +95,7 @@ metadata/_custom_type_script = "uid://cvyygdp8uwan"
 
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Buttons/ResumeButton" to="." method="OnResumeButtonPressed"]
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Buttons/TutorialButton" to="." method="OnResumeButtonPressed"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Buttons/TutorialButton" to="ColorRect/MarginContainer/VBoxContainer/Buttons/TutorialButton" method="OnPressed"]
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Buttons/SettingsButton" to="." method="OnResumeButtonPressed"]
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Buttons/RestartButton" to="." method="OnRestartButtonPressed"]
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Buttons/ReturnToMainScreenButton" to="ColorRect/MarginContainer/VBoxContainer/Buttons/ReturnToMainScreenButton" method="OnPressed"]

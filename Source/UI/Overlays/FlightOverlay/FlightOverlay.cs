@@ -7,7 +7,6 @@ public partial class FlightOverlay : Control
     [Export] public Label EnemiesRemainingLabel;
     [Export] public Label AmmoLabel;
 
-    [Export] public ProgressBar ReloadProgressBar;
     [Export] public TextureButton PauseButton;
     [Export] public TextureButton CycleLeftButton;
     [Export] public TextureButton CycleRightButton;
@@ -17,10 +16,8 @@ public partial class FlightOverlay : Control
     public override void _Ready()
     {
         _parentCamera = GetParent<Camera3D>();
-        ReloadProgressBar.MaxValue = GameManager.Instance.ReloadCooldown;
         SignalManager.Instance.RoundNumberChanged += UpdateRoundNumber;
         SignalManager.Instance.UpdateEnemiesRemaining += UpdateEnemiesRemaining;
-        SignalManager.Instance.UpdateReloadProgress += UpdateReloadProgress;
         SignalManager.Instance.UpdateAmmoCount += UpdateAmmoCount;
     }
     public override void _PhysicsProcess(double delta)
@@ -48,10 +45,6 @@ public partial class FlightOverlay : Control
     {
         var ammoCount = GameManager.Instance.ShotsCount - GameManager.Instance.ShotsTaken;
         AmmoLabel.Text = $"{ammoCount}/{GameManager.Instance.ShotsCount}";
-    }
-    public void UpdateReloadProgress()
-    {
-        ReloadProgressBar.Value = GameManager.Instance.RemainingReloadCooldown;
     }
     #endregion Labels
 

@@ -1,0 +1,206 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc4pbehc6gefl"]
+
+[ext_resource type="Script" uid="uid://cmtaobuioeyee" path="res://Source/UI/Components/Buttons/ReturnButton/ReturnButton.cs" id="1_m0rsb"]
+[ext_resource type="Theme" uid="uid://b4g3uaa2tkx1o" path="res://Assets/Themes/UITheme.tres" id="1_s3psw"]
+
+[node name="TutorialMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_s3psw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.241156, 0.241156, 0.241156, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "Tutorial"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../../../../ReturnButton")
+follow_focus = true
+draw_focus_border = true
+vertical_scroll_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 24
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Goal:      "
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "You need to take down Gnomes with limited amount of Hamsters."
+autowrap_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Controls: "
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "You can play the game with Mouse or Keyboard."
+autowrap_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Camera
+cycle:      "
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "You can cycle camera using buttons on the overlay or `Q` and `E` buttons."
+autowrap_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Slingshot
+rotation:"
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "You can rotate Slingshot in 4 directions using WASD or arrow buttons on the overlay. "
+autowrap_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "Shooting:"
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "You can shot when the Hamster is loaded. You can do this by pressing Spacebar or clicking the Shoot button."
+autowrap_mode = 2
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "Reload:   "
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "You can reload your Hamsters limited amount of time by pressing 'R' or Reload Button on the overlay."
+autowrap_mode = 2
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+text = "Pause:    "
+
+[node name="Label2" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "You can pause the game at any moment during the game by pressing `Esc` key or Pause Button in the top left corner of the overlay."
+autowrap_mode = 2
+
+[node name="ReturnButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Return"
+script = ExtResource("1_m0rsb")
+ShouldTakeFocus = true
+metadata/_custom_type_script = "uid://cmtaobuioeyee"
+
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/ReturnButton" to="ColorRect/MarginContainer/VBoxContainer/ReturnButton" method="OnPressed"]

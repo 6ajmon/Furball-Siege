@@ -54,8 +54,9 @@ material = SubResource("StandardMaterial3D_sgw0v")
 radius = 0.1
 height = 0.2
 
-[node name="MainScreen" type="Node"]
+[node name="MainScreen" type="Node" node_paths=PackedStringArray("focusControl")]
 script = ExtResource("1_7i5ns")
+focusControl = NodePath("UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/StartGameButton")
 
 [node name="UIContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -109,6 +110,7 @@ metadata/_custom_type_script = "uid://cvyygdp8uwan"
 layout_mode = 2
 text = "How To Play"
 script = ExtResource("3_q1ei0")
+ScenePath = "uid://bc4pbehc6gefl"
 metadata/_custom_type_script = "uid://tr6wb86gx5k5"
 
 [node name="SettingsButton" type="Button" parent="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons"]
@@ -212,6 +214,7 @@ mesh = ExtResource("8_km7r6")
 skeleton = NodePath("../..")
 
 [connection signal="pressed" from="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/StartGameButton" to="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/StartGameButton" method="OnPressed"]
+[connection signal="pressed" from="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/TutorialButton" to="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/TutorialButton" method="OnPressed"]
 [connection signal="pressed" from="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/SourceCodeButton" to="." method="OnSourceCodeButtonPressed"]
 [connection signal="pressed" from="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/SourceCodeButton" to="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/SourceCodeButton" method="_on_pressed"]
 
