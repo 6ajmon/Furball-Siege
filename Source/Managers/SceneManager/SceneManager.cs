@@ -15,9 +15,12 @@ public partial class SceneManager : Node
     }
     public void ReplaceScene(string scenePath)
     {
-        CurrentMenu?.QueueFree();
-        CurrentMenu = null;
-        IsMenuOpen = false;
+        if (IsMenuOpen)
+        {
+            CurrentMenu?.QueueFree();
+            CurrentMenu = null;
+            IsMenuOpen = false;
+        }
         GetTree().Paused = false;
         GetTree().ChangeSceneToFile(scenePath);
     }

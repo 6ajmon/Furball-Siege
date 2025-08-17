@@ -30,6 +30,10 @@ public partial class SignalManager : Node
 
     [Signal] public delegate void ReturnButtonPressedEventHandler();
 
+    [Signal] public delegate void QuickTimeEventFailedEventHandler();
+    [Signal] public delegate void QuickTimeEventSucceededEventHandler();
+    [Signal] public delegate void QuickTimeEventCompletedEventHandler(bool success);
+
     public override void _Ready()
     {
         GnomeDied += OnGnomeDied;

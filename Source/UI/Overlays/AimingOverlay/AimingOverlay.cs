@@ -35,6 +35,18 @@ public partial class AimingOverlay : Control
         SignalManager.Instance.UpdateReloadProgress += UpdateReloadProgress;
         SignalManager.Instance.UpdateAmmoCount += UpdateAmmoCount;
     }
+
+    public override void _ExitTree()
+    {
+        if (SignalManager.Instance != null)
+        {
+            SignalManager.Instance.RoundNumberChanged -= UpdateRoundNumber;
+            SignalManager.Instance.UpdateEnemiesRemaining -= UpdateEnemiesRemaining;
+            SignalManager.Instance.UpdateReloadProgress -= UpdateReloadProgress;
+            SignalManager.Instance.UpdateAmmoCount -= UpdateAmmoCount;
+        }
+    }
+
     public override void _PhysicsProcess(double delta)
     {
         if (_parentCamera.Current)
@@ -67,20 +79,32 @@ public partial class AimingOverlay : Control
     #region Labels
     public void UpdateRoundNumber()
     {
-        RoundNumberLabel.Text = $"Round: {GameManager.Instance.CurrentRound}";
+        if (IsInstanceValid(RoundNumberLabel))
+        {
+            RoundNumberLabel.Text = $"Round: {GameManager.Instance.CurrentRound}";
+        }
     }
     public void UpdateEnemiesRemaining()
     {
-        EnemiesRemainingLabel.Text = $"Gnomes Left: {GameManager.Instance.CurrentEnemyCount}";
+        if (IsInstanceValid(EnemiesRemainingLabel))
+        {
+            EnemiesRemainingLabel.Text = $"Gnomes Left: {GameManager.Instance.CurrentEnemyCount}";
+        }
     }
     public void UpdateAmmoCount()
     {
-        var ammoCount = GameManager.Instance.ShotsCount - GameManager.Instance.ShotsTaken;
-        AmmoLabel.Text = $"{ammoCount}/{GameManager.Instance.ShotsCount}";
+        if (IsInstanceValid(AmmoLabel))
+        {
+            var ammoCount = GameManager.Instance.ShotsCount - GameManager.Instance.ShotsTaken;
+            AmmoLabel.Text = $"{ammoCount}/{GameManager.Instance.ShotsCount}";
+        }
     }
     public void UpdateReloadProgress()
     {
-        ReloadProgressBar.Value = GameManager.Instance.RemainingReloadCooldown;
+        if (IsInstanceValid(ReloadProgressBar))
+        {
+            ReloadProgressBar.Value = GameManager.Instance.RemainingReloadCooldown;
+        }
     }
     #endregion Labels
 

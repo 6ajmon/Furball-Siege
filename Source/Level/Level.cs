@@ -7,8 +7,12 @@ public partial class Level : Node3D
     [Export] public Slingshot _slingshot;
     [Export] public FortGenerator FortGenerator;
     [Export] public HamsterGenerator HamsterGenerator;
+    [Export] public PackedScene QuickTimeEvent;
     private float _distanceFromFort;
     [Export] public float _distanceFromFortMultiplier = 0.7f;
+    [Export] public float failedEventForce = 0.2f;
+    [Export] public NodePath QuickTimeEventPath = "Slingshot/SlingshotCamera/AimingOverlay/MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer/HBoxContainer";
+    private bool isQTEActive = false;
 
     public override void _Ready()
     {
@@ -39,6 +43,7 @@ public partial class Level : Node3D
 
         GameManager.Instance.ResetGame();
         SignalManager.Instance.EmitSignal(nameof(SignalManager.RoundNumberChanged));
+        SignalManager.Instance.EmitSignal(nameof(SignalManager.UpdateAmmoCount));
     }
 
     private async void OnNextRound()
@@ -64,7 +69,7 @@ public partial class Level : Node3D
     }
     private void InitializeShot()
     {
-        if (GameManager.Instance.HasShotsRemaining)
+        if (GameManager.Instance.HasShotsRemaining && !isQTEActive)
         {
             DetachHamster();
             TryShoot();
@@ -79,14 +84,32 @@ public partial class Level : Node3D
         }
     }
 
-    public void TryShoot()
+    public async void TryShoot()
     {
+        isQTEActive = true;
         GameManager.Instance.CurrentGameState = GameManager.GameState.Shooting;
+        
+        float randomDelay = (float)GD.RandRange(0.0, 1.0);
+        await ToSignal(GetTree().CreateTimer(randomDelay), SceneTreeTimer.SignalName.Timeout);
+        
+        var quickTimeEventInstance = QuickTimeEvent.Instantiate<QuickTimeEvent>();
+        GetNode(QuickTimeEventPath).AddChild(quickTimeEventInstance);
+        
+        var result = await ToSignal(SignalManager.Instance, SignalManager.SignalName.QuickTimeEventCompleted);
+        bool qteSuccess = result[0].AsBool();
+        
+        isQTEActive = false;
+        Shoot(qteSuccess);
+    }
+
+    public void Shoot(bool highForce = false)
+    {
         GameManager.Instance.TakeShot();
 
         if (HamsterGenerator?.HamsterInstance != null)
         {
-            HamsterGenerator.HamsterInstance.ApplyImpulse(_slingshot.GetLaunchDirection() * _slingshot.Force);
+            float forceMultiplier = highForce ? 1.0f : failedEventForce;
+            HamsterGenerator.HamsterInstance.ApplyImpulse(_slingshot.GetLaunchDirection() * _slingshot.Force * forceMultiplier);
             HamsterGenerator.HamsterInstance.GravityScale = 0.3f;
             _slingshot.PlayAnimation("SlingshotShoot");
         }

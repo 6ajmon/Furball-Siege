@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://cae8jm3pdxrim"]
+[gd_scene load_steps=18 format=3 uid="uid://cae8jm3pdxrim"]
 
 [ext_resource type="PackedScene" uid="uid://4g78f4a6q230" path="res://Source/Tmp/FreeFlightCamera/FreeFlightCamera.tscn" id="1_1y838"]
 [ext_resource type="Script" uid="uid://co8anufftd8w7" path="res://Source/Level/Level.cs" id="1_cx8g2"]
 [ext_resource type="Script" uid="uid://dykt6s31f60d1" path="res://Source/Level/HamsterGenerator.cs" id="2_h3shn"]
+[ext_resource type="PackedScene" uid="uid://loscnmjqrx3f" path="res://Source/UI/Components/QuickTimeEvent/QuickTimeEvent.tscn" id="2_iyi5o"]
 [ext_resource type="PackedScene" uid="uid://b5nvfcyqcapdn" path="res://Source/Slingshot/Slingshot.tscn" id="2_j2vee"]
 [ext_resource type="PackedScene" uid="uid://dhqucg1pjbjsl" path="res://Source/Forts/FortGenerator/FortGenerator.tscn" id="4_cx8g2"]
 [ext_resource type="Texture2D" uid="uid://b6j4j2xdtxy4k" path="res://Assets/Textures/Sky/Painterly Sky BGs (168).png" id="4_lertv"]
@@ -40,6 +41,7 @@ script = ExtResource("1_cx8g2")
 _slingshot = NodePath("Slingshot")
 FortGenerator = NodePath("FortGenerator")
 HamsterGenerator = NodePath("HamsterGenerator")
+QuickTimeEvent = ExtResource("2_iyi5o")
 
 [node name="HamsterGenerator" type="Node" parent="."]
 script = ExtResource("2_h3shn")
@@ -89,4 +91,7 @@ MaxHealth = -1.0
 [node name="PauseMenu" parent="." instance=ExtResource("8_h3shn")]
 visible = false
 
+[editable path="Slingshot"]
+[editable path="Slingshot/Sketchfab_Scene"]
+[editable path="Slingshot/SlingshotCamera/AimingOverlay"]
 [editable path="FloorBody/HitboxComponent"]

@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://loscnmjqrx3f"]
+
+[ext_resource type="Theme" uid="uid://b4g3uaa2tkx1o" path="res://Assets/Themes/UITheme.tres" id="1_7v50u"]
+[ext_resource type="Script" uid="uid://cpeddiv4jafot" path="res://Source/UI/Components/QuickTimeEvent/QuickTimeEvent.cs" id="1_x5y67"]
+[ext_resource type="Script" uid="uid://vbyo8ke0rpog" path="res://Source/UI/Components/Buttons/UIButton/UiButton.cs" id="3_b8773"]
+[ext_resource type="Texture2D" uid="uid://b0ui735ekxc5p" path="res://Assets/UI/Level/Button/Unlocked/Hover.svg" id="3_j5741"]
+
+[node name="QuickTimeEvent" type="Control" node_paths=PackedStringArray("progressBar", "timer")]
+custom_minimum_size = Vector2(500, 164)
+layout_mode = 3
+anchor_right = 0.313
+anchor_bottom = 0.166
+offset_right = 0.138977
+offset_bottom = 0.15799
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_7v50u")
+script = ExtResource("1_x5y67")
+progressBar = NodePath("VBoxContainer/ProgressBar")
+timer = NodePath("Timer")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 175.0
+offset_top = 84.0
+offset_right = 325.0
+offset_bottom = 172.0
+texture = ExtResource("3_j5741")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -7.62401
+theme_override_constants/separation = 16
+
+[node name="ShootButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Shoot!"
+script = ExtResource("3_b8773")
+ShouldTakeFocus = true
+metadata/_custom_type_script = "uid://vbyo8ke0rpog"
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
+custom_minimum_size = Vector2(500, 64)
+layout_mode = 2
+value = 64.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="pressed" from="VBoxContainer/ShootButton" to="." method="OnShootButtonPressed"]
+[connection signal="pressed" from="VBoxContainer/ShootButton" to="VBoxContainer/ShootButton" method="OnPressed"]
