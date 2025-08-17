@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0ma5heeqq5vy"]
+
+[ext_resource type="Script" uid="uid://cmtaobuioeyee" path="res://Source/UI/Components/Buttons/ReturnButton/ReturnButton.cs" id="1_ru6n1"]
+
+[node name="ReturnButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_ru6n1")
+metadata/_custom_type_script = "uid://vbyo8ke0rpog"

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkwqbxdhwegv"]
+[gd_scene load_steps=4 format=3 uid="uid://bkwqbxdhwegv"]
 
 [ext_resource type="Script" uid="uid://cpuukgsftnwrj" path="res://Source/UI/Menus/PauseMenu/PauseMenu.cs" id="1_n0dd2"]
 [ext_resource type="Script" uid="uid://vbyo8ke0rpog" path="res://Source/UI/Components/Buttons/UIButton/UiButton.cs" id="2_cv471"]
+[ext_resource type="Script" uid="uid://cvyygdp8uwan" path="res://Source/UI/Components/Buttons/ReplaceSceneButton/ReplaceSceneButton.cs" id="3_uh78w"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 3
@@ -58,5 +59,13 @@ text = "Restart"
 script = ExtResource("2_cv471")
 metadata/_custom_type_script = "uid://vbyo8ke0rpog"
 
+[node name="ReturnToMainScreenButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/Buttons"]
+layout_mode = 2
+text = "Return to main menu"
+script = ExtResource("3_uh78w")
+ScenePath = "uid://how0rqi62k7n"
+metadata/_custom_type_script = "uid://cvyygdp8uwan"
+
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Buttons/ResumeButton" to="." method="OnResumeButtonPressed"]
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Buttons/RestartButton" to="." method="OnRestartButtonPressed"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Buttons/ReturnToMainScreenButton" to="ColorRect/MarginContainer/VBoxContainer/Buttons/ReturnToMainScreenButton" method="OnPressed"]

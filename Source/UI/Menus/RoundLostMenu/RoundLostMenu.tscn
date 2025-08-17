@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://disua27jul604"]
+[gd_scene load_steps=4 format=3 uid="uid://disua27jul604"]
 
 [ext_resource type="Script" uid="uid://vbyo8ke0rpog" path="res://Source/UI/Components/Buttons/UIButton/UiButton.cs" id="1_3vjta"]
 [ext_resource type="Script" uid="uid://buq150sehjmyg" path="res://Source/UI/Menus/RoundLostMenu/RoundLostMenu.cs" id="1_xpdjp"]
+[ext_resource type="Script" uid="uid://cvyygdp8uwan" path="res://Source/UI/Components/Buttons/ReplaceSceneButton/ReplaceSceneButton.cs" id="3_8a7qb"]
 
 [node name="RoundLostMenu" type="Control"]
 process_mode = 3
@@ -61,8 +62,9 @@ metadata/_custom_type_script = "uid://vbyo8ke0rpog"
 [node name="ReturnToMainMenuButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/Buttons"]
 layout_mode = 2
 text = "Return to main menu"
-script = ExtResource("1_3vjta")
-metadata/_custom_type_script = "uid://vbyo8ke0rpog"
+script = ExtResource("3_8a7qb")
+ScenePath = "uid://how0rqi62k7n"
+metadata/_custom_type_script = "uid://cvyygdp8uwan"
 
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Buttons/TryAgainButton" to="." method="OnTryAgainButtonPressed"]
-[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Buttons/ReturnToMainMenuButton" to="." method="OnReturnToMainMenuButtonPressed"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Buttons/ReturnToMainMenuButton" to="ColorRect/MarginContainer/VBoxContainer/Buttons/ReturnToMainMenuButton" method="OnPressed"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://uef47tli602n"]
+[gd_scene load_steps=4 format=3 uid="uid://uef47tli602n"]
 
 [ext_resource type="Script" uid="uid://bfuxi5p3qb505" path="res://Source/UI/Menus/RoundWonMenu/RoundWonMenu.cs" id="1_3muds"]
 [ext_resource type="Script" uid="uid://vbyo8ke0rpog" path="res://Source/UI/Components/Buttons/UIButton/UiButton.cs" id="2_81iud"]
+[ext_resource type="Script" uid="uid://cvyygdp8uwan" path="res://Source/UI/Components/Buttons/ReplaceSceneButton/ReplaceSceneButton.cs" id="3_5pagx"]
 
 [node name="RoundWonMenu" type="Control"]
 process_mode = 3
@@ -61,8 +62,9 @@ metadata/_custom_type_script = "uid://vbyo8ke0rpog"
 [node name="ReturnToMainMenuButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/Buttons"]
 layout_mode = 2
 text = "Return to main menu"
-script = ExtResource("2_81iud")
-metadata/_custom_type_script = "uid://vbyo8ke0rpog"
+script = ExtResource("3_5pagx")
+ScenePath = "uid://how0rqi62k7n"
+metadata/_custom_type_script = "uid://cvyygdp8uwan"
 
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Buttons/NextRoundButton" to="." method="OnNextRoundButtonPressed"]
-[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Buttons/ReturnToMainMenuButton" to="." method="OnReturnToMainMenuButtonPressed"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/Buttons/ReturnToMainMenuButton" to="ColorRect/MarginContainer/VBoxContainer/Buttons/ReturnToMainMenuButton" method="OnPressed"]

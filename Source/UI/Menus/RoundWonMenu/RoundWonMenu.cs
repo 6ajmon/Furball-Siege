@@ -25,8 +25,4 @@ public partial class RoundWonMenu : Control
         HideMenu();
         SignalManager.Instance.EmitSignal(nameof(SignalManager.NextRound));
     }
-    public void OnReturnToMainMenuButtonPressed()
-    {
-        // Logic to return to the main menu
-    }
 }

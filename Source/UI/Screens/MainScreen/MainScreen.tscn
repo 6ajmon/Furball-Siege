@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://how0rqi62k7n"]
+[gd_scene load_steps=5 format=3 uid="uid://how0rqi62k7n"]
 
 [ext_resource type="Script" uid="uid://bunemh1arin3m" path="res://Source/UI/Screens/MainScreen/MainScreen.cs" id="1_7i5ns"]
 [ext_resource type="Script" uid="uid://cvyygdp8uwan" path="res://Source/UI/Components/Buttons/ReplaceSceneButton/ReplaceSceneButton.cs" id="2_kacw7"]
 [ext_resource type="Script" uid="uid://vbyo8ke0rpog" path="res://Source/UI/Components/Buttons/UIButton/UiButton.cs" id="3_20cvy"]
+[ext_resource type="Script" uid="uid://tr6wb86gx5k5" path="res://Source/UI/Components/Buttons/AddChildSceneButton/AddChildSceneButton.cs" id="3_q1ei0"]
 
 [node name="MainScreen" type="Control"]
 layout_mode = 3
@@ -58,6 +59,12 @@ ScenePath = "uid://cae8jm3pdxrim"
 ShouldTakeFocus = true
 metadata/_custom_type_script = "uid://cvyygdp8uwan"
 
+[node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons"]
+layout_mode = 2
+text = "How To Play"
+script = ExtResource("3_q1ei0")
+metadata/_custom_type_script = "uid://tr6wb86gx5k5"
+
 [node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons"]
 layout_mode = 2
 text = "Settings"
@@ -79,3 +86,5 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/StartGameButton" to="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/StartGameButton" method="OnPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/SourceCodeButton" to="." method="OnSourceCodeButtonPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/SourceCodeButton" to="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/SourceCodeButton" method="_on_pressed"]
