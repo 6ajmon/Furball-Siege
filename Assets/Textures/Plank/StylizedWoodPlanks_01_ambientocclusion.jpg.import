@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c3x3rrk0661ic"
 path.s3tc="res://.godot/imported/StylizedWoodPlanks_01_ambientocclusion.jpg-3f187d92838a0eb90862ee41b14e72c9.s3tc.ctex"
+path.etc2="res://.godot/imported/StylizedWoodPlanks_01_ambientocclusion.jpg-3f187d92838a0eb90862ee41b14e72c9.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Textures/Plank/StylizedWoodPlanks_01_ambientocclusion.jpg"
-dest_files=["res://.godot/imported/StylizedWoodPlanks_01_ambientocclusion.jpg-3f187d92838a0eb90862ee41b14e72c9.s3tc.ctex"]
+dest_files=["res://.godot/imported/StylizedWoodPlanks_01_ambientocclusion.jpg-3f187d92838a0eb90862ee41b14e72c9.s3tc.ctex", "res://.godot/imported/StylizedWoodPlanks_01_ambientocclusion.jpg-3f187d92838a0eb90862ee41b14e72c9.etc2.ctex"]
 
 [params]
 

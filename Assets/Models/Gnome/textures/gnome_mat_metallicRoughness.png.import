@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dk88hic3kfm7d"
 path.s3tc="res://.godot/imported/gnome_mat_metallicRoughness.png-e81f7614701e1538d368a5a09290233e.s3tc.ctex"
+path.etc2="res://.godot/imported/gnome_mat_metallicRoughness.png-e81f7614701e1538d368a5a09290233e.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Models/Gnome/textures/gnome_mat_metallicRoughness.png"
-dest_files=["res://.godot/imported/gnome_mat_metallicRoughness.png-e81f7614701e1538d368a5a09290233e.s3tc.ctex"]
+dest_files=["res://.godot/imported/gnome_mat_metallicRoughness.png-e81f7614701e1538d368a5a09290233e.s3tc.ctex", "res://.godot/imported/gnome_mat_metallicRoughness.png-e81f7614701e1538d368a5a09290233e.etc2.ctex"]
 
 [params]
 

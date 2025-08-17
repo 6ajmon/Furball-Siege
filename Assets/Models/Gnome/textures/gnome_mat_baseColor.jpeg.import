@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://03o1d4iuwh8a"
 path.s3tc="res://.godot/imported/gnome_mat_baseColor.jpeg-6111c69dab587f64f0495a52f735fbca.s3tc.ctex"
+path.etc2="res://.godot/imported/gnome_mat_baseColor.jpeg-6111c69dab587f64f0495a52f735fbca.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Models/Gnome/textures/gnome_mat_baseColor.jpeg"
-dest_files=["res://.godot/imported/gnome_mat_baseColor.jpeg-6111c69dab587f64f0495a52f735fbca.s3tc.ctex"]
+dest_files=["res://.godot/imported/gnome_mat_baseColor.jpeg-6111c69dab587f64f0495a52f735fbca.s3tc.ctex", "res://.godot/imported/gnome_mat_baseColor.jpeg-6111c69dab587f64f0495a52f735fbca.etc2.ctex"]
 
 [params]
 

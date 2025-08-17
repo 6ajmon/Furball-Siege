@@ -1,6 +1,5 @@
-[gd_scene load_steps=18 format=3 uid="uid://cae8jm3pdxrim"]
+[gd_scene load_steps=17 format=3 uid="uid://cae8jm3pdxrim"]
 
-[ext_resource type="PackedScene" uid="uid://4g78f4a6q230" path="res://Source/Tmp/FreeFlightCamera/FreeFlightCamera.tscn" id="1_1y838"]
 [ext_resource type="Script" uid="uid://co8anufftd8w7" path="res://Source/Level/Level.cs" id="1_cx8g2"]
 [ext_resource type="Script" uid="uid://dykt6s31f60d1" path="res://Source/Level/HamsterGenerator.cs" id="2_h3shn"]
 [ext_resource type="PackedScene" uid="uid://loscnmjqrx3f" path="res://Source/UI/Components/QuickTimeEvent/QuickTimeEvent.tscn" id="2_iyi5o"]
@@ -59,10 +58,6 @@ environment = SubResource("Environment_1y838")
 
 [node name="Slingshot" parent="." instance=ExtResource("2_j2vee")]
 transform = Transform3D(0.1, 0, 0, 0, 0.0965926, -0.0258819, 0, 0.0258819, 0.0965926, 0, -1, 0)
-
-[node name="FreeFlightcamera" parent="." instance=ExtResource("1_1y838")]
-transform = Transform3D(0.972088, 0, 0.234616, 0, 1, 0, -0.234616, 0, 0.972088, 10.3813, 3.33854, -4.26171)
-current = true
 
 [node name="FloorBody" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -200)

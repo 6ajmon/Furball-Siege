@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d4ale0g60x7x"
 path.s3tc="res://.godot/imported/StylizedWoodPlanks_01_roughness.jpg-21450dd34e68d20a2f49bfb3249a78f1.s3tc.ctex"
+path.etc2="res://.godot/imported/StylizedWoodPlanks_01_roughness.jpg-21450dd34e68d20a2f49bfb3249a78f1.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Textures/Plank/StylizedWoodPlanks_01_roughness.jpg"
-dest_files=["res://.godot/imported/StylizedWoodPlanks_01_roughness.jpg-21450dd34e68d20a2f49bfb3249a78f1.s3tc.ctex"]
+dest_files=["res://.godot/imported/StylizedWoodPlanks_01_roughness.jpg-21450dd34e68d20a2f49bfb3249a78f1.s3tc.ctex", "res://.godot/imported/StylizedWoodPlanks_01_roughness.jpg-21450dd34e68d20a2f49bfb3249a78f1.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://uq4uu4mj6cgl"
 path.s3tc="res://.godot/imported/StylizedWoodPlanks_01_basecolor.jpg-658b79363de74fef07f26fda10ff2139.s3tc.ctex"
+path.etc2="res://.godot/imported/StylizedWoodPlanks_01_basecolor.jpg-658b79363de74fef07f26fda10ff2139.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Textures/Plank/StylizedWoodPlanks_01_basecolor.jpg"
-dest_files=["res://.godot/imported/StylizedWoodPlanks_01_basecolor.jpg-658b79363de74fef07f26fda10ff2139.s3tc.ctex"]
+dest_files=["res://.godot/imported/StylizedWoodPlanks_01_basecolor.jpg-658b79363de74fef07f26fda10ff2139.s3tc.ctex", "res://.godot/imported/StylizedWoodPlanks_01_basecolor.jpg-658b79363de74fef07f26fda10ff2139.etc2.ctex"]
 
 [params]
 

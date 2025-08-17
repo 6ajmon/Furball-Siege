@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://civx8qlxr6jn"
 path.s3tc="res://.godot/imported/StylizedWoodPlanks_01_height.jpg-63e469f5b747cc74daa22695f23e38ae.s3tc.ctex"
+path.etc2="res://.godot/imported/StylizedWoodPlanks_01_height.jpg-63e469f5b747cc74daa22695f23e38ae.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Textures/Plank/StylizedWoodPlanks_01_height.jpg"
-dest_files=["res://.godot/imported/StylizedWoodPlanks_01_height.jpg-63e469f5b747cc74daa22695f23e38ae.s3tc.ctex"]
+dest_files=["res://.godot/imported/StylizedWoodPlanks_01_height.jpg-63e469f5b747cc74daa22695f23e38ae.s3tc.ctex", "res://.godot/imported/StylizedWoodPlanks_01_height.jpg-63e469f5b747cc74daa22695f23e38ae.etc2.ctex"]
 
 [params]
 

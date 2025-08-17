@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://mjxhotm0eupy"]
+
+[ext_resource type="Texture2D" uid="uid://di8s36qa2nsc8" path="res://Assets/Textures/SplashScreen/gone-rogue.png" id="1_nojaa"]
+[ext_resource type="Theme" uid="uid://b4g3uaa2tkx1o" path="res://Assets/Themes/UITheme.tres" id="1_ua5h2"]
+[ext_resource type="Texture2D" uid="uid://cw7dhl66d5sx6" path="res://Assets/Textures/SplashScreen/84-Critters.png" id="2_2w63s"]
+[ext_resource type="Texture2D" uid="uid://b047iyyfp7qw4" path="res://Assets/Textures/SplashScreen/stress-relief.png" id="2_8fd4w"]
+[ext_resource type="Script" uid="uid://yaucsse3w257" path="res://Source/UI/Screens/SplashScreen/SplashScreen.cs" id="2_a5q48"]
+[ext_resource type="PackedScene" uid="uid://how0rqi62k7n" path="res://Source/UI/Screens/MainScreen/MainScreen.tscn" id="3_jhn4n"]
+[ext_resource type="Texture2D" uid="uid://b4pmmnl6fluih" path="res://Assets/Textures/SplashScreen/QTE.png" id="3_ua5h2"]
+
+[node name="SplashScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ua5h2")
+script = ExtResource("2_a5q48")
+MainScreenScene = ExtResource("3_jhn4n")
+SplashDuration = 4.0
+FadeInDuration = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.164706, 0.180392, 0.215686, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 500
+theme_override_constants/margin_top = 500
+theme_override_constants/margin_right = 500
+theme_override_constants/margin_bottom = 500
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Game made for Godot Wild Jam #84"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 36
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_nojaa")
+expand_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_8fd4w")
+expand_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_ua5h2")
+expand_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_2w63s")
+expand_mode = 5

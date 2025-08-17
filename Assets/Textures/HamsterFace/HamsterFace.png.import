@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://l6mlmk221f07"
 path.s3tc="res://.godot/imported/HamsterFace.png-a5b21718a6df567b5fab8c5336fdcc7a.s3tc.ctex"
+path.etc2="res://.godot/imported/HamsterFace.png-a5b21718a6df567b5fab8c5336fdcc7a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Assets/Textures/HamsterFace/HamsterFace.png"
-dest_files=["res://.godot/imported/HamsterFace.png-a5b21718a6df567b5fab8c5336fdcc7a.s3tc.ctex"]
+dest_files=["res://.godot/imported/HamsterFace.png-a5b21718a6df567b5fab8c5336fdcc7a.s3tc.ctex", "res://.godot/imported/HamsterFace.png-a5b21718a6df567b5fab8c5336fdcc7a.etc2.ctex"]
 
 [params]
 

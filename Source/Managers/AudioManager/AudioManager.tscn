@@ -42,51 +42,41 @@ script = ExtResource("1_royfh")
 [node name="GnomeDeath" type="AudioStreamPlayer" parent="SFX"]
 stream = SubResource("AudioStreamRandomizer_8b8i5")
 volume_db = -10.0
-bus = &"SFX"
 
 [node name="PlankImpact" type="AudioStreamPlayer" parent="SFX"]
 stream = SubResource("AudioStreamRandomizer_royfh")
 volume_db = -15.0
-bus = &"SFX"
 
 [node name="SlingshotShoot" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("7_o03gv")
 volume_db = -10.0
-bus = &"SFX"
 
 [node name="UICancel" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("10_yitdv")
 volume_db = -6.0
-bus = &"SFX"
 
 [node name="UIOpen" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("10_1eocj")
 volume_db = -6.0
-bus = &"SFX"
 
 [node name="UIFocus" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("10_d4hxw")
 volume_db = -6.0
-bus = &"SFX"
 
 [node name="UISelect" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("10_ldqkf")
 volume_db = -6.0
-bus = &"SFX"
 
 [node name="UIClose" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("14_aj67n")
 volume_db = -6.0
-bus = &"SFX"
 
 [node name="Music" type="Node" parent="."]
 
 [node name="MainScreenMusic" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("10_2bmqu")
 volume_db = -10.0
-bus = &"Music"
 
 [node name="GameMusic" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource("11_ldqkf")
 volume_db = -10.0
-bus = &"Music"
