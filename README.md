@@ -10,3 +10,4 @@ Gnome model is based on "Gnome 3D Model Low Poly" (https://sketchfab.com/3d-mode
 
 GUI https://prinbles.itch.io/silent
 
+Skybox panorama https://kalponic-studio.itch.io/painterly-sky-background

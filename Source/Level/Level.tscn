@@ -23,17 +23,17 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1y838"]
-size = Vector3(300, 0.2, 300)
+size = Vector3(600, 0.2, 600)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h3shn"]
 albedo_color = Color(0, 0.369132, 3.85046e-07, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_1y838"]
 material = SubResource("StandardMaterial3D_h3shn")
-size = Vector3(300, 0.2, 300)
+size = Vector3(600, 0.2, 600)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xynoj"]
-size = Vector3(300, 0.25, 300)
+size = Vector3(600, 0.25, 600)
 
 [node name="Level" type="Node3D" node_paths=PackedStringArray("_slingshot", "FortGenerator", "HamsterGenerator")]
 script = ExtResource("1_cx8g2")
@@ -63,7 +63,7 @@ transform = Transform3D(0.972088, 0, 0.234616, 0, 1, 0, -0.234616, 0, 0.972088, 
 current = true
 
 [node name="FloorBody" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -100)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -200)
 collision_layer = 8
 collision_mask = 15
 
