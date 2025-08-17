@@ -64,10 +64,18 @@ public partial class AimingOverlay : Control
             if (GameManager.Instance.CurrentGameState == GameManager.GameState.Aiming)
             {
                 ShootButton.Show();
+                RotateLeftButton.Show();
+                RotateRightButton.Show();
+                RotateDownButton.Show();
+                RotateUpButton.Show();
             }
             else
             {
                 ShootButton.Hide();
+                RotateLeftButton.Hide();
+                RotateRightButton.Hide();
+                RotateDownButton.Hide();
+                RotateUpButton.Hide();
             }
         }
         else
@@ -75,7 +83,7 @@ public partial class AimingOverlay : Control
             Hide();
         }
     }
-    
+
     #region Labels
     public void UpdateRoundNumber()
     {

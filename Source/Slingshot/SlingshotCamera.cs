@@ -25,24 +25,28 @@ public partial class SlingshotCamera : Camera3D
     {
         if (Current)
         {
-            if (slingshot != null)
+            if (GameManager.Instance.CurrentGameState == GameManager.GameState.Aiming)
             {
-                if (Input.IsActionPressed("Left"))
+                if (slingshot != null)
                 {
-                    RotateLeft();
+                    if (Input.IsActionPressed("Left"))
+                    {
+                        RotateLeft();
+                    }
+                    if (Input.IsActionPressed("Right"))
+                    {
+                        RotateRight();
+                    }
+                    if (Input.IsActionPressed("Backwards"))
+                    {
+                        RotateDown();
+                    }
+                    if (Input.IsActionPressed("Forward"))
+                    {
+                        RotateUp();
+                    }
                 }
-                if (Input.IsActionPressed("Right"))
-                {
-                    RotateRight();
-                }
-                if (Input.IsActionPressed("Backwards"))
-                {
-                    RotateDown();
-                }
-                if (Input.IsActionPressed("Forward"))
-                {
-                    RotateUp();
-                }
+
             }
         }
     }

@@ -32,8 +32,8 @@ ShootButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/MarginConta
 PauseButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PauseButton")
 RotateLeftButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/RotateLeftButton")
 RotateRightButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/RotateRightButton")
-RotateDownButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/RotateDownButton")
-RotateUpButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer/RotateUpButton")
+RotateDownButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer/RotateDownButton")
+RotateUpButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/RotateUpButton")
 CycleLeftButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer/CycleLeftButton")
 CycleRightButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer/CycleRightButton")
 
@@ -76,7 +76,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "round: 1"
 
-[node name="RotateUpButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RotateUpButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
@@ -172,7 +176,11 @@ texture_pressed = ExtResource("4_ctqnn")
 texture_hover = ExtResource("4_ctqnn")
 texture_focused = ExtResource("4_ctqnn")
 
-[node name="RotateDownButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RotateDownButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
@@ -210,8 +218,8 @@ fill_mode = 1
 show_percentage = false
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PauseButton" to="." method="OnPauseButtonPressed"]
-[connection signal="button_down" from="MarginContainer/VBoxContainer/HBoxContainer/RotateUpButton" to="." method="OnRotateUpButtonDown"]
-[connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer/RotateUpButton" to="." method="OnRotateUpButtonUp"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/RotateUpButton" to="." method="OnRotateUpButtonDown"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/RotateUpButton" to="." method="OnRotateUpButtonUp"]
 [connection signal="button_down" from="MarginContainer/VBoxContainer/HBoxContainer2/RotateLeftButton" to="." method="OnRotateLeftButtonDown"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer2/RotateLeftButton" to="." method="OnRotateLeftButtonUp"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer/ShootButton" to="." method="OnShootButtonPressed"]
@@ -219,6 +227,6 @@ show_percentage = false
 [connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer2/RotateRightButton" to="." method="OnRotateRightButtonUp"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer/CycleLeftButton" to="." method="OnCycleLeftButtonPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer/CycleRightButton" to="." method="OnCycleRightButtonPressed"]
-[connection signal="button_down" from="MarginContainer/VBoxContainer/HBoxContainer3/RotateDownButton" to="." method="OnRotateDownButtonDown"]
-[connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer3/RotateDownButton" to="." method="OnRotateDownButtonUp"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer/RotateDownButton" to="." method="OnRotateDownButtonDown"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer/RotateDownButton" to="." method="OnRotateDownButtonUp"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer/ReloadButton" to="." method="OnReloadButtonPressed"]
