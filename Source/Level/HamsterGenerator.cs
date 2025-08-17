@@ -4,7 +4,7 @@ using System.Linq;
 public partial class HamsterGenerator : Node
 {
     [Export(PropertyHint.File, "*.tscn")] public string HamsterScenePath;
-    [Export] public float ReloadCooldown = 6.0f;
+    public float ReloadCooldown = GameManager.Instance.ReloadCooldown;
     
     private Marker3D _hamsterAnchorPoint;
     private Hamster _hamsterInstance;
@@ -17,17 +17,27 @@ public partial class HamsterGenerator : Node
     public override void _Ready()
     {
         _hamsterAnchorPoint = GetTree().GetNodesInGroup("hamsterAnchor").FirstOrDefault() as Marker3D;
-        
+
         _reloadTimer = new Timer();
         _reloadTimer.WaitTime = ReloadCooldown;
         _reloadTimer.OneShot = true;
         _reloadTimer.Timeout += OnReloadTimerTimeout;
         AddChild(_reloadTimer);
+        SignalManager.Instance.ReloadAmmo += TryReloadHamster;
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        if (Input.IsActionPressed("Reload") && CanReload)
+        if (Input.IsActionPressed("Reload"))
+        {
+            TryReloadHamster();
+        }
+        GameManager.Instance.RemainingReloadCooldown = (float)(_reloadTimer.WaitTime - _reloadTimer.TimeLeft);
+        SignalManager.Instance.EmitSignal(nameof(SignalManager.UpdateReloadProgress));
+    }
+    private void TryReloadHamster()
+    {
+        if (CanReload)
         {
             ReloadHamster();
         }

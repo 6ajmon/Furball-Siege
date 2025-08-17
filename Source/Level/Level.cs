@@ -32,16 +32,20 @@ public partial class Level : Node3D
         SignalManager.Instance.FortGenerated += OnFortGenerated;
         SignalManager.Instance.RestartGame += OnRestartGame;
         SignalManager.Instance.NextRound += OnNextRound;
+        SignalManager.Instance.Shoot += InitializeShot;
 
         CameraManager.Instance.RefreshCameraList();
         CameraManager.Instance.ActivateCamera(0);
 
         GameManager.Instance.ResetGame();
+        SignalManager.Instance.EmitSignal(nameof(SignalManager.RoundNumberChanged));
     }
 
     private async void OnNextRound()
     {
         GameManager.Instance.ResetGame();
+        GameManager.Instance.CurrentRound++;
+        SignalManager.Instance.EmitSignal(nameof(SignalManager.RoundNumberChanged));
         await ToSignal(GetTree().CreateTimer(2.0f), SceneTreeTimer.SignalName.Timeout);
         HamsterGenerator._canReload = true;
         HamsterGenerator.ReloadHamster();
@@ -52,11 +56,18 @@ public partial class Level : Node3D
     {
         if (GameManager.Instance.CurrentGameState == GameManager.GameState.Aiming)
         {
-            if (Input.IsActionPressed("Shoot") && GameManager.Instance.HasShotsRemaining)
+            if (Input.IsActionPressed("Shoot"))
             {
-                DetachHamster();
-                TryShoot();
+                InitializeShot();
             }
+        }
+    }
+    private void InitializeShot()
+    {
+        if (GameManager.Instance.HasShotsRemaining)
+        {
+            DetachHamster();
+            TryShoot();
         }
     }
 

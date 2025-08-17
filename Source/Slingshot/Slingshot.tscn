@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5nvfcyqcapdn"]
+[gd_scene load_steps=8 format=3 uid="uid://b5nvfcyqcapdn"]
 
 [ext_resource type="PackedScene" uid="uid://0cplhjgy8hjs" path="res://Assets/Models/Slingshot/scene.gltf" id="1_irejd"]
 [ext_resource type="Script" uid="uid://mp64mxwg48gt" path="res://Source/Slingshot/Slingshot.cs" id="1_quq24"]
 [ext_resource type="Script" uid="uid://dl7ed4xj14ybb" path="res://Source/Slingshot/SlingshotCamera.cs" id="3_fy0tg"]
+[ext_resource type="PackedScene" uid="uid://bxtkrlhh7lgbf" path="res://Source/UI/Overlays/AimingOverlay/AimingOverlay.tscn" id="4_0hri7"]
 
 [sub_resource type="Animation" id="Animation_fy0tg"]
 length = 0.001
@@ -92,6 +93,8 @@ fov = 42.0
 script = ExtResource("3_fy0tg")
 rotationSpeed = 0.016
 slingshot = NodePath("..")
+
+[node name="AimingOverlay" parent="SlingshotCamera" instance=ExtResource("4_0hri7")]
 
 [node name="HamsterAnchorPoint" type="Marker3D" parent="." groups=["hamsterAnchor"]]
 physics_interpolation_mode = 2

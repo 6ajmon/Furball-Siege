@@ -5,6 +5,10 @@ public partial class PauseMenu : Control
 {
     public bool IsPaused { get; private set; } = false;
 
+    public override void _Ready()
+    {
+        SignalManager.Instance.PauseGame += PauseGame;
+    }
     public override void _PhysicsProcess(double delta)
     {
         if (!SceneManager.Instance.IsMenuOpen)
