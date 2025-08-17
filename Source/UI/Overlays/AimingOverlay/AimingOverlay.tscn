@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxtkrlhh7lgbf"]
+[gd_scene load_steps=11 format=3 uid="uid://bxtkrlhh7lgbf"]
 
+[ext_resource type="Theme" uid="uid://b4g3uaa2tkx1o" path="res://Assets/Themes/UITheme.tres" id="1_ahla6"]
 [ext_resource type="Script" uid="uid://vbyo8ke0rpog" path="res://Source/UI/Components/Buttons/UIButton/UiButton.cs" id="1_it1uj"]
+[ext_resource type="Texture2D" uid="uid://hgaqkh5i2o63" path="res://Assets/UI/Buttons/Square-Medium/ArrowUp/Default.png" id="2_r84i3"]
+[ext_resource type="Texture2D" uid="uid://0yrcnmnng3wc" path="res://Assets/UI/Buttons/Square-Medium/ArrowUp/Hover.png" id="3_cw5iy"]
+[ext_resource type="Texture2D" uid="uid://dsg012id5fkjq" path="res://Assets/UI/Buttons/Square-Medium/ArrowLeft/Default.svg" id="3_g4lvh"]
+[ext_resource type="Texture2D" uid="uid://r21bmxjwdos1" path="res://Assets/UI/Buttons/Square-Medium/ArrowRight/Default.svg" id="3_iwm3l"]
+[ext_resource type="Texture2D" uid="uid://d1cc1gdqk7dfx" path="res://Assets/UI/Buttons/Square-Medium/ArrowLeft/Hover.svg" id="4_56800"]
+[ext_resource type="Texture2D" uid="uid://cp3v6dd58v1bm" path="res://Assets/UI/Buttons/Square-Medium/ArrowRight/Hover.svg" id="4_ctqnn"]
+[ext_resource type="Texture2D" uid="uid://cfomq2sd4rw8x" path="res://Assets/UI/Buttons/Square-Medium/ArrowDown/Default.png" id="9_uqvhh"]
+[ext_resource type="Texture2D" uid="uid://dtnuag5l66wm8" path="res://Assets/UI/Buttons/Square-Medium/ArrowDown/Hover.png" id="10_y4jlo"]
 
 [node name="AimingOverlay" type="Control"]
 layout_mode = 3
@@ -9,13 +18,139 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_ahla6")
 
-[node name="ReloadButton" type="Button" parent="."]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "round: 1"
+
+[node name="RotateUpButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture_normal = ExtResource("2_r84i3")
+texture_pressed = ExtResource("3_cw5iy")
+texture_hover = ExtResource("3_cw5iy")
+texture_focused = ExtResource("3_cw5iy")
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "enemies left: 1"
+horizontal_alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RotateLeftButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture_normal = ExtResource("3_g4lvh")
+texture_pressed = ExtResource("4_56800")
+texture_hover = ExtResource("4_56800")
+texture_focused = ExtResource("4_56800")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="RotateRightButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture_normal = ExtResource("3_iwm3l")
+texture_pressed = ExtResource("4_ctqnn")
+texture_hover = ExtResource("4_ctqnn")
+texture_focused = ExtResource("4_ctqnn")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+text = "cycle"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+
+[node name="CycleLeftButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture_normal = ExtResource("3_g4lvh")
+texture_pressed = ExtResource("4_56800")
+texture_hover = ExtResource("4_56800")
+texture_focused = ExtResource("4_56800")
+
+[node name="CycleRightButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+texture_normal = ExtResource("3_iwm3l")
+texture_pressed = ExtResource("4_ctqnn")
+texture_hover = ExtResource("4_ctqnn")
+texture_focused = ExtResource("4_ctqnn")
+
+[node name="RotateDownButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+texture_normal = ExtResource("9_uqvhh")
+texture_pressed = ExtResource("10_y4jlo")
+texture_hover = ExtResource("10_y4jlo")
+texture_focused = ExtResource("10_y4jlo")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+
+[node name="UiButton2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
 text = "reload"
 script = ExtResource("1_it1uj")
 metadata/_custom_type_script = "uid://vbyo8ke0rpog"
 
-[connection signal="pressed" from="ReloadButton" to="ReloadButton" method="OnPressed"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "3/5"
+horizontal_alignment = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2

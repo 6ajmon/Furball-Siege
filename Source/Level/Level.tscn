@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cae8jm3pdxrim"]
+[gd_scene load_steps=17 format=3 uid="uid://cae8jm3pdxrim"]
 
 [ext_resource type="PackedScene" uid="uid://4g78f4a6q230" path="res://Source/Tmp/FreeFlightCamera/FreeFlightCamera.tscn" id="1_1y838"]
 [ext_resource type="Script" uid="uid://co8anufftd8w7" path="res://Source/Level/Level.cs" id="1_cx8g2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bgutj0akdrixo" path="res://Source/Components/HitboxComponent/HitboxComponent.tscn" id="5_xynoj"]
 [ext_resource type="PackedScene" uid="uid://bs8nunpg7m24e" path="res://Source/Components/HealthComponent/HealthComponent.tscn" id="6_h3shn"]
 [ext_resource type="PackedScene" uid="uid://bkwqbxdhwegv" path="res://Source/UI/Menus/PauseMenu/PauseMenu.tscn" id="8_h3shn"]
+[ext_resource type="PackedScene" uid="uid://bxtkrlhh7lgbf" path="res://Source/UI/Overlays/AimingOverlay/AimingOverlay.tscn" id="8_lertv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t1ts5"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -85,6 +86,8 @@ shape = SubResource("BoxShape3D_xynoj")
 
 [node name="HealthComponent" parent="FloorBody" instance=ExtResource("6_h3shn")]
 MaxHealth = -1.0
+
+[node name="AimingOverlay" parent="." instance=ExtResource("8_lertv")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("8_h3shn")]
 visible = false

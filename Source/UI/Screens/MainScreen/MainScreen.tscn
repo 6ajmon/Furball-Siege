@@ -161,7 +161,7 @@ shape = SubResource("BoxShape3D_fkbxa")
 MaxHealth = -1.0
 
 [node name="Camera3D" type="Camera3D" parent="3DBackground"]
-transform = Transform3D(-0.895098, 0, 0.44587, 0, 1, 0, -0.44587, 0, -0.895098, 7.61777, 2.62838, -4.8159)
+transform = Transform3D(-0.895098, 0, 0.44587, 0, 1, 0, -0.44587, 0, -0.895098, 6.8459, 2.11554, -4.34822)
 fov = 50.0
 
 [node name="Slingshot" parent="3DBackground" instance=ExtResource("8_i58yy")]

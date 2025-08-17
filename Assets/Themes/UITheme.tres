@@ -20,6 +20,10 @@ texture = ExtResource("2_nmuvt")
 modulate_color = Color(0.752941, 0.0901961, 0.25098, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o7pn2"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
 texture = ExtResource("2_nmuvt")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mycbi"]
@@ -59,6 +63,7 @@ texture = ExtResource("3_fqcbt")
 default_font = ExtResource("1_vs3nw")
 default_font_size = 64
 AcceptDialog/styles/panel = SubResource("StyleBoxTexture_b6oe6")
+Button/constants/align_to_largest_stylebox = 1
 Button/styles/focus = SubResource("StyleBoxTexture_mw6dp")
 Button/styles/hover = SubResource("StyleBoxTexture_wbyhr")
 Button/styles/normal = SubResource("StyleBoxTexture_o7pn2")
