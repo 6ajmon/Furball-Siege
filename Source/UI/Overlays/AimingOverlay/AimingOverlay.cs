@@ -48,7 +48,15 @@ public partial class AimingOverlay : Control
                 SignalManager.Instance.EmitSignal(nameof(SignalManager.RotateUp));
             if (_isRotatingDown)
                 SignalManager.Instance.EmitSignal(nameof(SignalManager.RotateDown));
-      
+
+            if (GameManager.Instance.CurrentGameState == GameManager.GameState.Aiming)
+            {
+                ShootButton.Show();
+            }
+            else
+            {
+                ShootButton.Hide();
+            }
         }
         else
         {
