@@ -4,6 +4,7 @@ using System;
 public partial class Gnome : RigidBody3D
 {
     private HealthComponent HealthComponent;
+    private bool _isDead = false;
 
     public override void _Ready()
     {
@@ -13,7 +14,10 @@ public partial class Gnome : RigidBody3D
 
     private void OnHealthDepleted()
     {
-        SignalManager.Instance.EmitSignal(nameof(SignalManager.GnomeDied));
+        if (_isDead) return;
+        
+        _isDead = true;
+        SignalManager.Instance.EmitSignal(SignalManager.SignalName.GnomeDied);
         QueueFree();
     }
 }

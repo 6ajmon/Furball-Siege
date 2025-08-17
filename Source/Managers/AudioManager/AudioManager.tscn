@@ -1,0 +1,92 @@
+[gd_scene load_steps=19 format=3 uid="uid://bah1io4oqm3yl"]
+
+[ext_resource type="Script" uid="uid://bku8vfdstxex8" path="res://Source/Managers/AudioManager/AudioManager.cs" id="1_royfh"]
+[ext_resource type="AudioStream" uid="uid://dfhkv2yjst0mh" path="res://Assets/Audio/Plank/impactPlank_medium_000.ogg" id="2_e2vm7"]
+[ext_resource type="AudioStream" uid="uid://dgs4fvnke1iqy" path="res://Assets/Audio/CeramicBreak/CeramicBreak01.wav" id="2_up5hi"]
+[ext_resource type="AudioStream" uid="uid://nci5vco22nvk" path="res://Assets/Audio/CeramicBreak/CeramicBreak02.wav" id="3_m7whi"]
+[ext_resource type="AudioStream" uid="uid://bvsxmyqnh7rjj" path="res://Assets/Audio/Plank/impactPlank_medium_001.ogg" id="3_o03gv"]
+[ext_resource type="AudioStream" uid="uid://d2enr8h8705ti" path="res://Assets/Audio/Plank/impactPlank_medium_002.ogg" id="4_tiyef"]
+[ext_resource type="AudioStream" uid="uid://dg3rwqieblhbl" path="res://Assets/Audio/Plank/impactPlank_medium_003.ogg" id="5_8b8i5"]
+[ext_resource type="AudioStream" uid="uid://byw164tg367ai" path="res://Assets/Audio/Plank/impactPlank_medium_004.ogg" id="6_a7ssn"]
+[ext_resource type="AudioStream" uid="uid://c77hwcjj064wh" path="res://Assets/Audio/Slingshot/dropLeather.ogg" id="7_o03gv"]
+[ext_resource type="AudioStream" uid="uid://bb4wsd55gmfcb" path="res://Assets/Audio/UI/JDSherbert - Ultimate UI SFX Pack - Popup Open - 1.ogg" id="10_1eocj"]
+[ext_resource type="AudioStream" uid="uid://c0hc1l13a75nt" path="res://Assets/Audio/Music/The Verdant Grove.ogg" id="10_2bmqu"]
+[ext_resource type="AudioStream" uid="uid://djlqnhaajyqgs" path="res://Assets/Audio/UI/JDSherbert - Ultimate UI SFX Pack - Select - 1.ogg" id="10_d4hxw"]
+[ext_resource type="AudioStream" uid="uid://c3fpnrrfmb4j0" path="res://Assets/Audio/UI/JDSherbert - Ultimate UI SFX Pack - Select - 2.ogg" id="10_ldqkf"]
+[ext_resource type="AudioStream" uid="uid://bfsuf7e6f7uwi" path="res://Assets/Audio/UI/JDSherbert - Ultimate UI SFX Pack - Cancel - 1.ogg" id="10_yitdv"]
+[ext_resource type="AudioStream" uid="uid://cbo47b1g8pn6e" path="res://Assets/Audio/Music/Patreon Challenge 06.ogg" id="11_ldqkf"]
+[ext_resource type="AudioStream" uid="uid://c10mde130fufl" path="res://Assets/Audio/UI/JDSherbert - Ultimate UI SFX Pack - Popup Close - 1.ogg" id="14_aj67n"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8b8i5"]
+random_pitch = 2.0
+random_volume_offset_db = 1.0
+streams_count = 2
+stream_0/stream = ExtResource("2_up5hi")
+stream_1/stream = ExtResource("3_m7whi")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_royfh"]
+random_pitch = 3.0
+random_volume_offset_db = 1.0
+streams_count = 5
+stream_0/stream = ExtResource("2_e2vm7")
+stream_1/stream = ExtResource("3_o03gv")
+stream_2/stream = ExtResource("4_tiyef")
+stream_3/stream = ExtResource("5_8b8i5")
+stream_4/stream = ExtResource("6_a7ssn")
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_royfh")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="GnomeDeath" type="AudioStreamPlayer" parent="SFX"]
+stream = SubResource("AudioStreamRandomizer_8b8i5")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="PlankImpact" type="AudioStreamPlayer" parent="SFX"]
+stream = SubResource("AudioStreamRandomizer_royfh")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="SlingshotShoot" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("7_o03gv")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="UICancel" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("10_yitdv")
+volume_db = -6.0
+bus = &"SFX"
+
+[node name="UIOpen" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("10_1eocj")
+volume_db = -6.0
+bus = &"SFX"
+
+[node name="UIFocus" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("10_d4hxw")
+volume_db = -6.0
+bus = &"SFX"
+
+[node name="UISelect" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("10_ldqkf")
+volume_db = -6.0
+bus = &"SFX"
+
+[node name="UIClose" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("14_aj67n")
+volume_db = -6.0
+bus = &"SFX"
+
+[node name="Music" type="Node" parent="."]
+
+[node name="MainScreenMusic" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("10_2bmqu")
+volume_db = -10.0
+bus = &"Music"
+
+[node name="GameMusic" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource("11_ldqkf")
+volume_db = -10.0
+bus = &"Music"

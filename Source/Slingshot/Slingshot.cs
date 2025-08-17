@@ -54,6 +54,7 @@ public partial class Slingshot : Node3D
         {
             GD.PrintErr($"Animation '{animationName}' not found in AnimationPlayer.");
         }
+        AudioManager.Instance.EmitSignal(nameof(AudioManager.SlingShotFired));
     }
 
     public Vector3 GetLaunchDirection()

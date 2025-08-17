@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cbo47b1g8pn6e"
+path="res://.godot/imported/Patreon Challenge 06.ogg-95dd5ddd685103196b7304e59fb91fe8.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/Music/Patreon Challenge 06.ogg"
+dest_files=["res://.godot/imported/Patreon Challenge 06.ogg-95dd5ddd685103196b7304e59fb91fe8.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

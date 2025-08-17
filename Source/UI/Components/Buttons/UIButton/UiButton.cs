@@ -18,6 +18,10 @@ public partial class UiButton : Button
 
     public virtual void OnPressed()
     {
-        // TODO add sound
+        AudioManager.Instance.EmitSignal(nameof(AudioManager.UISelect));
+    }
+    public virtual void OnMouseEntered()
+    {
+        AudioManager.Instance.EmitSignal(nameof(AudioManager.UIFocus));
     }
 }

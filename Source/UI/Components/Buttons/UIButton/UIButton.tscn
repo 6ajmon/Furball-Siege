@@ -8,4 +8,6 @@ offset_bottom = 8.0
 text = "button text"
 script = ExtResource("1_34ir0")
 
+[connection signal="focus_entered" from="." to="." method="OnFocusEntered"]
+[connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
 [connection signal="pressed" from="." to="." method="OnPressed"]

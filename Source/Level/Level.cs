@@ -44,6 +44,8 @@ public partial class Level : Node3D
         GameManager.Instance.ResetGame();
         SignalManager.Instance.EmitSignal(nameof(SignalManager.RoundNumberChanged));
         SignalManager.Instance.EmitSignal(nameof(SignalManager.UpdateAmmoCount));
+
+        AudioManager.Instance.EmitSignal(nameof(AudioManager.PlayGameMusic));
     }
 
     private async void OnNextRound()

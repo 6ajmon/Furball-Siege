@@ -76,6 +76,28 @@ public partial class GameManager : Node
         _lastShotTimer.Stop();
         SignalManager.Instance.EmitSignal(nameof(SignalManager.UpdateEnemiesRemaining));
     }
+    
+    public void NextRound()
+    {
+        CurrentRound++;
+        
+        InitialEnemyCount = 2 + (CurrentRound - 1);
+        CurrentEnemyCount = InitialEnemyCount;
+        
+        ShotsTaken = 0;
+        CalculateShotsCount();
+        CurrentGameState = GameState.Aiming;
+        _lastShotTimer.Stop();
+        
+        SignalManager.Instance.EmitSignal(nameof(SignalManager.RoundNumberChanged));
+        SignalManager.Instance.EmitSignal(nameof(SignalManager.UpdateEnemiesRemaining));
+        SignalManager.Instance.EmitSignal(nameof(SignalManager.UpdateAmmoCount));
+    }
+    
+    public int GetMapSizeForRound()
+    {
+        return 20 + ((CurrentRound - 1) / 3);
+    }
 
     public void EnemyDied()
     {

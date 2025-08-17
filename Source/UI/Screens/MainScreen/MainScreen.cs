@@ -7,6 +7,8 @@ public partial class MainScreen : Node
     public override void _Ready()
     {
         SignalManager.Instance.ReturnButtonPressed += OnReturnButtonPressed;
+
+        AudioManager.Instance.EmitSignal(nameof(AudioManager.PlayMainScreenMusic));
     }
     public void OnSourceCodeButtonPressed()
     {

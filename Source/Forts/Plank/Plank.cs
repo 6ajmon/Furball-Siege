@@ -22,7 +22,7 @@ public partial class Plank : RigidBody3D
     {
         if (!_halfHealthReached && HealthComponent.CurrentHealth <= HealthComponent.MaxHealth / 2)
         {
-            EmitSignal(SignalName.halfHealthReached, this);
+            SignalManager.Instance.EmitSignal(SignalManager.SignalName.plankHalfHealthReached, this);
         }
     }
 
@@ -30,8 +30,9 @@ public partial class Plank : RigidBody3D
     {
         if (!_halfHealthReached)
         {
-            EmitSignal(SignalName.halfHealthReached, this);
+            SignalManager.Instance.EmitSignal(SignalManager.SignalName.plankHalfHealthReached, this);
         }
+        SignalManager.Instance.EmitSignal(SignalManager.SignalName.plankHealthDepleted);
         QueueFree();
     }
 }

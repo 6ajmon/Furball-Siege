@@ -13,17 +13,20 @@ public partial class Crate : Node3D
             if (child is Plank plank)
             {
                 _planks.Add(plank);
-                plank.halfHealthReached += OnPlankHalfHealthReached;
-
             }
             else if (child is HingeJoint3D joint)
             {
                 _joints.Add(joint);
             }
         }
+        
+        SignalManager.Instance.plankHalfHealthReached += OnPlankHalfHealthReached;
     }
     public void OnPlankHalfHealthReached(Plank plank)
     {
+        if (!_planks.Contains(plank))
+            return;
+            
         for (int i = _joints.Count - 1; i >= 0; i--)
         {
             HingeJoint3D joint = _joints[i];

@@ -5,6 +5,8 @@ public partial class SignalManager : Node
 {
     public static SignalManager Instance => ((SceneTree)Engine.GetMainLoop()).Root.GetNode<SignalManager>("SignalManager");
 
+    [Signal] public delegate void plankHalfHealthReachedEventHandler(Plank plank);
+    [Signal] public delegate void plankHealthDepletedEventHandler();
     [Signal] public delegate void FortGeneratedEventHandler();
     [Signal] public delegate void GnomeDiedEventHandler();
     [Signal] public delegate void RoundWonEventHandler();
@@ -37,10 +39,16 @@ public partial class SignalManager : Node
     public override void _Ready()
     {
         GnomeDied += OnGnomeDied;
+        RoundWon += OnRoundWon;
     }
 
     private void OnGnomeDied()
     {
         GameManager.Instance.EnemyDied();
+    }
+    
+    private void OnRoundWon()
+    {
+        GameManager.Instance.NextRound();
     }
 }
