@@ -1,0 +1,16 @@
+[gd_resource type="FontVariation" load_steps=11 format=3 uid="uid://b4umxg7uhtsxl"]
+
+[ext_resource type="FontFile" uid="uid://dh6o1i6sod3aa" path="res://Assets/Fonts/JosefinSans-Regular.ttf" id="1_dmeus"]
+[ext_resource type="FontFile" uid="uid://cl2o4tmf0uysw" path="res://Assets/Fonts/JosefinSans-Bold.ttf" id="2_mginb"]
+[ext_resource type="FontFile" uid="uid://8rloumom3hfw" path="res://Assets/Fonts/JosefinSans-BoldItalic.ttf" id="3_ojo8x"]
+[ext_resource type="FontFile" uid="uid://4vuylcmvfdws" path="res://Assets/Fonts/JosefinSans-Italic.ttf" id="4_8e484"]
+[ext_resource type="FontFile" uid="uid://cbv31gwrju7iu" path="res://Assets/Fonts/JosefinSans-Light.ttf" id="5_v1yyu"]
+[ext_resource type="FontFile" uid="uid://c5udb6wcje44h" path="res://Assets/Fonts/JosefinSans-LightItalic.ttf" id="6_3f06r"]
+[ext_resource type="FontFile" uid="uid://djy3mg3j51jy2" path="res://Assets/Fonts/JosefinSans-SemiBold.ttf" id="7_yfslu"]
+[ext_resource type="FontFile" uid="uid://dkrvvqi0i1h7m" path="res://Assets/Fonts/JosefinSans-SemiBoldItalic.ttf" id="8_w3aqw"]
+[ext_resource type="FontFile" uid="uid://bw6u2hfkush88" path="res://Assets/Fonts/JosefinSans-Thin.ttf" id="9_gue13"]
+[ext_resource type="FontFile" uid="uid://e6j4mjtfxrro" path="res://Assets/Fonts/JosefinSans-ThinItalic.ttf" id="10_g22s8"]
+
+[resource]
+fallbacks = Array[Font]([ExtResource("2_mginb"), ExtResource("3_ojo8x"), ExtResource("4_8e484"), ExtResource("5_v1yyu"), ExtResource("6_3f06r"), ExtResource("7_yfslu"), ExtResource("8_w3aqw"), ExtResource("9_gue13"), ExtResource("10_g22s8")])
+base_font = ExtResource("1_dmeus")

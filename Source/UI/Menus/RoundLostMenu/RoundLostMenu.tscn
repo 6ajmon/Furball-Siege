@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://disua27jul604"]
+[gd_scene load_steps=6 format=3 uid="uid://disua27jul604"]
 
 [ext_resource type="Script" uid="uid://vbyo8ke0rpog" path="res://Source/UI/Components/Buttons/UIButton/UiButton.cs" id="1_3vjta"]
+[ext_resource type="Theme" uid="uid://b4g3uaa2tkx1o" path="res://Assets/Themes/UITheme.tres" id="1_otebh"]
 [ext_resource type="Script" uid="uid://buq150sehjmyg" path="res://Source/UI/Menus/RoundLostMenu/RoundLostMenu.cs" id="1_xpdjp"]
+[ext_resource type="Texture2D" uid="uid://crcytlb3w1ycu" path="res://Assets/UI/Panel/Window/Big.svg" id="2_5jvl3"]
 [ext_resource type="Script" uid="uid://cvyygdp8uwan" path="res://Source/UI/Components/Buttons/ReplaceSceneButton/ReplaceSceneButton.cs" id="3_8a7qb"]
 
 [node name="RoundLostMenu" type="Control"]
@@ -12,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_otebh")
 script = ExtResource("1_xpdjp")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -25,32 +28,35 @@ color = Color(0, 0, 0, 0.490196)
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -87.0
-offset_top = -33.0
-offset_right = 87.0
-offset_bottom = 33.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 400
+theme_override_constants/margin_right = 400
+theme_override_constants/margin_bottom = 400
+
+[node name="TextureRect" type="TextureRect" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_5jvl3")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 128
 text = "Game Over!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_constants/separation = 16
 
 [node name="TryAgainButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/Buttons"]
 layout_mode = 2

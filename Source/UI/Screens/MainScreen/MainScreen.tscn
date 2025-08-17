@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://how0rqi62k7n"]
+[gd_scene load_steps=6 format=3 uid="uid://how0rqi62k7n"]
 
 [ext_resource type="Script" uid="uid://bunemh1arin3m" path="res://Source/UI/Screens/MainScreen/MainScreen.cs" id="1_7i5ns"]
+[ext_resource type="Theme" uid="uid://b4g3uaa2tkx1o" path="res://Assets/Themes/UITheme.tres" id="1_d0jf1"]
 [ext_resource type="Script" uid="uid://cvyygdp8uwan" path="res://Source/UI/Components/Buttons/ReplaceSceneButton/ReplaceSceneButton.cs" id="2_kacw7"]
 [ext_resource type="Script" uid="uid://vbyo8ke0rpog" path="res://Source/UI/Components/Buttons/UIButton/UiButton.cs" id="3_20cvy"]
 [ext_resource type="Script" uid="uid://tr6wb86gx5k5" path="res://Source/UI/Components/Buttons/AddChildSceneButton/AddChildSceneButton.cs" id="3_q1ei0"]
@@ -12,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_d0jf1")
 script = ExtResource("1_7i5ns")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -31,6 +33,9 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.898039, 0.145098, 0.329412, 1)
+theme_override_colors/font_outline_color = Color(0.164706, 0.180392, 0.215686, 1)
+theme_override_constants/outline_size = 36
 theme_override_font_sizes/font_size = 128
 text = "Furrball Siege"
 
@@ -76,10 +81,6 @@ layout_mode = 2
 text = "Source"
 script = ExtResource("3_20cvy")
 metadata/_custom_type_script = "uid://vbyo8ke0rpog"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
