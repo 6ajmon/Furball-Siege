@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://c2danx0rx2og3"]
+[gd_scene load_steps=14 format=3 uid="uid://c2danx0rx2og3"]
 
 [ext_resource type="Script" uid="uid://dfqkbdn1qka7i" path="res://Source/Bullets/Hamster/Hamster.cs" id="1_h8dop"]
 [ext_resource type="SphereMesh" uid="uid://cxrbfoyx5crjd" path="res://Source/Bullets/Hamster/HamsterMesh.tres" id="1_sgw0v"]
+[ext_resource type="PackedScene" uid="uid://dgii5mcu5tqm0" path="res://Source/UI/Overlays/FlightOverlay/FlightOverlay.tscn" id="3_6ylba"]
+[ext_resource type="Texture2D" uid="uid://l6mlmk221f07" path="res://Assets/Textures/HamsterFace/HamsterFace.png" id="3_euomd"]
 [ext_resource type="PackedScene" uid="uid://bs8nunpg7m24e" path="res://Source/Components/HealthComponent/HealthComponent.tscn" id="3_nl8dl"]
 [ext_resource type="PackedScene" uid="uid://bgutj0akdrixo" path="res://Source/Components/HitboxComponent/HitboxComponent.tscn" id="5_6ylba"]
 
@@ -12,20 +14,20 @@ bounce = 1.0
 [sub_resource type="SphereShape3D" id="SphereShape3D_tq887"]
 radius = 0.4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8dop"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s236j"]
 albedo_color = Color(0.576471, 0.368627, 0.176471, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_h8dop"]
-material = SubResource("StandardMaterial3D_h8dop")
+material = SubResource("StandardMaterial3D_s236j")
 radius = 0.2
 height = 0.4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgw0v"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nl8dl"]
 albedo_color = Color(0.577256, 0.370239, 0.17464, 1)
 roughness = 0.7
 
 [sub_resource type="SphereMesh" id="SphereMesh_sgw0v"]
-material = SubResource("StandardMaterial3D_sgw0v")
+material = SubResource("StandardMaterial3D_nl8dl")
 radius = 0.1
 height = 0.2
 
@@ -57,6 +59,13 @@ mesh = SubResource("SphereMesh_h8dop")
 [node name="Camera3D" type="Camera3D" parent="BodyParts/HeadMesh" groups=["cameras"]]
 transform = Transform3D(-4.37967e-08, 0, -1.00195, 0, 1.00195, 0, 1.00195, 0, -4.37967e-08, -0.213469, 0, 0)
 fov = 110.0
+
+[node name="FlightOverlay" parent="BodyParts/HeadMesh/Camera3D" instance=ExtResource("3_6ylba")]
+
+[node name="Sprite3D" type="Sprite3D" parent="BodyParts/HeadMesh"]
+transform = Transform3D(-2.18557e-08, 1.88745e-08, 0.25, -0.25, -1.09278e-08, -2.18557e-08, 1.09278e-08, -0.25, 1.88745e-08, 0.201089, 0, 0)
+double_sided = false
+texture = ExtResource("3_euomd")
 
 [node name="FrontLeftPawMesh" type="MeshInstance3D" parent="BodyParts"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.25, -0.25)

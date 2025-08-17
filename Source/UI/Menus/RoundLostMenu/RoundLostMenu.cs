@@ -20,10 +20,4 @@ public partial class RoundLostMenu : Control
         SceneManager.Instance.IsMenuOpen = false;
         SignalManager.Instance.EmitSignal(nameof(SignalManager.RestartGame));
     }
-
-    public void OnReturnToMainMenuButtonPressed()
-    {
-        SceneManager.Instance.IsMenuOpen = false;
-        // Logic to return to the main menu
-    }
 }

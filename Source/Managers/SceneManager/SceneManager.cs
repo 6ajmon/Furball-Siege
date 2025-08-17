@@ -7,6 +7,7 @@ public partial class SceneManager : Node
     private string roundLostMenuScenePath = "res://Source/UI/Menus/RoundLostMenu/RoundLostMenu.tscn";
     private string roundWonMenuScenePath = "res://Source/UI/Menus/RoundWonMenu/RoundWonMenu.tscn";
     public bool IsMenuOpen { get; set; }
+    public Node CurrentMenu { get; set; }
     public override void _Ready()
     {
         SignalManager.Instance.RoundLost += OnRoundLost;
@@ -14,20 +15,47 @@ public partial class SceneManager : Node
     }
     public void ReplaceScene(string scenePath)
     {
+        CurrentMenu?.QueueFree();
+        CurrentMenu = null;
+        IsMenuOpen = false;
+        GetTree().Paused = false;
         GetTree().ChangeSceneToFile(scenePath);
+    }
+
+    public void AddChildScene(string scenePath)
+    {
+        PackedScene scene = ResourceLoader.Load<PackedScene>(scenePath);
+        if (scene != null)
+        {
+            Node instance = scene.Instantiate();
+            if (instance != null)
+            {
+                GetTree().Root.AddChild(instance);
+                CurrentMenu = instance;
+                IsMenuOpen = true;
+            }
+            else
+            {
+                GD.PrintErr($"Failed to instantiate scene at {scenePath}");
+            }
+        }
+        else
+        {
+            GD.PrintErr($"Failed to load scene at {scenePath}");
+        }
     }
 
     private void OnRoundLost()
     {
         if (IsMenuOpen)
             return;
-        GetTree().Root.AddChild(ResourceLoader.Load<PackedScene>(roundLostMenuScenePath).Instantiate());
+        AddChildScene(roundLostMenuScenePath);
     }
 
     private void OnRoundWon()
     {
         if (IsMenuOpen)
             return;
-        GetTree().Root.AddChild(ResourceLoader.Load<PackedScene>(roundWonMenuScenePath).Instantiate());
+        AddChildScene(roundWonMenuScenePath);
     }
 }

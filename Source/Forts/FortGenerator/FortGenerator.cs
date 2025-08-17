@@ -13,7 +13,7 @@ public partial class FortGenerator : GridMap
     [Export(PropertyHint.Range, "1,50, 1")] public int CratesPerFrame = 6;
     [Export] public PackedScene CrateScene;
     [Export] public PackedScene EnemyScene;
-    [Export] public int EnemyCount = 1;
+    public int EnemyCount = GameManager.Instance.InitialEnemyCount;
 
     public const float CRATE_SIZE = 1.88f;
     private Queue<Vector3> _cratePositions = new Queue<Vector3>();
@@ -33,7 +33,6 @@ public partial class FortGenerator : GridMap
             GD.PrintErr("EnemyScene is not set in FortGenerator.");
             return;
         }
-        GameManager.Instance.InitialEnemyCount = EnemyCount;
         GameManager.Instance.MapSize = FortWidth * CRATE_SIZE;
         CellSize = new Vector3(CRATE_SIZE, CRATE_SIZE, CRATE_SIZE);
         _random = new Random(GameManager.Instance.randomSeed);

@@ -1,0 +1,222 @@
+[gd_scene load_steps=22 format=3 uid="uid://how0rqi62k7n"]
+
+[ext_resource type="Script" uid="uid://bunemh1arin3m" path="res://Source/UI/Screens/MainScreen/MainScreen.cs" id="1_7i5ns"]
+[ext_resource type="Theme" uid="uid://b4g3uaa2tkx1o" path="res://Assets/Themes/UITheme.tres" id="1_d0jf1"]
+[ext_resource type="Script" uid="uid://cvyygdp8uwan" path="res://Source/UI/Components/Buttons/ReplaceSceneButton/ReplaceSceneButton.cs" id="2_kacw7"]
+[ext_resource type="Script" uid="uid://vbyo8ke0rpog" path="res://Source/UI/Components/Buttons/UIButton/UiButton.cs" id="3_20cvy"]
+[ext_resource type="Script" uid="uid://tr6wb86gx5k5" path="res://Source/UI/Components/Buttons/AddChildSceneButton/AddChildSceneButton.cs" id="3_q1ei0"]
+[ext_resource type="PackedScene" uid="uid://bgutj0akdrixo" path="res://Source/Components/HitboxComponent/HitboxComponent.tscn" id="5_qk2pe"]
+[ext_resource type="PackedScene" uid="uid://bs8nunpg7m24e" path="res://Source/Components/HealthComponent/HealthComponent.tscn" id="6_ys0r1"]
+[ext_resource type="PackedScene" uid="uid://0cplhjgy8hjs" path="res://Assets/Models/Slingshot/scene.gltf" id="8_i58yy"]
+[ext_resource type="SphereMesh" uid="uid://cxrbfoyx5crjd" path="res://Source/Bullets/Hamster/HamsterMesh.tres" id="8_km7r6"]
+[ext_resource type="Texture2D" uid="uid://l6mlmk221f07" path="res://Assets/Textures/HamsterFace/HamsterFace.png" id="9_fkbxa"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i58yy"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_km7r6"]
+sky_material = SubResource("ProceduralSkyMaterial_i58yy")
+
+[sub_resource type="Environment" id="Environment_fkbxa"]
+background_mode = 2
+sky = SubResource("Sky_km7r6")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i58yy"]
+size = Vector3(300, 0.2, 300)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cx8g2"]
+albedo_color = Color(0, 0.369132, 3.85046e-07, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_km7r6"]
+material = SubResource("StandardMaterial3D_cx8g2")
+size = Vector3(300, 0.2, 300)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fkbxa"]
+size = Vector3(300, 0.25, 300)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8dop"]
+albedo_color = Color(0.576471, 0.368627, 0.176471, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_fkbxa"]
+material = SubResource("StandardMaterial3D_h8dop")
+radius = 0.2
+height = 0.4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgw0v"]
+albedo_color = Color(0.577256, 0.370239, 0.17464, 1)
+roughness = 0.7
+
+[sub_resource type="SphereMesh" id="SphereMesh_wpr08"]
+material = SubResource("StandardMaterial3D_sgw0v")
+radius = 0.1
+height = 0.2
+
+[node name="MainScreen" type="Node" node_paths=PackedStringArray("focusControl")]
+script = ExtResource("1_7i5ns")
+focusControl = NodePath("UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/StartGameButton")
+
+[node name="UIContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_d0jf1")
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UIContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.898039, 0.145098, 0.329412, 1)
+theme_override_colors/font_outline_color = Color(0.164706, 0.180392, 0.215686, 1)
+theme_override_constants/outline_size = 36
+theme_override_font_sizes/font_size = 128
+text = "Furrball Siege"
+
+[node name="MarginContainer" type="MarginContainer" parent="UIContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 60
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UIContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Buttons" type="VBoxContainer" parent="UIContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 36
+
+[node name="StartGameButton" type="Button" parent="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons"]
+layout_mode = 2
+text = "Start Game"
+script = ExtResource("2_kacw7")
+ScenePath = "uid://cae8jm3pdxrim"
+ShouldTakeFocus = true
+metadata/_custom_type_script = "uid://cvyygdp8uwan"
+
+[node name="TutorialButton" type="Button" parent="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons"]
+layout_mode = 2
+text = "How To Play"
+script = ExtResource("3_q1ei0")
+ScenePath = "uid://bc4pbehc6gefl"
+metadata/_custom_type_script = "uid://tr6wb86gx5k5"
+
+[node name="SettingsButton" type="Button" parent="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons"]
+layout_mode = 2
+text = "Settings"
+script = ExtResource("2_kacw7")
+metadata/_custom_type_script = "uid://cvyygdp8uwan"
+
+[node name="SourceCodeButton" type="Button" parent="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons"]
+layout_mode = 2
+text = "Source"
+script = ExtResource("3_20cvy")
+metadata/_custom_type_script = "uid://vbyo8ke0rpog"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="UIContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="3DBackground" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="3DBackground"]
+environment = SubResource("Environment_fkbxa")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3DBackground"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="FloorBody" type="StaticBody3D" parent="3DBackground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, -100)
+collision_layer = 8
+collision_mask = 15
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="3DBackground/FloorBody"]
+shape = SubResource("BoxShape3D_i58yy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="3DBackground/FloorBody"]
+mesh = SubResource("BoxMesh_km7r6")
+skeleton = NodePath("../..")
+
+[node name="HitboxComponent" parent="3DBackground/FloorBody" node_paths=PackedStringArray("HealthComponent") instance=ExtResource("5_qk2pe")]
+collision_layer = 8
+collision_mask = 7
+HealthComponent = NodePath("../HealthComponent")
+ContactDamage = 2.0
+
+[node name="HitboxCollisionShape" parent="3DBackground/FloorBody/HitboxComponent" index="0"]
+shape = SubResource("BoxShape3D_fkbxa")
+
+[node name="HealthComponent" parent="3DBackground/FloorBody" instance=ExtResource("6_ys0r1")]
+MaxHealth = -1.0
+
+[node name="Camera3D" type="Camera3D" parent="3DBackground"]
+transform = Transform3D(-0.895098, 0, 0.44587, 0, 1, 0, -0.44587, 0, -0.895098, 6.8459, 2.11554, -4.34822)
+fov = 50.0
+
+[node name="Slingshot" parent="3DBackground" instance=ExtResource("8_i58yy")]
+transform = Transform3D(0.1, 0, 0, 0, 0.0965926, -0.0258819, 0, 0.0258819, 0.0965926, 0, 0, 0)
+
+[node name="Object_4" parent="3DBackground/Slingshot/Sketchfab_model/e030fbefb0054155b4a00186e5d83f15_fbx/RootNode/Sling" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Sling_Material #49_0" parent="3DBackground/Slingshot/Sketchfab_model/e030fbefb0054155b4a00186e5d83f15_fbx/RootNode/Sling/Object_4" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.133293, -73.1616, -0.173859)
+
+[node name="Hamster" type="Node3D" parent="3DBackground"]
+
+[node name="BodyParts" type="Node3D" parent="3DBackground/Hamster"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.8097, 0.34647, 0)
+
+[node name="HeadMesh" type="MeshInstance3D" parent="3DBackground/Hamster/BodyParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44667, 0.0415593, 0)
+mesh = SubResource("SphereMesh_fkbxa")
+
+[node name="Sprite3D" type="Sprite3D" parent="3DBackground/Hamster/BodyParts/HeadMesh"]
+transform = Transform3D(-2.18557e-08, 1.88745e-08, 0.25, -0.25, -1.09278e-08, -2.18557e-08, 1.09278e-08, -0.25, 1.88745e-08, 0.201089, 0, 0)
+texture = ExtResource("9_fkbxa")
+
+[node name="FrontLeftPawMesh" type="MeshInstance3D" parent="3DBackground/Hamster/BodyParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.25, -0.25)
+mesh = SubResource("SphereMesh_wpr08")
+
+[node name="FrontRightPawMesh" type="MeshInstance3D" parent="3DBackground/Hamster/BodyParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, -0.25, 0.25)
+mesh = SubResource("SphereMesh_wpr08")
+
+[node name="RearLeftPawMesh" type="MeshInstance3D" parent="3DBackground/Hamster/BodyParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.333109, -0.2565, -0.233455)
+mesh = SubResource("SphereMesh_wpr08")
+
+[node name="RearRightPawMesh" type="MeshInstance3D" parent="3DBackground/Hamster/BodyParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.307644, -0.2565, 0.264037)
+mesh = SubResource("SphereMesh_wpr08")
+
+[node name="TailMesh" type="MeshInstance3D" parent="3DBackground/Hamster/BodyParts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.467893, 0.073809, 0)
+mesh = SubResource("SphereMesh_wpr08")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="3DBackground/Hamster"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.8097, 0.34647, 0)
+mesh = ExtResource("8_km7r6")
+skeleton = NodePath("../..")
+
+[connection signal="pressed" from="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/StartGameButton" to="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/StartGameButton" method="OnPressed"]
+[connection signal="pressed" from="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/TutorialButton" to="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/TutorialButton" method="OnPressed"]
+[connection signal="pressed" from="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/SourceCodeButton" to="." method="OnSourceCodeButtonPressed"]
+[connection signal="pressed" from="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/SourceCodeButton" to="UIContainer/VBoxContainer/MarginContainer/HBoxContainer/Buttons/SourceCodeButton" method="_on_pressed"]
+
+[editable path="3DBackground/FloorBody/HitboxComponent"]
+[editable path="3DBackground/Slingshot"]

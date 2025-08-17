@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://c801c0dukdt2f"]
+
+[ext_resource type="Script" uid="uid://tr6wb86gx5k5" path="res://Source/UI/Components/Buttons/AddChildSceneButton/AddChildSceneButton.cs" id="1_ke0r1"]
+
+[node name="AddChildSceneButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_ke0r1")
+metadata/_custom_type_script = "uid://vbyo8ke0rpog"

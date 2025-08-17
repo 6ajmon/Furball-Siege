@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmmpppqpymhs7"]
+
+[ext_resource type="Script" uid="uid://cvyygdp8uwan" path="res://Source/UI/Components/Buttons/ReplaceSceneButton/ReplaceSceneButton.cs" id="1_vlbd5"]
+
+[node name="ReplaceSceneButton" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_vlbd5")
+metadata/_custom_type_script = "uid://vbyo8ke0rpog"
+
+[connection signal="pressed" from="." to="." method="OnPressed"]
