@@ -11,3 +11,9 @@ Gnome model is based on "Gnome 3D Model Low Poly" (https://sketchfab.com/3d-mode
 GUI https://prinbles.itch.io/silent
 
 Skybox panorama https://kalponic-studio.itch.io/painterly-sky-background
+
+Slingshot audio https://kenney.nl/assets/rpg-audio
+
+Planks audio https://kenney.nl/assets/impact-sounds
+
+Music https://tallbeard.itch.io/music-loop-bundle
