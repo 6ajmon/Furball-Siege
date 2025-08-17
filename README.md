@@ -16,4 +16,6 @@ Slingshot audio https://kenney.nl/assets/rpg-audio
 
 Planks audio https://kenney.nl/assets/impact-sounds
 
+UI Sounds made by https://jdsherbert.itch.io/
+
 Music https://tallbeard.itch.io/music-loop-bundle
