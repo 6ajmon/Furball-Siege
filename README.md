@@ -1,6 +1,54 @@
 <img width="1914" height="1053" alt="IhDJAf" src="https://github.com/user-attachments/assets/4fe08bb7-451e-4541-9a3b-f0bee9e6645f" />
 
 # FurballSiege
+Furball Siege is a physics based game where you launch youself into the air using a Slingshot! Your goal is to destroy enemy Gnome Forces that hide inside Forts.
+
+You have limited amount of ammo and your goal is to kill all the Gnomes. You can do this by launching Hamsters into them or by making the Forts fall on them.
+
+# Game Jam
+
+## Theme
+<img width="2700" height="770" alt="ewCIQX" src="https://github.com/user-attachments/assets/04785746-a571-4ebc-bdb7-e97f3fe8ae53" />
+
+### How does the game tie into the theme?
+
+Main characters as well as antagonists are considered critters by me. A critter is a small creature, hamsters and gnomes tie into this definition.
+
+## Wildcards
+
+<img width="2700" height="770" alt="ewCIQX" src="https://github.com/user-attachments/assets/54e44142-838b-4559-8654-da0664d694ea" />
+This game uses all 3 wildcards!
+
+### Button Smash!
+After shooting the game has a Quick Time Event. Failed one causes the Slingshot to launch the Hamster with not enough power, which results in not even reaching the Fort.
+
+### Rage Room
+The Fort is made of Crates. A Crate is made of 5 Planks. Each plank is Destroyable and  has its own collision. I had some fun with the physics engine.
+
+### Personalized Copy
+The Fort generates procedurally resulting in different size and enemy distribution each round.
+
+# Features
+
+- Changing camera between Slingshot and Hamster's First Person Camera. 
+- Random Quick Time Event preceded with a sound that determines if the Shot is successful.
+- Physics based gameplay and damage calculations. Destroying Forts is fun!
+- Procedurally generated Forts which makes the game replayable.
+- Difficulty scaling - difficulty increases every round by adding more Gnomes and even making Forts bigger.
+    
+# Controls
+Keyboard Controls:
+
+- Space - Shoot
+- WASD - Rotate Slingshot during aiming
+- Q - Cycle camera backward
+- E - Cycle camera forward
+- R - Reload
+- Esc - Pause
+
+You can also use the arrow keys to navigate in menus and use Enter as a select, so you don't have to use your mouse!
+
+You can also play the game using only the mouse! All controls have their buttons in the in-game overlay!
 
 # Screenshots
 <img width="1918" height="1054" alt="87t6kj" src="https://github.com/user-attachments/assets/e5b88985-7d12-43fa-b0ea-b229b761a60e" />
