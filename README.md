@@ -16,7 +16,7 @@ Main characters as well as antagonists are considered critters by me. A critter 
 
 ## Wildcards
 
-<img width="2700" height="770" alt="ewCIQX" src="https://github.com/user-attachments/assets/54e44142-838b-4559-8654-da0664d694ea" />
+<img width="2700" height="1204" alt="EQxo38" src="https://github.com/user-attachments/assets/225459fa-5699-4ea2-9fa1-bed526d987a2" />
 This game uses all 3 wildcards!
 
 ### Button Smash!
