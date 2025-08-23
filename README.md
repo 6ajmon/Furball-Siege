@@ -51,12 +51,16 @@ You can also use the arrow keys to navigate in menus and use Enter as a select, 
 You can also play the game using only the mouse! All controls have their buttons in the in-game overlay!
 
 # Screenshots
+### Aiming with a Slingshot
 <img width="1918" height="1054" alt="87t6kj" src="https://github.com/user-attachments/assets/e5b88985-7d12-43fa-b0ea-b229b761a60e" />
 
+### Shooting Quick Time Event
 <img width="1913" height="1053" alt="QAOFkl" src="https://github.com/user-attachments/assets/a519e4af-9bf2-4862-be52-94d69cff82be" />
 
+### Hamster POV - launching
 <img width="1916" height="1049" alt="iop6Wh" src="https://github.com/user-attachments/assets/cedc75fd-60b1-47e3-9ea8-a053a405f0a5" />
 
+### Hamster POV - hitting the fort
 <img width="1916" height="1051" alt="sEZnlY" src="https://github.com/user-attachments/assets/6ef97aa0-503c-4048-996f-debab24e0694" />
 
 
