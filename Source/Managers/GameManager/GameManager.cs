@@ -18,7 +18,7 @@ public partial class GameManager : Node
     public int InitialEnemyCount { get; set; } = 2;
     public int ShotsCount { get; set; }
     public int ShotsTaken { get; set; } = 0;
-    public int CurrentRound { get; set; }
+    public int CurrentRound { get; set; } = 0;
     public int CurrentEnemyCount { get; set; }
     public float ReloadCooldown { get; set; } = 6f;
     public float RemainingReloadCooldown { get; set; }
@@ -81,8 +81,7 @@ public partial class GameManager : Node
     {
         CurrentRound++;
         
-        InitialEnemyCount = 2 + (CurrentRound - 1);
-        CurrentEnemyCount = InitialEnemyCount;
+        CurrentEnemyCount = 2 + (CurrentRound - 1);
         
         ShotsTaken = 0;
         CalculateShotsCount();

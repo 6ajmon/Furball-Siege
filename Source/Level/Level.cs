@@ -50,9 +50,6 @@ public partial class Level : Node3D
 
     private async void OnNextRound()
     {
-        GameManager.Instance.ResetGame();
-        GameManager.Instance.CurrentRound++;
-        SignalManager.Instance.EmitSignal(nameof(SignalManager.RoundNumberChanged));
         await ToSignal(GetTree().CreateTimer(2.0f), SceneTreeTimer.SignalName.Timeout);
         HamsterGenerator._canReload = true;
         HamsterGenerator.ReloadHamster();

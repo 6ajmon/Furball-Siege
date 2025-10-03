@@ -43,7 +43,6 @@ public partial class FortGenerator : GridMap
         _isGenerating = true;
 
         FortWidth = GameManager.Instance.GetMapSizeForRound();
-        EnemyCount = GameManager.Instance.InitialEnemyCount;
         GameManager.Instance.MapSize = FortWidth * CRATE_SIZE;
 
         CalculateCratePositions();
@@ -94,6 +93,7 @@ public partial class FortGenerator : GridMap
     }
     private void SpawnEnemies()
     {
+        EnemyCount = GameManager.Instance.CurrentEnemyCount;
         if (_spawnedCrates.Count == 0 || EnemyCount <= 0) return;
 
         var availableCrates = _spawnedCrates.ToList();
