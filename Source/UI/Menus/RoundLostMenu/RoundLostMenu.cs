@@ -14,10 +14,16 @@ public partial class RoundLostMenu : Control
         Show();
         SceneManager.Instance.IsMenuOpen = true;
     }
+    private void HideMenu()
+    {
+        GetTree().Paused = false;
+        SceneManager.Instance.IsMenuOpen = false;
+        QueueFree();
+    }
 
     public void OnTryAgainButtonPressed()
     {
-        SceneManager.Instance.IsMenuOpen = false;
+        HideMenu();
         SignalManager.Instance.EmitSignal(nameof(SignalManager.RestartGame));
     }
 }
