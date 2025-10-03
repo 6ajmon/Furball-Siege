@@ -41,7 +41,7 @@ public partial class GameManager : Node
 
     public void CalculateShotsCount()
     {
-        ShotsCount = (int)(InitialEnemyCount * 1.2) + 2;
+        ShotsCount = (int)(CurrentEnemyCount * 1.2) + 2;
     }
 
     public void TakeShot()
