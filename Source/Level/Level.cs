@@ -37,6 +37,7 @@ public partial class Level : Node3D
         SignalManager.Instance.RestartGame += OnRestartGame;
         SignalManager.Instance.NextRound += OnNextRound;
         SignalManager.Instance.Shoot += InitializeShot;
+        SignalManager.Instance.FinishReload += OnReloadFinished;
 
         CameraManager.Instance.RefreshCameraList();
         CameraManager.Instance.ActivateCamera(0);
@@ -51,11 +52,16 @@ public partial class Level : Node3D
     private async void OnNextRound()
     {
         await ToSignal(GetTree().CreateTimer(2.0f), SceneTreeTimer.SignalName.Timeout);
-        HamsterGenerator._canReload = true;
-        HamsterGenerator.ReloadHamster();
         SetUpFortGenerator();
     }
-
+    private void OnReloadFinished()
+    {
+        if (HamsterGenerator != null)
+        {
+            HamsterGenerator._canReload = true;
+            HamsterGenerator.ReloadHamster();
+        }
+    }
     public override void _PhysicsProcess(double delta)
     {
         if (GameManager.Instance.CurrentGameState == GameManager.GameState.Aiming)

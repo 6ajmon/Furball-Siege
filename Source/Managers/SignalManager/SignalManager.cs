@@ -16,6 +16,7 @@ public partial class SignalManager : Node
 
     [Signal] public delegate void PauseGameEventHandler();
     [Signal] public delegate void ReloadAmmoEventHandler();
+    [Signal] public delegate void FinishReloadEventHandler();
     [Signal] public delegate void ShootEventHandler();
     [Signal] public delegate void RotateLeftEventHandler();
     [Signal] public delegate void RotateRightEventHandler();

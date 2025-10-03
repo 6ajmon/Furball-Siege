@@ -112,6 +112,10 @@ public partial class AimingOverlay : Control
         if (IsInstanceValid(ReloadProgressBar))
         {
             ReloadProgressBar.Value = GameManager.Instance.RemainingReloadCooldown;
+            if (ReloadProgressBar.Value == ReloadProgressBar.MaxValue)
+            {
+                SignalManager.Instance.EmitSignal(nameof(SignalManager.FinishReload));
+            }
         }
     }
     #endregion Labels
