@@ -8,6 +8,7 @@ public partial class CameraManager : Node
     public static CameraManager Instance => ((SceneTree)Engine.GetMainLoop()).Root.GetNode<CameraManager>("CameraManager");
     private int _currentCameraIndex = 0;
     private List<Camera3D> _cameras = new();
+    private const float CAMERA_SWITCH_DELAY = 0.6f;
 
     public override void _Ready()
     {
@@ -18,6 +19,7 @@ public partial class CameraManager : Node
         }
         SignalManager.Instance.CycleLeft += OnCycleLeft;
         SignalManager.Instance.CycleRight += OnCycleRight;
+        SignalManager.Instance.HamsterShot += OnHamsterShot;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -49,6 +51,12 @@ public partial class CameraManager : Node
         }
     }
 
+    private async void OnHamsterShot()
+    {
+        await ToSignal(GetTree().CreateTimer(CAMERA_SWITCH_DELAY), SceneTreeTimer.SignalName.Timeout);
+        OnCycleLeft();
+    }
+
     public void ActivateCamera(int index)
     {
         if (index < 0 || index >= _cameras.Count)
@@ -69,7 +77,7 @@ public partial class CameraManager : Node
         }
         Input.MouseMode = Input.MouseModeEnum.Visible;
     }
-    private void OnCycleLeft()
+    public void OnCycleLeft()
     {
         RefreshCameraList();
         if (_cameras.Count > 0)
@@ -78,7 +86,7 @@ public partial class CameraManager : Node
             ActivateCamera(_currentCameraIndex);
         }
     }
-    private void OnCycleRight()
+    public void OnCycleRight()
     {
         RefreshCameraList();
         if (_cameras.Count > 0)

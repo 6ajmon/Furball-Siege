@@ -38,6 +38,7 @@ public partial class FortGenerator : GridMap
     }
     public async void GenerateFort()
     {
+        GameManager.Instance.FortGenerating = true;
         RemoveAllCrates();
         if (_isGenerating) return;
         _isGenerating = true;

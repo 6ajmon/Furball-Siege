@@ -56,7 +56,7 @@ public partial class HamsterGenerator : Node
             if (hamsterScene != null)
             {
                 _hamsterInstance = hamsterScene.Instantiate() as Hamster;
-                _hamsterAnchorPoint.AddChild(_hamsterInstance);
+                _hamsterAnchorPoint.AddChild(_hamsterInstance, true);
                 _hamsterInstance.GlobalPosition = _hamsterAnchorPoint.GlobalPosition;
             }
             else
@@ -82,8 +82,6 @@ public partial class HamsterGenerator : Node
             _hamsterInstance.GlobalPosition = globalPos;
             _hamsterInstance.GlobalRotation = globalRot;
             _hamsterInstance.Scale = new Vector3(1, 1, 1);
-            
-            StartReloadCooldown();
         }
     }
 
@@ -113,6 +111,7 @@ public partial class HamsterGenerator : Node
     {
         if (_hamsterInstance != null && IsInstanceValid(_hamsterInstance))
         {
+            CameraManager.Instance.OnCycleLeft();
             _hamsterInstance.QueueFree();
             _hamsterInstance = null;
         }

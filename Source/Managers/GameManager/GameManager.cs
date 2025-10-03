@@ -14,6 +14,7 @@ public partial class GameManager : Node
     public const float MINIMUM_SPEED_FOR_DAMAGE = 1f;
     public float MapSize { get; set; }
     public float FortDistance { get; set; }
+    public bool FortGenerating { get; set; } = false;
     public int randomSeed { get; set; } = new Random().Next();
     public int InitialEnemyCount { get; set; } = 2;
     public int ShotsCount { get; set; }

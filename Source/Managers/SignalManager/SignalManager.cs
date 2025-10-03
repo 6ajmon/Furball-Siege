@@ -24,6 +24,7 @@ public partial class SignalManager : Node
     [Signal] public delegate void RotateUpEventHandler();
     [Signal] public delegate void CycleLeftEventHandler();
     [Signal] public delegate void CycleRightEventHandler();
+    [Signal] public delegate void HamsterShotEventHandler();
 
 
     [Signal] public delegate void UpdateAmmoCountEventHandler();

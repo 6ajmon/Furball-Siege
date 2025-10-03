@@ -109,8 +109,9 @@ public partial class Level : Node3D
 
     public void Shoot(bool highForce = false)
     {
+        HamsterGenerator.StartReloadCooldown();
         GameManager.Instance.TakeShot();
-
+        SignalManager.Instance.EmitSignal(nameof(SignalManager.HamsterShot));
         if (HamsterGenerator?.HamsterInstance != null)
         {
             float forceMultiplier = highForce ? 1.0f : failedEventForce;
@@ -136,6 +137,7 @@ public partial class Level : Node3D
 
     private void OnFortGenerated()
     {
+        GameManager.Instance.FortGenerating = false;
         GameManager.Instance.CalculateShotsCount();
     }
     private void OnRestartGame()

@@ -31,11 +31,6 @@ public partial class FlightOverlay : Control
         ButtonSoundEffect();
         SignalManager.Instance.EmitSignal(nameof(SignalManager.PauseGame));
     }
-    public void OnReloadButtonPressed()
-    {
-        ButtonSoundEffect();
-        SignalManager.Instance.EmitSignal(nameof(SignalManager.ReloadAmmo));
-    }
     public void OnCycleLeftButtonPressed()
     {
         ButtonSoundEffect();

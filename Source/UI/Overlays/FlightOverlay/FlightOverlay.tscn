@@ -109,3 +109,7 @@ size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
 layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PauseButton" to="." method="OnPauseButtonPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer/CycleLeftButton" to="." method="OnCycleLeftButtonPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer/CycleRightButton" to="." method="OnCycleRightButtonPressed"]
