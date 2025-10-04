@@ -41,14 +41,12 @@ public partial class CameraManager : Node
 
     private async void OnHamsterShot()
     {
-        GD.Print("CameraManager: Hamster shot detected, switching camera after delay.");
         await ToSignal(GetTree().CreateTimer(CAMERA_SWITCH_DELAY), SceneTreeTimer.SignalName.Timeout);
         OnCycleRight();
     }
 
     public void ActivateCamera(int index)
     {
-        GD.Print($"CameraManager: Activating camera at index {index}.");
         if (index < 0 || index >= _cameras.Count)
         {
             GD.PrintErr("Camera index out of range.");
@@ -78,7 +76,6 @@ public partial class CameraManager : Node
     }
     public void OnCycleRight()
     {
-        GD.Print("CameraManager: Cycling right.");
         RefreshCameraList();
         if (_cameras.Count > 0)
         {

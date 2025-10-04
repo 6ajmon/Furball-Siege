@@ -7,9 +7,6 @@ public partial class AimingOverlay : Control
     [Export] public Label EnemiesRemainingLabel;
     [Export] public Label AmmoLabel;
 
-    [Export] public ProgressBar ReloadProgressBar;
-    private bool finishedReloadBar = false;
-
     [Export] public Button ReloadButton;
     [Export] public Button ShootButton;
     [Export] public TextureButton PauseButton;
@@ -30,12 +27,9 @@ public partial class AimingOverlay : Control
     public override void _Ready()
     {
         _parentCamera = GetParent<Camera3D>();
-        ReloadProgressBar.MaxValue = GameManager.Instance.ReloadCooldown;
         SignalManager.Instance.RoundNumberChanged += UpdateRoundNumber;
         SignalManager.Instance.UpdateEnemiesRemaining += UpdateEnemiesRemaining;
-        SignalManager.Instance.UpdateReloadProgress += UpdateReloadProgress;
         SignalManager.Instance.UpdateAmmoCount += UpdateAmmoCount;
-        SignalManager.Instance.HamsterShot += OnHamsterShot;
     }
 
     public override void _ExitTree()
@@ -44,7 +38,6 @@ public partial class AimingOverlay : Control
         {
             SignalManager.Instance.RoundNumberChanged -= UpdateRoundNumber;
             SignalManager.Instance.UpdateEnemiesRemaining -= UpdateEnemiesRemaining;
-            SignalManager.Instance.UpdateReloadProgress -= UpdateReloadProgress;
             SignalManager.Instance.UpdateAmmoCount -= UpdateAmmoCount;
         }
     }
@@ -87,11 +80,6 @@ public partial class AimingOverlay : Control
         }
     }
 
-    private void OnHamsterShot()
-    {
-        finishedReloadBar = false;
-    }
-
     #region Labels
     public void UpdateRoundNumber()
     {
@@ -113,19 +101,6 @@ public partial class AimingOverlay : Control
         {
             var ammoCount = GameManager.Instance.ShotsCount - GameManager.Instance.ShotsTaken;
             AmmoLabel.Text = $"{ammoCount}/{GameManager.Instance.ShotsCount}";
-        }
-    }
-    public void UpdateReloadProgress()
-    {
-        if (IsInstanceValid(ReloadProgressBar))
-        {
-            ReloadProgressBar.Value = GameManager.Instance.RemainingReloadCooldown;
-            if (ReloadProgressBar.Value == ReloadProgressBar.MaxValue
-            && !finishedReloadBar)
-            {
-                finishedReloadBar = true;
-                SignalManager.Instance.EmitSignal(nameof(SignalManager.FinishReload));
-            }
         }
     }
     #endregion Labels

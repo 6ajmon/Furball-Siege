@@ -25,6 +25,7 @@ public partial class GameManager : Node
     public float RemainingReloadCooldown { get; set; }
     private Timer _lastShotTimer;
     public float lastShotTimerWaitTime = 10.0f;
+    public bool finishedReloadBar = false;
 
     public bool HasShotsRemaining => ShotsTaken < ShotsCount;
 
