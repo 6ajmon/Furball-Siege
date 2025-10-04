@@ -15,7 +15,7 @@ public partial class GameManager : Node
     public float MapSize { get; set; }
     public float FortDistance { get; set; }
     public bool FortGenerating { get; set; } = false;
-    public int randomSeed { get; set; } = new Random().Next();
+    public int RandomSeed { get; set; } = new Random().Next();
     public int InitialEnemyCount { get; set; } = 2;
     public int ShotsCount { get; set; }
     public int ShotsTaken { get; set; } = 0;

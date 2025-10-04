@@ -64,12 +64,12 @@ public partial class Level : Node3D
     }
     public override void _PhysicsProcess(double delta)
     {
-        if (GameManager.Instance.CurrentGameState == GameManager.GameState.Aiming)
+        if (GameManager.Instance.CurrentGameState == GameManager.GameState.Aiming
+            && !GameManager.Instance.FortGenerating
+            && GameManager.Instance.finishedReloadBar
+            && Input.IsActionPressed("Shoot"))
         {
-            if (Input.IsActionPressed("Shoot"))
-            {
-                InitializeShot();
-            }
+            InitializeShot();
         }
     }
     private void InitializeShot()

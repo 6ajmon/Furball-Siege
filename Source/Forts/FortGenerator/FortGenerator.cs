@@ -34,7 +34,7 @@ public partial class FortGenerator : GridMap
             return;
         }
         CellSize = new Vector3(CRATE_SIZE, CRATE_SIZE, CRATE_SIZE);
-        _random = new Random(GameManager.Instance.randomSeed);
+        _random = new Random(GameManager.Instance.RandomSeed);
     }
     public async void GenerateFort()
     {
