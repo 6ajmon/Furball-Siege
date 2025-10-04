@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bxtkrlhh7lgbf"]
+[gd_scene load_steps=16 format=3 uid="uid://bxtkrlhh7lgbf"]
 
 [ext_resource type="Theme" uid="uid://b4g3uaa2tkx1o" path="res://Assets/Themes/UITheme.tres" id="1_ahla6"]
 [ext_resource type="Script" uid="uid://vbyo8ke0rpog" path="res://Source/UI/Components/Buttons/UIButton/UiButton.cs" id="1_it1uj"]
@@ -13,9 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://xggg224p4r8j" path="res://Assets/UI/Buttons/Square-Medium/Pause/Hover.svg" id="4_vdcg2"]
 [ext_resource type="Texture2D" uid="uid://cfomq2sd4rw8x" path="res://Assets/UI/Buttons/Square-Medium/ArrowDown/Default.png" id="9_uqvhh"]
 [ext_resource type="Texture2D" uid="uid://dtnuag5l66wm8" path="res://Assets/UI/Buttons/Square-Medium/ArrowDown/Hover.png" id="10_y4jlo"]
+[ext_resource type="PackedScene" uid="uid://clbe12h1tovri" path="res://Source/UI/Components/Labels/AmmoLabel/AmmoLabel.tscn" id="14_5uogc"]
 [ext_resource type="PackedScene" uid="uid://c63mfgyxtk0av" path="res://Source/UI/Components/ReloadProgressBar/ReloadProgressBar.tscn" id="14_vdcg2"]
 
-[node name="AimingOverlay" type="Control" node_paths=PackedStringArray("RoundNumberLabel", "EnemiesRemainingLabel", "AmmoLabel", "ShootButton", "PauseButton", "RotateLeftButton", "RotateRightButton", "RotateDownButton", "RotateUpButton")]
+[node name="AimingOverlay" type="Control" node_paths=PackedStringArray("RoundNumberLabel", "EnemiesRemainingLabel", "ShootButton", "PauseButton", "RotateLeftButton", "RotateRightButton", "RotateDownButton", "RotateUpButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -26,7 +27,6 @@ theme = ExtResource("1_ahla6")
 script = ExtResource("2_cw5iy")
 RoundNumberLabel = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/RoundNumberLabel")
 EnemiesRemainingLabel = NodePath("MarginContainer/VBoxContainer/HBoxContainer/EnemiesRemaining")
-AmmoLabel = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer/AmmoLabel")
 ShootButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer/ShootButton")
 PauseButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PauseButton")
 RotateLeftButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/RotateLeftButton")
@@ -171,11 +171,8 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="AmmoLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer"]
+[node name="AmmoLabel" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer" instance=ExtResource("14_5uogc")]
 layout_mode = 2
-size_flags_horizontal = 10
-text = "3/5"
-horizontal_alignment = 2
 
 [node name="ReloadProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2" instance=ExtResource("14_vdcg2")]
 layout_mode = 2

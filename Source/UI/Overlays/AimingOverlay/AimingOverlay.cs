@@ -5,7 +5,6 @@ public partial class AimingOverlay : Control
 {
     [Export] public Label RoundNumberLabel;
     [Export] public Label EnemiesRemainingLabel;
-    [Export] public Label AmmoLabel;
 
     [Export] public Button ReloadButton;
     [Export] public Button ShootButton;
@@ -29,7 +28,6 @@ public partial class AimingOverlay : Control
         _parentCamera = GetParent<Camera3D>();
         SignalManager.Instance.RoundNumberChanged += UpdateRoundNumber;
         SignalManager.Instance.UpdateEnemiesRemaining += UpdateEnemiesRemaining;
-        SignalManager.Instance.UpdateAmmoCount += UpdateAmmoCount;
     }
 
     public override void _ExitTree()
@@ -38,7 +36,6 @@ public partial class AimingOverlay : Control
         {
             SignalManager.Instance.RoundNumberChanged -= UpdateRoundNumber;
             SignalManager.Instance.UpdateEnemiesRemaining -= UpdateEnemiesRemaining;
-            SignalManager.Instance.UpdateAmmoCount -= UpdateAmmoCount;
         }
     }
 
@@ -93,14 +90,6 @@ public partial class AimingOverlay : Control
         if (IsInstanceValid(EnemiesRemainingLabel))
         {
             EnemiesRemainingLabel.Text = $"Gnomes Left: {GameManager.Instance.CurrentEnemyCount}";
-        }
-    }
-    public void UpdateAmmoCount()
-    {
-        if (IsInstanceValid(AmmoLabel))
-        {
-            var ammoCount = GameManager.Instance.ShotsCount - GameManager.Instance.ShotsTaken;
-            AmmoLabel.Text = $"{ammoCount}/{GameManager.Instance.ShotsCount}";
         }
     }
     #endregion Labels
