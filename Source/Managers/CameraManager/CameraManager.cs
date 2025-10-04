@@ -13,25 +13,13 @@ public partial class CameraManager : Node
     public override void _Ready()
     {
         RefreshCameraList();
-        if (_cameras.Count != 0)
+        if (_cameras.Count > 0)
         {
             ActivateCamera(_currentCameraIndex);
         }
         SignalManager.Instance.CycleLeft += OnCycleLeft;
         SignalManager.Instance.CycleRight += OnCycleRight;
         SignalManager.Instance.HamsterShot += OnHamsterShot;
-    }
-
-    public override void _PhysicsProcess(double delta)
-    {
-        if (Input.IsActionJustPressed("CycleCameraForward"))
-        {
-            SignalManager.Instance.EmitSignal(nameof(SignalManager.CycleRight));
-        }
-        else if (Input.IsActionJustPressed("CycleCameraBack"))
-        {
-            SignalManager.Instance.EmitSignal(nameof(SignalManager.CycleLeft));
-        }
     }
 
     public void RefreshCameraList()
@@ -53,12 +41,14 @@ public partial class CameraManager : Node
 
     private async void OnHamsterShot()
     {
+        GD.Print("CameraManager: Hamster shot detected, switching camera after delay.");
         await ToSignal(GetTree().CreateTimer(CAMERA_SWITCH_DELAY), SceneTreeTimer.SignalName.Timeout);
-        OnCycleLeft();
+        OnCycleRight();
     }
 
     public void ActivateCamera(int index)
     {
+        GD.Print($"CameraManager: Activating camera at index {index}.");
         if (index < 0 || index >= _cameras.Count)
         {
             GD.PrintErr("Camera index out of range.");
@@ -82,17 +72,18 @@ public partial class CameraManager : Node
         RefreshCameraList();
         if (_cameras.Count > 0)
         {
-            _currentCameraIndex = (_currentCameraIndex - 1 + _cameras.Count) % _cameras.Count;
-            ActivateCamera(_currentCameraIndex);
+            var nextCameraIndex = (_currentCameraIndex - 1 + _cameras.Count) % _cameras.Count;
+            ActivateCamera(nextCameraIndex);
         }
     }
     public void OnCycleRight()
     {
+        GD.Print("CameraManager: Cycling right.");
         RefreshCameraList();
         if (_cameras.Count > 0)
         {
-            _currentCameraIndex = (_currentCameraIndex + 1) % _cameras.Count;
-            ActivateCamera(_currentCameraIndex);
+            var nextCameraIndex = (_currentCameraIndex + 1) % _cameras.Count;
+            ActivateCamera(nextCameraIndex);
         }
     }
 }

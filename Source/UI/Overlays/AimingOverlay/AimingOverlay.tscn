@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cfomq2sd4rw8x" path="res://Assets/UI/Buttons/Square-Medium/ArrowDown/Default.png" id="9_uqvhh"]
 [ext_resource type="Texture2D" uid="uid://dtnuag5l66wm8" path="res://Assets/UI/Buttons/Square-Medium/ArrowDown/Hover.png" id="10_y4jlo"]
 
-[node name="AimingOverlay" type="Control" node_paths=PackedStringArray("RoundNumberLabel", "EnemiesRemainingLabel", "AmmoLabel", "ReloadProgressBar", "ReloadButton", "ShootButton", "PauseButton", "RotateLeftButton", "RotateRightButton", "RotateDownButton", "RotateUpButton", "CycleLeftButton", "CycleRightButton")]
+[node name="AimingOverlay" type="Control" node_paths=PackedStringArray("RoundNumberLabel", "EnemiesRemainingLabel", "AmmoLabel", "ReloadProgressBar", "ReloadButton", "ShootButton", "PauseButton", "RotateLeftButton", "RotateRightButton", "RotateDownButton", "RotateUpButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,8 +34,6 @@ RotateLeftButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/Rotate
 RotateRightButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/RotateRightButton")
 RotateDownButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer/RotateDownButton")
 RotateUpButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/RotateUpButton")
-CycleLeftButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer/CycleLeftButton")
-CycleRightButton = NodePath("MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer/CycleRightButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -149,32 +147,9 @@ size_flags_vertical = 8
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
-layout_mode = 2
-text = "Cycle Cameras"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer"]
 layout_mode = 2
-
-[node name="CycleLeftButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-texture_normal = ExtResource("3_g4lvh")
-texture_pressed = ExtResource("4_56800")
-texture_hover = ExtResource("4_56800")
-texture_focused = ExtResource("4_56800")
-
-[node name="CycleRightButton" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 4
-texture_normal = ExtResource("3_iwm3l")
-texture_pressed = ExtResource("4_ctqnn")
-texture_hover = ExtResource("4_ctqnn")
-texture_focused = ExtResource("4_ctqnn")
+size_flags_vertical = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3"]
 layout_mode = 2
@@ -195,6 +170,7 @@ size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="ReloadButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer"]
 layout_mode = 2
@@ -211,6 +187,7 @@ text = "3/5"
 horizontal_alignment = 2
 
 [node name="ReloadProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 size_flags_vertical = 3
 value = 50.0
@@ -225,8 +202,6 @@ show_percentage = false
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/MarginContainer/VBoxContainer/ShootButton" to="." method="OnShootButtonPressed"]
 [connection signal="button_down" from="MarginContainer/VBoxContainer/HBoxContainer2/RotateRightButton" to="." method="OnRotateRightButtonDown"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer2/RotateRightButton" to="." method="OnRotateRightButtonUp"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer/CycleLeftButton" to="." method="OnCycleLeftButtonPressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer/HBoxContainer/CycleRightButton" to="." method="OnCycleRightButtonPressed"]
 [connection signal="button_down" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer/RotateDownButton" to="." method="OnRotateDownButtonDown"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer/RotateDownButton" to="." method="OnRotateDownButtonUp"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer3/VBoxContainer2/HBoxContainer/ReloadButton" to="." method="OnReloadButtonPressed"]
