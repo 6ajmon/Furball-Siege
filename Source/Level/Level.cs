@@ -39,8 +39,7 @@ public partial class Level : Node3D
         SignalManager.Instance.Shoot += InitializeShot;
         SignalManager.Instance.FinishReload += OnReloadFinished;
 
-        CameraManager.Instance.RefreshCameraList();
-        CameraManager.Instance.ActivateCamera(1);
+        CameraManager.Instance.OnRestartGame();
 
         GameManager.Instance.ResetGame();
         SignalManager.Instance.EmitSignal(nameof(SignalManager.RoundNumberChanged));

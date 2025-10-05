@@ -20,6 +20,7 @@ public partial class CameraManager : Node
         SignalManager.Instance.CycleLeft += OnCycleLeft;
         SignalManager.Instance.CycleRight += OnCycleRight;
         SignalManager.Instance.HamsterShot += OnHamsterShot;
+        SignalManager.Instance.RestartGame += OnRestartGame;
     }
 
     public void RefreshCameraList()
@@ -81,6 +82,15 @@ public partial class CameraManager : Node
         {
             var nextCameraIndex = (_currentCameraIndex + 1) % _cameras.Count;
             ActivateCamera(nextCameraIndex);
+        }
+    }
+    public void OnRestartGame()
+    {
+        _currentCameraIndex = 0;
+        RefreshCameraList();
+        if (_cameras.Count > 0)
+        {
+            ActivateCamera(_currentCameraIndex);
         }
     }
 }
