@@ -32,7 +32,6 @@ public partial class CameraManager : Node
                 }
             }
         }
-        GD.Print("Current index: " + _currentCameraIndex + " Found " + _cameras.Count + " cameras.");
         if (_currentCameraIndex >= _cameras.Count)
         {
             _currentCameraIndex = 0;
@@ -57,7 +56,6 @@ public partial class CameraManager : Node
         {
             _cameras[_currentCameraIndex].Current = false;
         }
-        GD.Print("Activating camera index: " + index);
         _currentCameraIndex = index;
         if (IsInstanceValid(_cameras[_currentCameraIndex]))
         {
