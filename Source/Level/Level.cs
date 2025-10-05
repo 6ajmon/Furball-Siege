@@ -49,10 +49,14 @@ public partial class Level : Node3D
     }
 
     private async void OnNextRound()
-    {
-        await ToSignal(GetTree().CreateTimer(2.0f), SceneTreeTimer.SignalName.Timeout);
-        SetUpFortGenerator();
-    }
+{
+    await ToSignal(GetTree().CreateTimer(2.0f), SceneTreeTimer.SignalName.Timeout);
+    
+    if (!IsInstanceValid(this))
+        return;
+    
+    SetUpFortGenerator();
+}
     private void OnReloadFinished()
     {
         if (IsInstanceValid(HamsterGenerator))
@@ -141,6 +145,11 @@ public partial class Level : Node3D
     }
     private void OnRestartGame()
     {
+        SignalManager.Instance.FortGenerated -= OnFortGenerated;
+        SignalManager.Instance.RestartGame -= OnRestartGame;
+        SignalManager.Instance.NextRound -= OnNextRound;
+        SignalManager.Instance.Shoot -= InitializeShot;
+        
         GameManager.Instance.ResetGame();
         if (IsInstanceValid(this))
         {
