@@ -70,6 +70,7 @@ public partial class GameManager : Node
 
     public void ResetGame()
     {
+        RandomSeed = new Random().Next();
         ShotsTaken = 0;
         CurrentRound = 1;
         CurrentEnemyCount = InitialEnemyCount;
