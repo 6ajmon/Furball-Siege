@@ -6,30 +6,16 @@ using System.Linq;
 public partial class CameraManager : Node
 {
     public static CameraManager Instance => ((SceneTree)Engine.GetMainLoop()).Root.GetNode<CameraManager>("CameraManager");
-    private int _currentCameraIndex = 0;
+    [Export] private int _currentCameraIndex = 0;
     private List<Camera3D> _cameras = new();
+    private const float CAMERA_SWITCH_DELAY = 0.6f;
 
     public override void _Ready()
     {
-        RefreshCameraList();
-        if (_cameras.Count != 0)
-        {
-            ActivateCamera(_currentCameraIndex);
-        }
         SignalManager.Instance.CycleLeft += OnCycleLeft;
         SignalManager.Instance.CycleRight += OnCycleRight;
-    }
-
-    public override void _PhysicsProcess(double delta)
-    {
-        if (Input.IsActionJustPressed("CycleCameraForward"))
-        {
-            SignalManager.Instance.EmitSignal(nameof(SignalManager.CycleRight));
-        }
-        else if (Input.IsActionJustPressed("CycleCameraBack"))
-        {
-            SignalManager.Instance.EmitSignal(nameof(SignalManager.CycleLeft));
-        }
+        SignalManager.Instance.HamsterShot += OnHamsterShot;
+        SignalManager.Instance.RestartGame += OnRestartGame;
     }
 
     public void RefreshCameraList()
@@ -40,13 +26,22 @@ public partial class CameraManager : Node
             if (node is Camera3D camera && IsInstanceValid(camera))
             {
                 _cameras.Add(camera);
+                if (camera.Current)
+                {
+                    _currentCameraIndex = _cameras.IndexOf(camera);
+                }
             }
         }
-
         if (_currentCameraIndex >= _cameras.Count)
         {
             _currentCameraIndex = 0;
         }
+    }
+
+    private async void OnHamsterShot()
+    {
+        await ToSignal(GetTree().CreateTimer(CAMERA_SWITCH_DELAY), SceneTreeTimer.SignalName.Timeout);
+        OnCycleRight();
     }
 
     public void ActivateCamera(int index)
@@ -61,7 +56,6 @@ public partial class CameraManager : Node
         {
             _cameras[_currentCameraIndex].Current = false;
         }
-
         _currentCameraIndex = index;
         if (IsInstanceValid(_cameras[_currentCameraIndex]))
         {
@@ -69,21 +63,30 @@ public partial class CameraManager : Node
         }
         Input.MouseMode = Input.MouseModeEnum.Visible;
     }
-    private void OnCycleLeft()
+    public void OnCycleLeft()
     {
         RefreshCameraList();
         if (_cameras.Count > 0)
         {
-            _currentCameraIndex = (_currentCameraIndex - 1 + _cameras.Count) % _cameras.Count;
-            ActivateCamera(_currentCameraIndex);
+            var nextCameraIndex = (_currentCameraIndex - 1 + _cameras.Count) % _cameras.Count;
+            ActivateCamera(nextCameraIndex);
         }
     }
-    private void OnCycleRight()
+    public void OnCycleRight()
     {
         RefreshCameraList();
         if (_cameras.Count > 0)
         {
-            _currentCameraIndex = (_currentCameraIndex + 1) % _cameras.Count;
+            var nextCameraIndex = (_currentCameraIndex + 1) % _cameras.Count;
+            ActivateCamera(nextCameraIndex);
+        }
+    }
+    public void OnRestartGame()
+    {
+        _currentCameraIndex = 0;
+        RefreshCameraList();
+        if (_cameras.Count > 0)
+        {
             ActivateCamera(_currentCameraIndex);
         }
     }

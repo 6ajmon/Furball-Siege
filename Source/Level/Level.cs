@@ -37,9 +37,9 @@ public partial class Level : Node3D
         SignalManager.Instance.RestartGame += OnRestartGame;
         SignalManager.Instance.NextRound += OnNextRound;
         SignalManager.Instance.Shoot += InitializeShot;
+        SignalManager.Instance.FinishReload += OnReloadFinished;
 
-        CameraManager.Instance.RefreshCameraList();
-        CameraManager.Instance.ActivateCamera(0);
+        CameraManager.Instance.OnRestartGame();
 
         GameManager.Instance.ResetGame();
         SignalManager.Instance.EmitSignal(nameof(SignalManager.RoundNumberChanged));
@@ -49,24 +49,30 @@ public partial class Level : Node3D
     }
 
     private async void OnNextRound()
+{
+    await ToSignal(GetTree().CreateTimer(2.0f), SceneTreeTimer.SignalName.Timeout);
+    
+    if (!IsInstanceValid(this))
+        return;
+    
+    SetUpFortGenerator();
+}
+    private void OnReloadFinished()
     {
-        GameManager.Instance.ResetGame();
-        GameManager.Instance.CurrentRound++;
-        SignalManager.Instance.EmitSignal(nameof(SignalManager.RoundNumberChanged));
-        await ToSignal(GetTree().CreateTimer(2.0f), SceneTreeTimer.SignalName.Timeout);
-        HamsterGenerator._canReload = true;
-        HamsterGenerator.ReloadHamster();
-        SetUpFortGenerator();
+        if (IsInstanceValid(HamsterGenerator))
+        {
+            HamsterGenerator._canReload = true;
+            HamsterGenerator.ReloadHamster();
+        }
     }
-
     public override void _PhysicsProcess(double delta)
     {
-        if (GameManager.Instance.CurrentGameState == GameManager.GameState.Aiming)
+        if (GameManager.Instance.CurrentGameState == GameManager.GameState.Aiming
+            && !GameManager.Instance.FortGenerating
+            && GameManager.Instance.finishedReloadBar
+            && Input.IsActionPressed("Shoot"))
         {
-            if (Input.IsActionPressed("Shoot"))
-            {
-                InitializeShot();
-            }
+            InitializeShot();
         }
     }
     private void InitializeShot()
@@ -106,8 +112,9 @@ public partial class Level : Node3D
 
     public void Shoot(bool highForce = false)
     {
+        HamsterGenerator.StartReloadCooldown();
         GameManager.Instance.TakeShot();
-
+        SignalManager.Instance.EmitSignal(nameof(SignalManager.HamsterShot));
         if (HamsterGenerator?.HamsterInstance != null)
         {
             float forceMultiplier = highForce ? 1.0f : failedEventForce;
@@ -133,10 +140,16 @@ public partial class Level : Node3D
 
     private void OnFortGenerated()
     {
+        GameManager.Instance.FortGenerating = false;
         GameManager.Instance.CalculateShotsCount();
     }
     private void OnRestartGame()
     {
+        SignalManager.Instance.FortGenerated -= OnFortGenerated;
+        SignalManager.Instance.RestartGame -= OnRestartGame;
+        SignalManager.Instance.NextRound -= OnNextRound;
+        SignalManager.Instance.Shoot -= InitializeShot;
+        
         GameManager.Instance.ResetGame();
         if (IsInstanceValid(this))
         {

@@ -8,6 +8,5 @@ public partial class Hamster : RigidBody3D
     public override void _Ready()
     {
         Camera = GetNode<Camera3D>("BodyParts/HeadMesh/Camera3D");
-        CameraManager.Instance.RefreshCameraList();
     }
 }

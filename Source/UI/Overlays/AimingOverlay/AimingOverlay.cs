@@ -5,9 +5,6 @@ public partial class AimingOverlay : Control
 {
     [Export] public Label RoundNumberLabel;
     [Export] public Label EnemiesRemainingLabel;
-    [Export] public Label AmmoLabel;
-
-    [Export] public ProgressBar ReloadProgressBar;
 
     [Export] public Button ReloadButton;
     [Export] public Button ShootButton;
@@ -29,11 +26,8 @@ public partial class AimingOverlay : Control
     public override void _Ready()
     {
         _parentCamera = GetParent<Camera3D>();
-        ReloadProgressBar.MaxValue = GameManager.Instance.ReloadCooldown;
         SignalManager.Instance.RoundNumberChanged += UpdateRoundNumber;
         SignalManager.Instance.UpdateEnemiesRemaining += UpdateEnemiesRemaining;
-        SignalManager.Instance.UpdateReloadProgress += UpdateReloadProgress;
-        SignalManager.Instance.UpdateAmmoCount += UpdateAmmoCount;
     }
 
     public override void _ExitTree()
@@ -42,8 +36,6 @@ public partial class AimingOverlay : Control
         {
             SignalManager.Instance.RoundNumberChanged -= UpdateRoundNumber;
             SignalManager.Instance.UpdateEnemiesRemaining -= UpdateEnemiesRemaining;
-            SignalManager.Instance.UpdateReloadProgress -= UpdateReloadProgress;
-            SignalManager.Instance.UpdateAmmoCount -= UpdateAmmoCount;
         }
     }
 
@@ -61,7 +53,8 @@ public partial class AimingOverlay : Control
             if (_isRotatingDown)
                 SignalManager.Instance.EmitSignal(nameof(SignalManager.RotateDown));
 
-            if (GameManager.Instance.CurrentGameState == GameManager.GameState.Aiming)
+            if (GameManager.Instance.CurrentGameState == GameManager.GameState.Aiming
+            && !GameManager.Instance.FortGenerating)
             {
                 ShootButton.Show();
                 RotateLeftButton.Show();
@@ -97,21 +90,6 @@ public partial class AimingOverlay : Control
         if (IsInstanceValid(EnemiesRemainingLabel))
         {
             EnemiesRemainingLabel.Text = $"Gnomes Left: {GameManager.Instance.CurrentEnemyCount}";
-        }
-    }
-    public void UpdateAmmoCount()
-    {
-        if (IsInstanceValid(AmmoLabel))
-        {
-            var ammoCount = GameManager.Instance.ShotsCount - GameManager.Instance.ShotsTaken;
-            AmmoLabel.Text = $"{ammoCount}/{GameManager.Instance.ShotsCount}";
-        }
-    }
-    public void UpdateReloadProgress()
-    {
-        if (IsInstanceValid(ReloadProgressBar))
-        {
-            ReloadProgressBar.Value = GameManager.Instance.RemainingReloadCooldown;
         }
     }
     #endregion Labels
@@ -176,16 +154,6 @@ public partial class AimingOverlay : Control
     private void OnRotateDownButtonUp()
     {
         _isRotatingDown = false;
-    }
-    public void OnCycleLeftButtonPressed()
-    {
-        ButtonSoundEffect();
-        SignalManager.Instance.EmitSignal(nameof(SignalManager.CycleLeft));
-    }
-    public void OnCycleRightButtonPressed()
-    {
-        ButtonSoundEffect();
-        SignalManager.Instance.EmitSignal(nameof(SignalManager.CycleRight));
     }
     private void ButtonSoundEffect()
     {

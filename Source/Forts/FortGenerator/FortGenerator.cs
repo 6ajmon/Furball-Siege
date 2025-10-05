@@ -34,16 +34,16 @@ public partial class FortGenerator : GridMap
             return;
         }
         CellSize = new Vector3(CRATE_SIZE, CRATE_SIZE, CRATE_SIZE);
-        _random = new Random(GameManager.Instance.randomSeed);
+        _random = new Random(GameManager.Instance.RandomSeed);
     }
     public async void GenerateFort()
     {
+        GameManager.Instance.FortGenerating = true;
         RemoveAllCrates();
         if (_isGenerating) return;
         _isGenerating = true;
 
         FortWidth = GameManager.Instance.GetMapSizeForRound();
-        EnemyCount = GameManager.Instance.InitialEnemyCount;
         GameManager.Instance.MapSize = FortWidth * CRATE_SIZE;
 
         CalculateCratePositions();
@@ -94,6 +94,7 @@ public partial class FortGenerator : GridMap
     }
     private void SpawnEnemies()
     {
+        EnemyCount = GameManager.Instance.CurrentEnemyCount;
         if (_spawnedCrates.Count == 0 || EnemyCount <= 0) return;
 
         var availableCrates = _spawnedCrates.ToList();

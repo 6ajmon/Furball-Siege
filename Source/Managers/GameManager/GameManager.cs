@@ -14,16 +14,18 @@ public partial class GameManager : Node
     public const float MINIMUM_SPEED_FOR_DAMAGE = 1f;
     public float MapSize { get; set; }
     public float FortDistance { get; set; }
-    public int randomSeed { get; set; } = new Random().Next();
+    public bool FortGenerating { get; set; } = false;
+    public int RandomSeed { get; set; } = new Random().Next();
     public int InitialEnemyCount { get; set; } = 2;
     public int ShotsCount { get; set; }
     public int ShotsTaken { get; set; } = 0;
-    public int CurrentRound { get; set; }
+    public int CurrentRound { get; set; } = 0;
     public int CurrentEnemyCount { get; set; }
     public float ReloadCooldown { get; set; } = 6f;
     public float RemainingReloadCooldown { get; set; }
     private Timer _lastShotTimer;
     public float lastShotTimerWaitTime = 10.0f;
+    public bool finishedReloadBar = false;
 
     public bool HasShotsRemaining => ShotsTaken < ShotsCount;
 
@@ -41,7 +43,7 @@ public partial class GameManager : Node
 
     public void CalculateShotsCount()
     {
-        ShotsCount = (int)(InitialEnemyCount * 1.2) + 2;
+        ShotsCount = (int)(CurrentEnemyCount * 1.2) + 2;
     }
 
     public void TakeShot()
@@ -68,6 +70,7 @@ public partial class GameManager : Node
 
     public void ResetGame()
     {
+        RandomSeed = new Random().Next();
         ShotsTaken = 0;
         CurrentRound = 1;
         CurrentEnemyCount = InitialEnemyCount;
@@ -81,8 +84,7 @@ public partial class GameManager : Node
     {
         CurrentRound++;
         
-        InitialEnemyCount = 2 + (CurrentRound - 1);
-        CurrentEnemyCount = InitialEnemyCount;
+        CurrentEnemyCount = 2 + (CurrentRound - 1);
         
         ShotsTaken = 0;
         CalculateShotsCount();

@@ -16,6 +16,7 @@ public partial class SignalManager : Node
 
     [Signal] public delegate void PauseGameEventHandler();
     [Signal] public delegate void ReloadAmmoEventHandler();
+    [Signal] public delegate void FinishReloadEventHandler();
     [Signal] public delegate void ShootEventHandler();
     [Signal] public delegate void RotateLeftEventHandler();
     [Signal] public delegate void RotateRightEventHandler();
@@ -23,6 +24,7 @@ public partial class SignalManager : Node
     [Signal] public delegate void RotateUpEventHandler();
     [Signal] public delegate void CycleLeftEventHandler();
     [Signal] public delegate void CycleRightEventHandler();
+    [Signal] public delegate void HamsterShotEventHandler();
 
 
     [Signal] public delegate void UpdateAmmoCountEventHandler();

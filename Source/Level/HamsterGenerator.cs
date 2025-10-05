@@ -45,7 +45,8 @@ public partial class HamsterGenerator : Node
 
     public void SpawnHamster()
     {
-        if (_hamsterAnchorPoint != null)
+        _hamsterAnchorPoint = GetTree().GetNodesInGroup("hamsterAnchor").FirstOrDefault() as Marker3D;
+        if (IsInstanceValid(_hamsterAnchorPoint))
         {
             if (string.IsNullOrEmpty(HamsterScenePath))
             {
@@ -56,7 +57,7 @@ public partial class HamsterGenerator : Node
             if (hamsterScene != null)
             {
                 _hamsterInstance = hamsterScene.Instantiate() as Hamster;
-                _hamsterAnchorPoint.AddChild(_hamsterInstance);
+                _hamsterAnchorPoint.AddChild(_hamsterInstance, true);
                 _hamsterInstance.GlobalPosition = _hamsterAnchorPoint.GlobalPosition;
             }
             else
@@ -78,12 +79,10 @@ public partial class HamsterGenerator : Node
             Vector3 globalRot = _hamsterInstance.GlobalRotation;
 
             _hamsterAnchorPoint.RemoveChild(_hamsterInstance);
-            GetParent().AddChild(_hamsterInstance);
+            AddChild(_hamsterInstance);
             _hamsterInstance.GlobalPosition = globalPos;
             _hamsterInstance.GlobalRotation = globalRot;
             _hamsterInstance.Scale = new Vector3(1, 1, 1);
-            
-            StartReloadCooldown();
         }
     }
 
@@ -111,7 +110,7 @@ public partial class HamsterGenerator : Node
 
     private void RemovePreviousHamster()
     {
-        if (_hamsterInstance != null && IsInstanceValid(_hamsterInstance))
+        if (IsInstanceValid(_hamsterInstance))
         {
             _hamsterInstance.QueueFree();
             _hamsterInstance = null;

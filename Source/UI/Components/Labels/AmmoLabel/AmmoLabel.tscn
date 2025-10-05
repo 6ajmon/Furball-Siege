@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://clbe12h1tovri"]
+
+[ext_resource type="Script" uid="uid://h1c5fvtqqvsu" path="res://Source/UI/Components/Labels/AmmoLabel/AmmoLabel.cs" id="1_yxnkj"]
+
+[node name="AmmoLabel" type="Label"]
+size_flags_horizontal = 10
+text = "3/5"
+horizontal_alignment = 2
+script = ExtResource("1_yxnkj")

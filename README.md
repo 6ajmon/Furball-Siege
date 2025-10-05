@@ -30,7 +30,7 @@ The Fort generates procedurally resulting in different size and enemy distributi
 
 # Features
 
-- Changing camera between Slingshot and Hamster's First Person Camera. 
+- Automatic camera change between Slingshot and Hamster's First Person Camera. 
 - Random Quick Time Event preceded with a sound that determines if the Shot is successful.
 - Physics based gameplay and damage calculations. Destroying Forts is fun!
 - Procedurally generated Forts which makes the game replayable.
@@ -41,9 +41,6 @@ Keyboard Controls:
 
 - Space - Shoot
 - WASD - Rotate Slingshot during aiming
-- Q - Cycle camera backward
-- E - Cycle camera forward
-- R - Reload
 - Esc - Pause
 
 You can also use the arrow keys to navigate in menus and use Enter as a select, so you don't have to use your mouse!
