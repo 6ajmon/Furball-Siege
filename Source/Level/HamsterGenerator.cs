@@ -79,7 +79,7 @@ public partial class HamsterGenerator : Node
             Vector3 globalRot = _hamsterInstance.GlobalRotation;
 
             _hamsterAnchorPoint.RemoveChild(_hamsterInstance);
-            GetParent().AddChild(_hamsterInstance);
+            AddChild(_hamsterInstance);
             _hamsterInstance.GlobalPosition = globalPos;
             _hamsterInstance.GlobalRotation = globalRot;
             _hamsterInstance.Scale = new Vector3(1, 1, 1);
