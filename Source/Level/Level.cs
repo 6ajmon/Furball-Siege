@@ -55,7 +55,7 @@ public partial class Level : Node3D
     }
     private void OnReloadFinished()
     {
-        if (HamsterGenerator != null)
+        if (IsInstanceValid(HamsterGenerator))
         {
             HamsterGenerator._canReload = true;
             HamsterGenerator.ReloadHamster();

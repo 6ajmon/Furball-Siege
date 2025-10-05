@@ -155,16 +155,6 @@ public partial class AimingOverlay : Control
     {
         _isRotatingDown = false;
     }
-    public void OnCycleLeftButtonPressed()
-    {
-        ButtonSoundEffect();
-        SignalManager.Instance.EmitSignal(nameof(SignalManager.CycleLeft));
-    }
-    public void OnCycleRightButtonPressed()
-    {
-        ButtonSoundEffect();
-        SignalManager.Instance.EmitSignal(nameof(SignalManager.CycleRight));
-    }
     private void ButtonSoundEffect()
     {
         // TODO: audio

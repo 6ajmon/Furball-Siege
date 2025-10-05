@@ -6,17 +6,12 @@ using System.Linq;
 public partial class CameraManager : Node
 {
     public static CameraManager Instance => ((SceneTree)Engine.GetMainLoop()).Root.GetNode<CameraManager>("CameraManager");
-    private int _currentCameraIndex = 0;
+    [Export] private int _currentCameraIndex = 0;
     private List<Camera3D> _cameras = new();
     private const float CAMERA_SWITCH_DELAY = 0.6f;
 
     public override void _Ready()
     {
-        RefreshCameraList();
-        if (_cameras.Count > 0)
-        {
-            ActivateCamera(_currentCameraIndex);
-        }
         SignalManager.Instance.CycleLeft += OnCycleLeft;
         SignalManager.Instance.CycleRight += OnCycleRight;
         SignalManager.Instance.HamsterShot += OnHamsterShot;
@@ -31,9 +26,13 @@ public partial class CameraManager : Node
             if (node is Camera3D camera && IsInstanceValid(camera))
             {
                 _cameras.Add(camera);
+                if (camera.Current)
+                {
+                    _currentCameraIndex = _cameras.IndexOf(camera);
+                }
             }
         }
-
+        GD.Print("Current index: " + _currentCameraIndex + " Found " + _cameras.Count + " cameras.");
         if (_currentCameraIndex >= _cameras.Count)
         {
             _currentCameraIndex = 0;
@@ -58,7 +57,7 @@ public partial class CameraManager : Node
         {
             _cameras[_currentCameraIndex].Current = false;
         }
-
+        GD.Print("Activating camera index: " + index);
         _currentCameraIndex = index;
         if (IsInstanceValid(_cameras[_currentCameraIndex]))
         {

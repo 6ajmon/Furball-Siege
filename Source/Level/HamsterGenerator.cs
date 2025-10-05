@@ -45,7 +45,8 @@ public partial class HamsterGenerator : Node
 
     public void SpawnHamster()
     {
-        if (_hamsterAnchorPoint != null)
+        _hamsterAnchorPoint = GetTree().GetNodesInGroup("hamsterAnchor").FirstOrDefault() as Marker3D;
+        if (IsInstanceValid(_hamsterAnchorPoint))
         {
             if (string.IsNullOrEmpty(HamsterScenePath))
             {
@@ -109,9 +110,8 @@ public partial class HamsterGenerator : Node
 
     private void RemovePreviousHamster()
     {
-        if (_hamsterInstance != null && IsInstanceValid(_hamsterInstance))
+        if (IsInstanceValid(_hamsterInstance))
         {
-            CameraManager.Instance.OnCycleLeft();
             _hamsterInstance.QueueFree();
             _hamsterInstance = null;
         }
