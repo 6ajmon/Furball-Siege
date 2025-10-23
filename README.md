@@ -1,6 +1,6 @@
 <img width="1914" height="1053" alt="IhDJAf" src="https://github.com/user-attachments/assets/4fe08bb7-451e-4541-9a3b-f0bee9e6645f" />
 
-# FurballSiege
+# Furball Siege
 Furball Siege is a physics based game where you launch youself into the air using a Slingshot! Your goal is to destroy enemy Gnome Forces that hide inside Forts.
 
 You have limited amount of ammo and your goal is to kill all the Gnomes. You can do this by launching Hamsters into them or by making the Forts fall on them.
